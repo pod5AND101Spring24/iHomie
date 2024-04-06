@@ -7,7 +7,7 @@ Mobile App Dev - App Brainstorming
 3. Habit Tracker - allows users to track their routines, exercise, mood, etc.
 4. Mars Rover App- allows users to view images and info from the Mars Rover.
 5. Favorite Movies - allows users to search and favorite movies, filter by genre and user preferences
-6. Language Learning App - teaches users new langauges through interactive lessons, quizes, progress tracking
+6. Language Learning App - teaches users new languages through interactive lessons, quizes, progress tracking
 7. Expense Tracker - allows users to track expenses, such as subscriptions, bills, food, or rent
 
 ## Top 3 New App Ideas
@@ -32,7 +32,8 @@ Mobile App Dev - App Brainstorming
    - **Scope:** The app will feature real-time weather updates, hourly and weekly forecasts, radar maps, severe weather alerts, and air quality information. Users can save multiple locations, set custom alerts, and receive notifications for specific weather events. The app will also provide personalized recommendations for clothing, accessories, and activities based on the current and forecasted weather conditions.
    
  3. Habit Tracker App
-    - **Story:** A personalized habit tracking app that helps users build and maintain healthy habits, break bad ones, and achieve their goals. The app focuses on providing a simple, intuitive, and motivating user experience that encourages users to stay consistent and accountable in their habit-building journey.
+    - **Description:** A personalized habit tracking app that helps users build and maintain healthy habits, break bad ones, and achieve their goals. The app focuses on providing a simple, intuitive, and motivating user experience that encourages users to stay consistent and accountable in their habit-building journey.
+    - **Story:** Aims to help users improve and develop healthy habits, as well as avoid unhealthy routines and behavior.
     - **Category:** Productivity, Health & Fitness
     - **Market:** Students, professionals, and anyone seeking to improve their physical and mental well-being
     - **Scope:** Allow users to create custom habits, set reminders, and track their progress using various metrics (e.g., completion rate, streak count). Users can categorize their habits, set specific goals, and view detailed statistics and insights about their performance. Additionally will provide personalized recommendations, tips, and resources based on the user's habits and goals to help them stay on track and overcome obstacles.
