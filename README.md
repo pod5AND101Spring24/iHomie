@@ -1,4 +1,4 @@
-# Milestone 1 - RealEstate Mate (Unit 7)
+# Milestone 1 - RealEstate Mate GROUP 5 (Unit 7)
 
 ## Table of Contents
 
