@@ -45,29 +45,56 @@ RealEstate Mate is app tha allow users to search, filter, get statistics of spec
 
 ### 2. Screen Archetypes
 
-- [list first screen here]
-  - [list associated required story here]
-  - ...
-- [list second screen here]
-  - [list associated required story here]
-  - ...
+- Home Screen
+    - Users can search for properties by zipcode or address, view featured new listings, and toggle dark mode.
+- Search Results Screen
+    - Users can view a list of search results containing property address, number of bedrooms, price, and images.
+- Property Detail Screen
+  - Users can view detailed information about a specific property, including images, footage, year built, rooms, garage space, listing history, transaction history, and neighborhood information.
+- Favorites Screen
+    - Users can view a list of favorited properties and remove properties from favorites if desired.
+- Settings Screen (Optional)
+    - Users can access settings for user preferences, notifications, and toggling dark mode.
+- AI Insights (Optional)
+    -  Users can access AI-powered real estate statistics, insights, and recommendations.
+- Map View
+    - Users can view properties overlaid on a map, including nearby homes for sale and open houses.
 
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
 
-* [fill out your first tab]
-* [fill out your second tab]
-* [fill out your third tab]
+* Home
+* Favorites (Optional)
+* Settings (Optional)
+* AI Insights (Optional)
 
 **Flow Navigation** (Screen to Screen)
-
-- [list first screen here]
-  - [list screen navigation here]
-  - ...
-- [list second screen here]
-  - [list screen navigation here]
-  - ...
+- Home
+    - Search Results: Upon performing a search
+    - Property Detail: Upon selecting a property
+    - Favorites: (Optional) Upon tapping on favorites tab
+    - Settings: (Optional) Upon tapping on settings tab
+    - AI Insights: (Optional) Upon tapping on AI insights tab
+    - Map View: (Optional) Upon tapping on map view button
+- Search Results
+    - Property Detail: Upon selecting a property
+    - Favorites: (Optional) Upon tapping on favorites tab
+    - Settings: (Optional) Upon tapping on settings tab
+    - AI Insights: (Optional) Upon tapping on AI insights tab
+    - Map View: (Optional) Upon tapping on map view button
+- Property Detail
+    - Favorites: (Optional) Upon tapping on favorites tab
+    - Settings: (Optional) Upon tapping on settings tab
+    - AI Insights: (Optional) Upon tapping on AI insights tab
+- Favorites
+    - Property Detail: Upon selecting a property
+    - Settings: (Optional) Upon tapping on settings tab
+    - AI Insights: (Optional) Upon tapping on AI insights tab
+- Settings
+    - Home: Upon saving settings
+- AI Insights
+    - Home: Upon navigating back to home screen
 
 ## Wireframes
 
