@@ -60,7 +60,7 @@ RealEstate Mate is app tha allow users to search, filter, get statistics of spec
 - Map View
     - Users can view properties overlaid on a map, including nearby homes for sale and open houses.
 
-### 3. Navigation
+### 3. Navigation Flows
 
 **Tab Navigation** (Tab to Screen)
 
