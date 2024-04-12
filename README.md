@@ -32,17 +32,17 @@ iHomie is an app that allows users to search, filter, get statistics of specific
 
 **Required Features**
 
-1. Search by zipcode 
-2. Recyclerview of search results which contains property address, number of bedrooms, price, and image.
-3. Detail view of each property, more pictures, detailed property information such as footage, year built, number of rooms, garage space, listing history, transaction history, neighborhood information.
-4. Add to favorite. User can save an interested property to favorite folder. 
-5. Stats chart showing the prices of saved properties and different commute time to a destination address(workplace, school) entered by user. 
-**Optional Features**
+1. User can search property by zipcode. 
+2. User can scroll search results which contains property address, number of bedrooms, price, and image.
+3. User can click any search result to view details of a property,which include more pictures, detailed property information such as footage, year built, number of rooms, garage space, listing history, transaction history, neighborhood information.
+4. User can add an interested property to favorite. Data in "Saved Homes" is persistent. When user relaunches the app, the saved homes list is unchanged.
 
-1. Setting page for user preferences, notification, dark mode.
-2. Ai could be used to analyze real state statistics (from the api) by answering questions about trends, market insights,specific data points, or recommendations tailored to the user's prompts.
-3. Ability to access users location and find local properties.
-4. Map showing location of saved properties, commute time, nearby facilities.
+**Optional Features**
+1. Stats screen showing the prices of saved properties and different commute time to a destination address(workplace, school) entered by user. 
+2. Account screen for user preferences, notification, dark mode.
+3. Ai could be used to analyze real state statistics (from the api) by answering questions about trends, market insights,specific data points, or recommendations tailored to the user's prompts.
+4. Ability to access users location and find local properties.
+5. Map showing location of saved properties, commute time, nearby facilities.
 
 ### 2. Screen Archetypes
 -Onboarding Screen
@@ -63,7 +63,7 @@ iHomie is an app that allows users to search, filter, get statistics of specific
     - Users can view a list of favorited properties(vertical recyclerview) and remove properties from favorites by long click if desired.
     - Users can go click any propety to go to detailed view of that property.
     - There is a bottom navigation menu with options of "Browse","Saved Homes","Stats","Account".
-- Statistics Screen
+- Statistics Screen(optional)
     - Users can enter a destination address in search bar, and see a chart showing prices of saved properties, and different commute time.
     - There is a bottom navigation menu with options of "Browse","Saved Homes","Stats","Account".
 - Account Screen (Optional)
@@ -76,7 +76,7 @@ iHomie is an app that allows users to search, filter, get statistics of specific
 ### 3. Navigation Flows
 
 **Tab Navigation** (Tab to Screen)
-By clicking different options on bottom navigation menu, user can go to the following screens:
+
 * Browse(Home)
 * Saved Homes(favorites)
 * Stats 
@@ -86,25 +86,18 @@ By clicking different options on bottom navigation menu, user can go to the foll
 
 **Flow Navigation** (Screen to Screen)
 
-- Onboarding screen leads to Login Screen after delay.
-- Login Screen leads to Browse screen upon user click "Login" button.
-- Browse Screen (Home screen):
-    - Show Search Results: Upon entering search in search bar.
-    - leads to Property Detail Screen: Upon clickig a property in search results.
-    - leads to Saved Homes Screen: Upon tapping on "Saved Homes" at bottom navigation menu.
-    - leads to Statistics screen: Upon tapping on "Stats" at bottom navigation menu.
-    - leads to Account screen(optional): Upon tapping on "Account" at bottom navigation menu.
-    - AI Insights: (Optional) Upon tapping on AI insights tab
-    - Map View: (Optional) Upon tapping on map view button
+- Onboarding
+    =>Login Screen
+- Login Screen
+     => Browse screen 
+- Browse Screen 
+     => Property Detail Screen
 - Property Detail Screen:
-    -Browse screen: Upon tapping <-
+    => Browse Screen
 - Saved Homes:
-    - Property Detail Screen: Upon selecting a property
-    - leads to Browse screen: Upon tapping on "Browse" at bottom navigation menu.
-    - leads to Statistics screen: Upon tapping on "Stats" at bottom navigation menu.
-    - leads to Account screen(optional): Upon tapping on "Account" at bottom navigation menu.
-    - AI Insights: (Optional) Upon tapping on AI insights tab
-    - Map View: (Optional) Upon tapping on map view button
+    =>Property Detail Saved Homes Screen
+- Property Detail Saved Homes Screen:
+    => Saved Homes
 - Account(optional):
     - leads to Browse screen: Upon tapping on "Browse" at bottom navigation menu.
     - leads to Statistics screen: Upon tapping on "Stats" at bottom navigation menu.
