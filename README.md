@@ -115,20 +115,7 @@ By clicking different options on bottom navigation menu, user can go to the foll
    - Browse: Upon tapping on "Browse" at bottom navigation menu.
 
 ## Wireframes
-
-![Onboarding](https://hackmd.io/_uploads/HJ9NRUUgC.png)
-
-![Login](https://hackmd.io/_uploads/BJw80IUxA.png)
-
-![Browse Page](https://hackmd.io/_uploads/SJfw0LLxC.png)
-
-![Property Detail Page](https://hackmd.io/_uploads/rJ9q0L8l0.png)
-
-![Saved Home](https://hackmd.io/_uploads/B1v3AULg0.png)
-
-![Property Detail Page (Saved Homes)](https://hackmd.io/_uploads/SyddCILx0.png)
-
-![Statistics](https://hackmd.io/_uploads/HJMp0I8lC.png)
+ <img src="onboarding.png" width=600>
 
 
 ### [BONUS] Digital Wireframes & Mockups
