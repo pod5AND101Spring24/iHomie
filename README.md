@@ -127,7 +127,7 @@ By clicking different options on bottom navigation menu, user can go to the foll
 
 ### [BONUS] Interactive Prototype
 
-<br>
+ <img src="demoiHomiePrototype.gif" width=600>
 
 # Milestone 2 - Build Sprint 1 (Unit 8)
 
