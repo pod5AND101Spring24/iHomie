@@ -44,5 +44,5 @@ shopping for a house.Dark Mode is a relatively easy feature for easy viewing. Gr
 
 ## Final App Idea
 **Real Estate App**
-   - **App name:** iHomie**
+   - **App name:** iHomie
    - **API:** https://rapidapi.com/apimaker/api/zillow-com1/
