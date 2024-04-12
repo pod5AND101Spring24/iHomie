@@ -115,7 +115,7 @@ By clicking different options on bottom navigation menu, user can go to the foll
    - Browse: Upon tapping on "Browse" at bottom navigation menu.
 
 ## Wireframes
- <img src="onboarding.png" width=300>
+ <img src="onboarding.png" width=200>
 
 
 ### [BONUS] Digital Wireframes & Mockups
