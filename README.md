@@ -135,6 +135,8 @@ https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3
 ### [BONUS] Interactive Prototype
 
  <img src="demoiHomiePrototype.gif" width=300>
+ 
+ https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3A1&mode=design&t=MbAQlYKpJeaI37gI-1
 
 # Milestone 2 - Build Sprint 1 (Unit 8)
 
