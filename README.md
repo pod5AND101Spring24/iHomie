@@ -116,7 +116,7 @@ By clicking different options on bottom navigation menu, user can go to the foll
 
 ## Wireframes
 
-[Add picture of your hand sketched wireframes in this section] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+[Add picture of your hand sketched wireframes in this section] <img src="iHomie.pdf" width=600>
 
 <br>
 
