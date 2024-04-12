@@ -117,7 +117,7 @@ By clicking different options on bottom navigation menu, user can go to the foll
 ## Wireframes
  <img src="onboarding.png" width=200> <img src="login.png" width=200> <img src="browse.png" width=200> <img src="propertydetail.png" width=200> 
  
-<img src="savedhome.png" width=200> <img src="propertydetailssavedhomes.png" width=200> <img src="statistics.png" width=200> <img src="statistics.png" width=200>
+<img src="savedhome.png" width=200> <img src="propertydetailsavedhomes.png" width=200> <img src="statistics.png" width=200> <img src="account.png" width=200>
 
 <img src="mockup.png" width=200>
 
