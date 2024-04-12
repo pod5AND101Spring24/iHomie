@@ -116,16 +116,26 @@ By clicking different options on bottom navigation menu, user can go to the foll
 
 ## Wireframes
 
-[Add picture of your hand sketched wireframes in this section] <img src="iHomie.pdf" width=600>
+![Onboarding](https://hackmd.io/_uploads/HJ9NRUUgC.png)
 
-<br>
+![Login](https://hackmd.io/_uploads/BJw80IUxA.png)
 
-<br>
+![Browse Page](https://hackmd.io/_uploads/SJfw0LLxC.png)
+
+![Property Detail Page](https://hackmd.io/_uploads/rJ9q0L8l0.png)
+
+![Saved Home](https://hackmd.io/_uploads/B1v3AULg0.png)
+
+![Property Detail Page (Saved Homes)](https://hackmd.io/_uploads/SyddCILx0.png)
+
+![Statistics](https://hackmd.io/_uploads/HJMp0I8lC.png)
+
 
 ### [BONUS] Digital Wireframes & Mockups
 
 <img src="https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3A1&mode=design&t=MbAQlYKpJeaI37gI-1" width=600>
 
+https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3A1&mode=design&t=MbAQlYKpJeaI37gI-1
 
 
 ### [BONUS] Interactive Prototype
