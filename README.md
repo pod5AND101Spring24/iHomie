@@ -124,6 +124,9 @@ By clicking different options on bottom navigation menu, user can go to the foll
 
 ### [BONUS] Digital Wireframes & Mockups
 
+<img src="https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3A1&mode=design&t=MbAQlYKpJeaI37gI-1" width=600>
+
+
 
 ### [BONUS] Interactive Prototype
 
