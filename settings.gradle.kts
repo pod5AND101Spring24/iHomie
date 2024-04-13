@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "iHomie_template"
+rootProject.name = "iHomie"
 include(":app")
  

@@ -1,4 +1,4 @@
-package com.example.ihomie_template
+package com.example.ihomie
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

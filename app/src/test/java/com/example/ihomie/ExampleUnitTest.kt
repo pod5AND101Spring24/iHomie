@@ -1,4 +1,4 @@
-package com.example.ihomie_template
+package com.example.ihomie
 
 import org.junit.Test
 

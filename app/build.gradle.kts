@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.ihomie_template"
-    compileSdk = 33
+    namespace = "com.example.ihomie"
+    compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.ihomie_template"
+        applicationId = "com.example.ihomie"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
