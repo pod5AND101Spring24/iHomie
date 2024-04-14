@@ -26,13 +26,12 @@ class MainActivity : AppCompatActivity() {
 
         // define your fragments here
         val fragment1: Fragment = BrowseFragment()
+        // val fragment2: Fragment =
 
         fragmentManager.beginTransaction().apply {
             replace(R.id.frame_layout, BrowseFragment())
             commit()
         }
-
-        // val fragment2: Fragment =
 
 //        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
 //

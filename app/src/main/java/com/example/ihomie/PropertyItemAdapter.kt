@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -43,11 +45,21 @@ class PropertyItemAdapter(
         val formattedPrice = currencyFormat.format(property.price)
         holder.priceTextView.text = formattedPrice
 
-        holder.listingStatusTextView.text = "House for sale"
+        val formattedListingStatus = property.listingStatus
+            ?.replace("_", " ")
+            ?.split(" ")
+            ?.joinToString(" ")
+        holder.listingStatusTextView.text = formattedListingStatus
         holder.bedroomTextView.text = "${property.bedrooms} bds  |  "
         holder.bathroomTextView.text = "${property.bathrooms} ba  |  "
         holder.sqftTextView.text = "${property.sqft} sqft"
         holder.addressTextView.text = property.address
+
+        Glide.with(holder.itemView)
+            .load(property.imageUrl)
+            .centerCrop()
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(holder.propertyImage)
 
         holder.itemView.setOnClickListener {
             holder.mPropertyModel?.let { movie ->
