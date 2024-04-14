@@ -29,11 +29,15 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
         val context = view.context
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        // Initialize the adapter here
-        val adapter = PropertyItemAdapter(emptyList(), this@BrowseFragment)
-        recyclerView.adapter = adapter
+        // Initialize the adapter
+        // Use API endpoint
+//        val adapter = PropertyItemAdapter(emptyList(), this@BrowseFragment)
+//        recyclerView.adapter = adapter
+//        updateAdapter(recyclerView)
 
-        updateAdapter(recyclerView)
+        // OR use Sample data
+        val sampleProperties = parseSampleProperties()
+        recyclerView.adapter = PropertyItemAdapter(sampleProperties, this@BrowseFragment)
 
         return view
     }
@@ -46,7 +50,6 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
     * Update recycler view adapter with the list of properties for the property cards
     */
     private fun updateAdapter(recyclerView: RecyclerView) {
-
         GlobalScope.launch(IO) {
             val client = OkHttpClient()
             val request = Request.Builder()
@@ -106,6 +109,70 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+        return properties
+    }
+
+    private fun parseSampleProperties(): List<PropertyModel> {
+        val properties = mutableListOf<PropertyModel>()
+
+        // Add your sample properties here
+        val property1 = PropertyModel(
+            address = "933 24th St, Santa Monica, CA 90403",
+            price = 2995000,
+            bedrooms = 4,
+            bathrooms = 1.0,
+            sqft = 1926,
+            listingStatus = "FOR_SALE (Sample Data)",
+            propertyType = "SINGLE_FAMILY",
+            imageUrl = "https://photos.zillowstatic.com/fp/bc247265a45fdecc77e2b337ebd2d111-p_e.jpg"
+        )
+
+        val property2 = PropertyModel(
+            address = "2508 28th St, Santa Monica, CA 90405",
+            price = 2595000,
+            bedrooms = 3,
+            bathrooms = 3.0,
+            sqft = 2005,
+            listingStatus = "FOR_SALE",
+            propertyType = "SINGLE_FAMILY",
+            imageUrl = "https://photos.zillowstatic.com/fp/a4efc91c50534ba45aaf6d0478e3f3be-p_e.jpg"
+        )
+
+        val property3 = PropertyModel(
+            address = "2716 6th St, Santa Monica, CA 90405",
+            price = 1675000,
+            bedrooms = 2,
+            bathrooms = 2.0,
+            sqft = 1407,
+            listingStatus = "FOR_SALE",
+            propertyType = "SINGLE_FAMILY",
+            imageUrl = "https://photos.zillowstatic.com/fp/123c0dd47c9efff24af41cd051cdb838-p_e.jpg"
+        )
+
+        val property4 = PropertyModel(
+            address = "942 25th St, Santa Monica, CA 90403",
+            price = 4250000,
+            bedrooms = 5,
+            bathrooms = 5.0,
+            sqft = 3476,
+            listingStatus = "FOR_SALE",
+            propertyType = "SINGLE_FAMILY",
+            imageUrl = "https://photos.zillowstatic.com/fp/e66601acea6f48405a93ef8534491a04-p_e.jpg"
+        )
+
+        val property5 = PropertyModel(
+            address = "723 10th St, Santa Monica, CA 90402",
+            price = 6349000,
+            bedrooms = 6,
+            bathrooms = 6.0,
+            sqft = 5635,
+            listingStatus = "FOR_SALE",
+            propertyType = "SINGLE_FAMILY",
+            imageUrl = "https://photos.zillowstatic.com/fp/43c4639f2f61bc59f32d303543d35832-p_e.jpg"
+        )
+
+        properties.addAll(listOf(property1, property2, property3, property4, property5))
+
         return properties
     }
 }

@@ -45,11 +45,9 @@ class PropertyItemAdapter(
         val formattedPrice = currencyFormat.format(property.price)
         holder.priceTextView.text = formattedPrice
 
-        val formattedListingStatus = property.listingStatus
-            ?.replace("_", " ")
-            ?.split(" ")
-            ?.joinToString(" ")
+        val formattedListingStatus = property.listingStatus?.replace("_", " ")
         holder.listingStatusTextView.text = formattedListingStatus
+
         holder.bedroomTextView.text = "${property.bedrooms} bds  |  "
         holder.bathroomTextView.text = "${property.bathrooms} ba  |  "
         holder.sqftTextView.text = "${property.sqft} sqft"
@@ -71,9 +69,4 @@ class PropertyItemAdapter(
     override fun getItemCount(): Int {
         return properties.size
     }
-
-//    fun updateData(newProperties: List<PropertyModel>) {
-//        properties = newProperties
-//        notifyDataSetChanged()
-//    }
 }
