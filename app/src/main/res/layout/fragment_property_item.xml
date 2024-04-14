@@ -42,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
                 android:textStyle="bold"
+                android:paddingBottom="4sp"
                 tools:text="Price" />
 
             <TextView
@@ -50,33 +51,31 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:text="House for sale"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tv_bedroom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_price"
-                android:layout_marginEnd="15sp"
                 android:textSize="15sp"
-                tools:text="3 bds" />
+                android:paddingBottom="4sp"
+                tools:text="3 bds  |  " />
 
             <TextView
                 android:id="@+id/tv_bathroom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_price"
-                android:layout_marginEnd="15sp"
                 android:layout_toEndOf="@+id/tv_bedroom"
                 android:textSize="15sp"
-                tools:text="2 ba" />
+                tools:text="2 ba  |  " />
 
             <TextView
                 android:id="@+id/tv_sqft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_price"
-                android:layout_marginEnd="15sp"
                 android:layout_toEndOf="@+id/tv_bathroom"
                 android:textSize="15sp"
                 tools:text="1,500 sqft" />
@@ -87,6 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_bedroom"
                 android:textSize="15sp"
+                android:paddingBottom="4sp"
                 tools:text="Address" />
 
         </RelativeLayout>
