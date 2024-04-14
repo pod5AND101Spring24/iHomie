@@ -109,18 +109,18 @@ iHomie is an app that allows users to search, filter, get statistics of specific
 
 ## Wireframes
 <img src="wireframe/onboarding.png" height=400> <img src="wireframe/login.png" height=400> <img src="wireframe/browse.png" height=400> <img src="wireframe/propertyDetails.png" height=400> 
-<img src="wireframe/savedHome.png" height=400> <img src="wireframe/savedHomeDetails.png" height=400> <img src="wireframe/statistics.png" height=400> <img src="wireframe/account.png" height=400> <img src="wireframe/mockup.png" height=400>
+<img src="wireframe/savedHomes.png" height=400> <img src="wireframe/savedHomeDetails.png" height=400> <img src="wireframe/statistics.png" height=400> <img src="wireframe/account.png" height=400> <img src="wireframe/mockup.png" height=400>
 
 ### [BONUS] Digital Wireframes & Mockups
-<img src="onboarding.png" height=400> <img src="login.png" height=400> <img src="browse.png" height=400> <img src="propertydetail.png" height=400> 
-<img src="savedhome.png" height=400> <img src="propertydetailsavedhomes.png" height=400> <img src="statistics.png" height=400> <img src="account.png" height=400> <img src="mockup.png" height=400>
+<img src="wireframe/onboarding.png" height=400> <img src="wireframe/login.png" height=400> <img src="wireframe/browse.png" height=400> <img src="wireframe/propertyDetails.png" height=400> 
+<img src="wireframe/savedHomes.png" height=400> <img src="wireframe/savedHomeDetails.png" height=400> <img src="wireframe/statistics.png" height=400> <img src="wireframe/account.png" height=400> <img src="wireframe/mockup.png" height=400>
 
 https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3A1&mode=design&t=MbAQlYKpJeaI37gI-1
 
 
 ### [BONUS] Interactive Prototype
 
- <img src="demoiHomiePrototype.gif" width=300>
+ <img src="wireframe/demoiHomiePrototype.gif" width=300>
  
  https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3A1&mode=design&t=MbAQlYKpJeaI37gI-1
 
