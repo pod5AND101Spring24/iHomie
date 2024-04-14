@@ -108,8 +108,8 @@ iHomie is an app that allows users to search, filter, get statistics of specific
    - Browse: Upon tapping on "Browse" at bottom navigation menu.
 
 ## Wireframes
-<img src="onboarding.png" height=400> <img src="login.png" height=400> <img src="browse.png" height=400> <img src="propertydetail.png" height=400> 
-<img src="savedhome.png" height=400> <img src="propertydetailsavedhomes.png" height=400> <img src="statistics.png" height=400> <img src="account.png" height=400> <img src="mockup.png" height=400>
+<img src="wireframe/onboarding.png" height=400> <img src="wireframe/login.png" height=400> <img src="wireframe/browse.png" height=400> <img src="wireframe/propertyDetails.png" height=400> 
+<img src="wireframe/savedHome.png" height=400> <img src="wireframe/savedHomeDetails.png" height=400> <img src="wireframe/statistics.png" height=400> <img src="wireframe/account.png" height=400> <img src="wireframe/mockup.png" height=400>
 
 ### [BONUS] Digital Wireframes & Mockups
 <img src="onboarding.png" height=400> <img src="login.png" height=400> <img src="browse.png" height=400> <img src="propertydetail.png" height=400> 
