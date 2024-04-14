@@ -128,9 +128,8 @@ https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3
 
 ## GitHub Project board
 
-[Add screenshot of your Project Board with three milestones visible in
-this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+![image](https://github.com/pod5AND101Spring24/iHomie/assets/75619539/6af51779-68a4-416b-a587-c8d5f5389d62)
+
 
 ## Issue cards
 
