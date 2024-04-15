@@ -1,6 +1,7 @@
 package com.example.ihomie
 
 class PropertyModel(
+    val zpid: String?,
     val address: String?,
     val price : Int?,
     val bedrooms : Int?,

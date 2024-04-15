@@ -4,13 +4,14 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.ihomie.R.id
+import com.google.android.material.elevation.SurfaceColors
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
 //        setSupportActionBar(findViewById(R.id.toolbar))
-//        window.navigationBarColor = SurfaceColors.SURFACE_2.getColor(this)
+        window.navigationBarColor = SurfaceColors.SURFACE_2.getColor(this)
 
         setContentView(R.layout.activity_main)
         val supportFragmentManager = supportFragmentManager

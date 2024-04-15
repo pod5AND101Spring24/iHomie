@@ -29,6 +29,10 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
         val context = view.context
         recyclerView.layoutManager = LinearLayoutManager(context)
 
+//        val searchBar = view.findViewById(R.id.search_bar) as SearchBar
+//        searchView.setupWithSearchBar(searchBar)
+
+
         // Initialize the adapter
         // Use API endpoint
 //        val adapter = PropertyItemAdapter(emptyList(), this@BrowseFragment)
@@ -83,6 +87,7 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
                 for (i in 0 until propsArray.length()) {
                     val propObject = propsArray.getJSONObject(i)
 
+                    val zpid = propObject.optString("zpid")
                     val address = propObject.optString("address")
                     val price = propObject.optInt("price")
                     val bedrooms = propObject.optInt("bedrooms")
@@ -94,6 +99,7 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
 
                     // Create a PropertyModel object and add it to the list
                     val property = PropertyModel(
+                        zpid = zpid,
                         address = address,
                         price = price,
                         bedrooms = bedrooms,
@@ -117,6 +123,7 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
 
         // Add your sample properties here
         val property1 = PropertyModel(
+            zpid = "20475379",
             address = "933 24th St, Santa Monica, CA 90403",
             price = 2995000,
             bedrooms = 4,
@@ -128,6 +135,7 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
         )
 
         val property2 = PropertyModel(
+            zpid = "20471856",
             address = "2508 28th St, Santa Monica, CA 90405",
             price = 2595000,
             bedrooms = 3,
@@ -139,6 +147,7 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
         )
 
         val property3 = PropertyModel(
+            zpid = "20482836",
             address = "2716 6th St, Santa Monica, CA 90405",
             price = 1675000,
             bedrooms = 2,
@@ -150,6 +159,7 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
         )
 
         val property4 = PropertyModel(
+            zpid = "20475390",
             address = "942 25th St, Santa Monica, CA 90403",
             price = 4250000,
             bedrooms = 5,
@@ -161,6 +171,7 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
         )
 
         val property5 = PropertyModel(
+            zpid = "37767919",
             address = "723 10th St, Santa Monica, CA 90402",
             price = 6349000,
             bedrooms = 6,

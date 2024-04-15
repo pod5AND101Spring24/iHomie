@@ -25,13 +25,14 @@ class PropertyItemAdapter(
 
     inner class PropertyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var mPropertyModel: PropertyModel? = null
-        val propertyImage: ImageView = itemView.findViewById(R.id.iv_property)
+
+        val addressTextView: TextView = itemView.findViewById(R.id.tv_address)
         var priceTextView: TextView = itemView.findViewById(R.id.tv_price)
         val listingStatusTextView: TextView = itemView.findViewById(R.id.tv_listing_status)
         val bedroomTextView: TextView = itemView.findViewById(R.id.tv_bedroom)
         val bathroomTextView: TextView = itemView.findViewById(R.id.tv_bathroom)
         val sqftTextView: TextView = itemView.findViewById(R.id.tv_sqft)
-        val addressTextView: TextView = itemView.findViewById(R.id.tv_address)
+        val propertyImage: ImageView = itemView.findViewById(R.id.iv_property)
     }
 
     override fun onBindViewHolder(holder: PropertyViewHolder, position: Int) {
@@ -50,7 +51,7 @@ class PropertyItemAdapter(
 
         holder.bedroomTextView.text = "${property.bedrooms} bds  |  "
         holder.bathroomTextView.text = "${property.bathrooms} ba  |  "
-        holder.sqftTextView.text = "${property.sqft} sqft"
+        holder.sqftTextView.text = "${property.sqft} sqft |  ${property.zpid} zpid"
         holder.addressTextView.text = property.address
 
         Glide.with(holder.itemView)
