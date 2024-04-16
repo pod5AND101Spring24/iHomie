@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">iHomie</string>
+    <string name="searchbar_hint">Search address, city, zip cpde...</string>
+</resources>
