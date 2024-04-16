@@ -72,7 +72,7 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
     }
 
     override fun onItemClick(item: PropertyModel) {
-        Toast.makeText(context, "test: " + item.address, Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "test: " + item.zpid, Toast.LENGTH_LONG).show()
     }
 
     /*
