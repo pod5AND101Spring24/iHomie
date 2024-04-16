@@ -35,7 +35,6 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
         val recyclerView = view.findViewById<View>(R.id.rv_browse_list) as RecyclerView
         val searchView = view.findViewById<View>(R.id.search_view) as SearchView
 
-//        searchView.setupWithSearchBar(searchBar)
         val context = view.context
         recyclerView.layoutManager = LinearLayoutManager(context)
 
@@ -97,6 +96,13 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
                 Log.d("BrowseFragment", "response successful")
             }
         }
+    }
+
+    /*
+    * Encode user search query to URL
+    */
+    private fun encodeQuery(query: String): String? {
+        return URLEncoder.encode(query, "UTF-8")
     }
 
     /*
@@ -211,9 +217,5 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
         properties.addAll(listOf(property1, property2, property3, property4, property5))
 
         return properties
-    }
-
-    private fun encodeQuery(query: String): String? {
-        return URLEncoder.encode(query, "UTF-8")
     }
 }
