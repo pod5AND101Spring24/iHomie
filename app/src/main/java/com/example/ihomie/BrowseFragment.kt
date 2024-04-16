@@ -23,7 +23,7 @@ import org.json.JSONObject
 import java.net.URLEncoder
 
 
-const val API_KEY = "38a4dad85bmshc1ddee66fc918cdp16b120jsn56be4568a157"
+const val API_KEY = "REPLACE API KEY HERE"
 
 class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
     override fun onCreateView(
@@ -214,6 +214,6 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
     }
 
     private fun encodeQuery(query: String): String? {
-        return URLEncoder.encode(query, "UTF-8");
+        return URLEncoder.encode(query, "UTF-8")
     }
 }
