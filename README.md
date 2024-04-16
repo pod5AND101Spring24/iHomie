@@ -140,7 +140,10 @@ https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3
 
 - List the issues you completed this sprint
 - [Add giphy that shows current build progress for Milestone 2. Note: We will be looking for progression of work between Milestone 2 and 3. Make sure your giphys are not duplicated and clearly show the change from Sprint 1 to 2.]
+- 
+![Animation-ezgif com-optimize](https://github.com/pod5AND101Spring24/iHomie/assets/75619539/c1c82b1c-7c73-464b-872f-c83583e54747)
 
+Browse Screen with searching functionality
 <br>
 
 # Milestone 3 - Build Sprint 2 (Unit 9)
