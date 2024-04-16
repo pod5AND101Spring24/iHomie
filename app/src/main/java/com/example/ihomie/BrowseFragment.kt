@@ -1,11 +1,14 @@
 package com.example.ihomie
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +20,10 @@ import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONObject
+import java.net.URLEncoder
+
+
+const val API_KEY = "38a4dad85bmshc1ddee66fc918cdp16b120jsn56be4568a157"
 
 class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
     override fun onCreateView(
@@ -26,22 +33,41 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_browse, container, false)
         val recyclerView = view.findViewById<View>(R.id.rv_browse_list) as RecyclerView
+        val searchView = view.findViewById<View>(R.id.search_view) as SearchView
+
+//        searchView.setupWithSearchBar(searchBar)
         val context = view.context
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-//        val searchBar = view.findViewById(R.id.search_bar) as SearchBar
-//        searchView.setupWithSearchBar(searchBar)
-
-
         // Initialize the adapter
-        // Use API endpoint
-//        val adapter = PropertyItemAdapter(emptyList(), this@BrowseFragment)
-//        recyclerView.adapter = adapter
-//        updateAdapter(recyclerView)
+        val adapter = PropertyItemAdapter(emptyList(), this@BrowseFragment)
+        recyclerView.adapter = adapter
+
+        // Parse query and use API endpoint
+        searchView.setOnQueryTextListener(object :  SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(newText: String): Boolean {
+                return false
+            }
+            override fun onQueryTextSubmit(query: String): Boolean {
+                //on submit send query to be encoded
+                val locationQuery = encodeQuery(query)
+                // pass encoded query to API
+                if (locationQuery != null) {
+                    Log.d("Location Query", locationQuery)
+                    updateAdapter(recyclerView, locationQuery)
+                }
+
+                // Hide the keyboard
+                val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(searchView.windowToken, 0)
+
+                return true
+            }
+        })
 
         // OR use Sample data
-        val sampleProperties = parseSampleProperties()
-        recyclerView.adapter = PropertyItemAdapter(sampleProperties, this@BrowseFragment)
+//        val sampleProperties = parseSampleProperties()
+//        recyclerView.adapter = PropertyItemAdapter(sampleProperties, this@BrowseFragment)
 
         return view
     }
@@ -53,13 +79,13 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
     /*
     * Update recycler view adapter with the list of properties for the property cards
     */
-    private fun updateAdapter(recyclerView: RecyclerView) {
+    private fun updateAdapter(recyclerView: RecyclerView, query: String) {
         GlobalScope.launch(IO) {
             val client = OkHttpClient()
             val request = Request.Builder()
-                .url("https://zillow-com1.p.rapidapi.com/propertyExtendedSearch?location=santa%20monica%2C%20ca&home_type=Houses")
+                .url("https://zillow-com1.p.rapidapi.com/propertyExtendedSearch?location=${query}&home_type=Houses")
                 .get()
-                .addHeader("X-RapidAPI-Key", "38a4dad85bmshc1ddee66fc918cdp16b120jsn56be4568a157")
+                .addHeader("X-RapidAPI-Key", API_KEY)
                 .addHeader("X-RapidAPI-Host", "zillow-com1.p.rapidapi.com")
                 .build()
 
@@ -185,5 +211,9 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
         properties.addAll(listOf(property1, property2, property3, property4, property5))
 
         return properties
+    }
+
+    private fun encodeQuery(query: String): String? {
+        return URLEncoder.encode(query, "UTF-8");
     }
 }

@@ -6,35 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <LinearLayout
         android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="75dp"
+            android:elevation="4dp">
 
-            <androidx.appcompat.widget.Toolbar
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <com.google.android.material.search.SearchBar
-                    android:id="@+id/search_bar"
-                    android:layout_width="match_parent"
+                <androidx.cardview.widget.CardView
                     android:layout_height="wrap_content"
-                    android:hint="Search" />
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="16dp"
+                    app:cardCornerRadius="50dp">
 
-            </androidx.appcompat.widget.Toolbar>
+                    <androidx.appcompat.widget.SearchView
+                        android:id="@+id/search_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#E8E8E8"
+                        app:defaultQueryHint="Search address, city, zip code..."
+                        app:queryBackground="@null"
+                        app:iconifiedByDefault="false"/>
+                </androidx.cardview.widget.CardView>
 
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <com.google.android.material.search.SearchView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Search address, city, zip code..."
-            app:layout_anchor="@id/search_bar">
-        </com.google.android.material.search.SearchView>
+        </androidx.appcompat.widget.Toolbar>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_browse_list"
@@ -43,13 +44,10 @@
             android:clipToPadding="false"
             android:paddingStart="18dp"
             android:paddingEnd="18dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layoutManager="LinearLayoutManager"
             tools:context=".BrowseFragment"
             tools:listitem="@layout/fragment_property_item" />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
+    </LinearLayout>
 
 </FrameLayout>
