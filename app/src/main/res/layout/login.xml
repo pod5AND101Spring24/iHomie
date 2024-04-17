@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_login"
+    android:layout_width="match_parent"
+    android:layout_height="823dp"
+    android:background="@drawable/background_color">
+
+    <FrameLayout
+        android:id="@+id/container_login_box"
+        android:layout_width="336dp"
+        android:layout_height="346dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginTop="250dp"
+        android:layout_gravity="top|left">
+
+        <ImageView
+            android:id="@+id/image_rectangle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/pinkrectangle"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/text_forgot_password"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginLeft="34dp"
+            android:layout_marginRight="155dp"
+            android:layout_marginTop="173dp"
+            android:layout_marginBottom="153dp"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="Forgot Password?"
+            android:textColor="#FF000000"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/text_login"
+            android:layout_width="272dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="92dp"
+            android:layout_gravity="center|bottom"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:text="Login"
+            android:textColor="#FF000000"
+            android:background="@drawable/loginbutton"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/container_sign_up_button"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginLeft="58dp"
+            android:layout_marginTop="285dp"
+            android:layout_gravity="top|left"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="Don’t have an account? Sign up"
+            android:textColor="#FF000000"
+            android:textSize="14dp" />
+
+        <FrameLayout
+            android:id="@+id/container_password"
+            android:layout_width="272dp"
+            android:layout_height="28dp"
+            android:layout_marginLeft="29dp"
+            android:layout_marginTop="132dp"
+            android:layout_gravity="top|left"
+            android:background="@drawable/textbackground_color">
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="-1dp"
+                android:layout_gravity="center"
+                android:alpha="0.6000000238418579"
+                android:gravity="left|center_vertical"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:hint="Password"
+                android:textColor="#FF000000"
+                android:textSize="16dp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/container_email"
+            android:layout_width="275dp"
+            android:layout_height="28dp"
+            android:layout_marginLeft="29dp"
+            android:layout_marginTop="75dp"
+            android:layout_gravity="top|left"
+            android:background="@drawable/textbackground_color">
+
+            <EditText
+                android:id="@+id/et_email"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="3dp"
+                android:layout_gravity="center"
+                android:alpha="0.6000000238418579"
+                android:gravity="left|center_vertical"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:hint="Email"
+                android:textColor="#FF000000"
+                android:textSize="16dp" />
+        </FrameLayout>
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/text_welcome_toi_homie"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginBottom="201.5dp"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal|center_vertical"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:text="Welcome to iHomie!"
+        android:textColor="#FF272222"
+        android:textSize="32dp" />
+
+</FrameLayout>
