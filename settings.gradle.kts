@@ -12,5 +12,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
 rootProject.name = "iHomie"
-include ':app'
+include(":app")
+ 

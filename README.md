@@ -108,19 +108,19 @@ iHomie is an app that allows users to search, filter, get statistics of specific
    - Browse: Upon tapping on "Browse" at bottom navigation menu.
 
 ## Wireframes
-<img src="onboarding.png" height=400> <img src="login.png" height=400> <img src="browse.png" height=400> <img src="propertydetail.png" height=400> 
-<img src="savedhome.png" height=400> <img src="propertydetailsavedhomes.png" height=400> <img src="statistics.png" height=400> <img src="account.png" height=400> <img src="mockup.png" height=400>
+<img src="wireframe/onboarding.png" height=400> <img src="wireframe/login.png" height=400> <img src="wireframe/browse.png" height=400> <img src="wireframe/propertyDetail.png" height=400> 
+<img src="wireframe/savedHomes.png" height=400> <img src="wireframe/savedHomeDetail.png" height=400> <img src="wireframe/statistics.png" height=400> <img src="wireframe/account.png" height=400> <img src="wireframe/mockup.png" height=400>
 
 ### [BONUS] Digital Wireframes & Mockups
-<img src="onboarding.png" height=400> <img src="login.png" height=400> <img src="browse.png" height=400> <img src="propertydetail.png" height=400> 
-<img src="savedhome.png" height=400> <img src="propertydetailsavedhomes.png" height=400> <img src="statistics.png" height=400> <img src="account.png" height=400> <img src="mockup.png" height=400>
+<img src="wireframe/onboarding.png" height=400> <img src="wireframe/login.png" height=400> <img src="wireframe/browse.png" height=400> <img src="wireframe/propertyDetail.png" height=400> 
+<img src="wireframe/savedHomes.png" height=400> <img src="wireframe/savedHomeDetail.png" height=400> <img src="wireframe/statistics.png" height=400> <img src="wireframe/account.png" height=400> <img src="wireframe/mockup.png" height=400>
 
 https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3A1&mode=design&t=MbAQlYKpJeaI37gI-1
 
 
 ### [BONUS] Interactive Prototype
 
- <img src="demoiHomiePrototype.gif" width=300>
+ <img src="wireframe/demoiHomiePrototype.gif" width=300>
  
  https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3A1&mode=design&t=MbAQlYKpJeaI37gI-1
 
@@ -128,9 +128,8 @@ https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3
 
 ## GitHub Project board
 
-[Add screenshot of your Project Board with three milestones visible in
-this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+![image](https://github.com/pod5AND101Spring24/iHomie/assets/75619539/6af51779-68a4-416b-a587-c8d5f5389d62)
+
 
 ## Issue cards
 
@@ -141,7 +140,10 @@ this section]
 
 - List the issues you completed this sprint
 - [Add giphy that shows current build progress for Milestone 2. Note: We will be looking for progression of work between Milestone 2 and 3. Make sure your giphys are not duplicated and clearly show the change from Sprint 1 to 2.]
+- 
+![Animation-ezgif com-optimize](https://github.com/pod5AND101Spring24/iHomie/assets/75619539/c1c82b1c-7c73-464b-872f-c83583e54747)
 
+Browse Screen with searching functionality
 <br>
 
 # Milestone 3 - Build Sprint 2 (Unit 9)
