@@ -101,9 +101,7 @@ class PropertyDetail  : AppCompatActivity() {
 
         val client = AsyncHttpClient()
         val params = RequestParams()
-        //params["rapidapi-key"]= "668c2b5c83msh88f754bf4b82b76p1ca782jsn7afe725e8232"
         params["rapidapi-key"]= API_KEY
-        // params["zpid"]= "20475337"
         params["zpid"]= "$propertyzpid"
 
         client["https://zillow-com1.p.rapidapi.com/images?",params,object:
@@ -141,7 +139,6 @@ class PropertyDetail  : AppCompatActivity() {
             try {
                 val client = OkHttpClient()
                 val request = Request.Builder()
-                    //.url("https://zillow-com1.p.rapidapi.com/property?zpid=20475337")
                     .url("https://zillow-com1.p.rapidapi.com/property?zpid=$propertyzpid")
                     .get()
                     .addHeader("X-RapidAPI-Key", API_KEY)

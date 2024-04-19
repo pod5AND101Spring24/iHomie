@@ -24,7 +24,7 @@ import org.json.JSONObject
 import java.net.URLEncoder
 
 
-const val API_KEY =  "771ec8f635msh9a436b3d85bf796p1eeb3ajsnbc2bc1d21eac"
+const val API_KEY =  "REPLACE API KEY HERE"
 
 class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
     override fun onCreateView(
