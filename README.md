@@ -150,6 +150,16 @@ Browse Screen with searching functionality
 - Users can login using email
 - Users can login using google sign in
 
+<img src='demoLauncherloginsearchdetail.gif' title='Video Walkthrough 4 screens' width='250' alt='Video Walkthrough' />
+
+- Custom Launcher
+- User can signup and login
+- User can search by address, zipcode and city
+- User can click any individual property in search result and see details of that property.
+
+
+
+
 <br>
 
 # Milestone 3 - Build Sprint 2 (Unit 9)
