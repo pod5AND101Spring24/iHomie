@@ -1,6 +1,7 @@
 package com.example.ihomie
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -23,7 +24,7 @@ import org.json.JSONObject
 import java.net.URLEncoder
 
 
-const val API_KEY = "REPLACE API KEY HERE"
+const val API_KEY =  "771ec8f635msh9a436b3d85bf796p1eeb3ajsnbc2bc1d21eac"
 
 class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
     override fun onCreateView(
@@ -71,8 +72,13 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
         return view
     }
 
+
     override fun onItemClick(item: PropertyModel) {
-        Toast.makeText(context, "test: " + item.zpid, Toast.LENGTH_LONG).show()
+        //Toast.makeText(context, "test: " + item.zpid, Toast.LENGTH_LONG).show()
+        val intent = Intent(context, PropertyDetail::class.java).apply {
+            putExtra(PROPERTY_EXTRA, item)
+        }
+        startActivity(intent)
     }
 
     /*
@@ -89,7 +95,7 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
                 .build()
 
             val response = client.newCall(request).execute()
-            val properties = response.body()?.let { parseProperty(it.string()) }
+            val properties = response.body?.let { parseProperty(it.string()) }
 
             withContext(Dispatchers.Main) {
                 recyclerView.adapter = properties?.let { PropertyItemAdapter(it, this@BrowseFragment) }
