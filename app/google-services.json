@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "245771071573",
+    "project_id": "ihomie2",
+    "storage_bucket": "ihomie2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:245771071573:android:b1d3c11bb7d387929824dc",
+        "android_client_info": {
+          "package_name": "com.example.ihomie"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDd97IHDInX-FWHCk7X94wXX6fCerpWQvs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
