@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">iHomie</string>
     <string name="searchbar_hint">Search address, city, zip cpde...</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="default_web_client_id">default web client id</string>
+    <string name="not_resigtered_yet_sign_up">Not resigtered yet? Sign Up</string>
 </resources>
