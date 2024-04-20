@@ -137,8 +137,6 @@ https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3
 - [Add screenshot of your Project Board with the issues that you're working on in the **NEXT sprint**. It should include issues for next unit with assigned owners.] <img src="https://github.com/pod5AND101Spring24/iHomie/blob/main/Sprint2%263ProjectBoard.PNG" width=600>
 
 ## Issues worked on this sprint
-
-- List the issues you completed this sprint
  - Custom launcher implemented.  A house icon with "iHomie" logo shows first during onboarding process.
  - Login feature implemented. User can sign up or sign in on the Login screen. "iHomie" shows at top of the screen.
  - Property Browsing feature implemented.Data parsing using Get/propertyExtendedSearch successful. User can search property by address, city, or code with the search bar.Results 
@@ -148,8 +146,6 @@ https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3
    property to SavedHomes screen added to big picture.
  - Account Settings PreferenceScreens have been created with their respective fragments. A test button to enter the screen has been implemented, but there is currently a bug where the app
    crashes if trying to change to the Account screen.
-
-- [Add giphy that shows current build progress for Milestone 2. Note: We will be looking for progression of work between Milestone 2 and 3. Make sure your giphys are not duplicated and clearly show the change from Sprint 1 to 2.]
 - <img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/Sprint2MilestoneDemo.gif' title='Video Walkthrough' width='800' alt='Video Walkthrough' />
 ![Animation-ezgif com-optimize](https://github.com/pod5AND101Spring24/iHomie/assets/75619539/c1c82b1c-7c73-464b-872f-c83583e54747)
 
