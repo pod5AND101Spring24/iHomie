@@ -6,7 +6,6 @@
         android:key="mate"
         android:summary="AI Companion"
         android:title="Mate"
-        app:allowDividerAbove="false"
         app:fragment="com.example.ihomie.MateFragment"
         app:icon="@drawable/message" />
 

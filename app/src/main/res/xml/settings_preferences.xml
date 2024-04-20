@@ -1,11 +1,12 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <Preference
-        app:key="theme"
-        app:title="Theme"/>
+        android:key="theme"
+        android:title="Theme"/>
 
     <Preference
-        app:key="sounds"
-        app:title="Sounds"/>
+        android:key="sounds"
+        android:title="Sounds"/>
 
 </PreferenceScreen>
