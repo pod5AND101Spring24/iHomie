@@ -11,6 +11,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import java.text.NumberFormat
 import java.util.Locale
 
+const val PROPERTY_EXTRA = "PROPERTY_EXTRA"
 class PropertyItemAdapter(
     private var properties: List<PropertyModel>,
     private val mListener: OnListFragmentInteractionListener?

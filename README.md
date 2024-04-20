@@ -1,4 +1,4 @@
-# Milestone 1 - iHomie GROUP 5 (Unit 7)
+# Milestone 1 - iHomie GROUP 5 (Unit 8)
 
 ## Table of Contents
 
@@ -144,6 +144,22 @@ https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3
 ![Animation-ezgif com-optimize](https://github.com/pod5AND101Spring24/iHomie/assets/75619539/c1c82b1c-7c73-464b-872f-c83583e54747)
 
 Browse Screen with searching functionality
+
+<img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/Kapture2024-04-19at00.46.25-ezgif.com-resize.gif' title='Video Walkthrough' width='250' alt='Video Walkthrough' />
+
+- Users can login using email
+- Users can login using google sign in
+
+<img src='demoLauncherloginsearchdetail.gif' title='Video Walkthrough 4 screens' width='250' alt='Video Walkthrough' />
+
+- Custom Launcher
+- User can signup and login
+- User can search by address, zipcode and city
+- User can click any individual property in search result and see details of that property.
+
+
+
+
 <br>
 
 # Milestone 3 - Build Sprint 2 (Unit 9)

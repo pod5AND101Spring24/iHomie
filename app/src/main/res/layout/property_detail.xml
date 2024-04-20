@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <ImageView
+        android:id="@+id/bigImageView"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="130dp"
+        android:backgroundTint="#F1BAAE"
+        android:src="@drawable/sharp_favorite_border_24"
+        app:elevation="4dp"
+        app:maxImageSize="20dp"
+        app:fabCustomSize="41dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bigImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Button" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/thumbnailRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/bigImageView"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal" />
+
+
+    <RelativeLayout
+        android:id="@+id/relative_layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/thumbnailRecyclerView"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/thumbnailRecyclerView">
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="4sp"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            tools:text="Price" />
+
+        <TextView
+            android:id="@+id/tv_listing_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="For sale"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_bedroom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_price"
+            android:paddingBottom="4sp"
+            android:textSize="15sp"
+            tools:text="3 bds  |  " />
+
+        <TextView
+            android:id="@+id/tv_bathroom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_price"
+            android:layout_toEndOf="@+id/tv_bedroom"
+            android:textSize="15sp"
+            tools:text="2 ba  |  " />
+
+        <TextView
+            android:id="@+id/tv_sqft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_price"
+            android:layout_toEndOf="@+id/tv_bathroom"
+            android:textSize="15sp"
+            tools:text="1,500 sqft" />
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_bedroom"
+            android:paddingBottom="4sp"
+            android:textSize="15sp"
+            tools:text="Address" />
+
+    </RelativeLayout>
+
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/relative_layout_bottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+        <TextView
+            android:id="@+id/dataTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textSize="18sp" />
+
+
+
+
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
