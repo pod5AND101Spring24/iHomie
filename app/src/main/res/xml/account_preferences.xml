@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Preference
+        android:key="mate"
+        android:summary="AI Companion"
+        android:title="Mate"
+        app:fragment="com.example.ihomie.MateFragment"
+        app:icon="@drawable/message" />
+
+    <Preference
+        android:key="settings"
+        android:summary="Theme, Sounds"
+        android:title="App Settings"
+        app:icon="@drawable/settings"
+        app:fragment="com.example.ihomie.SettingsFragment" />
+
+    <Preference
+        android:key="notifications"
+        android:summary="Permissions, Recommendations"
+        android:title="Notifications"
+        app:icon="@drawable/notifications_none"
+        app:fragment="com.example.ihomie.NotificationsFragment" />
+
+    <Preference
+        android:key="accountCenter"
+        android:summary="Personal Information, Password"
+        android:title="Account Center"
+        app:icon="@drawable/accessibility"
+        app:fragment="com.example.ihomie.AccountCenterFragment" />
+
+    <Preference
+        android:key="about"
+        android:summary="App Version, Support"
+        android:title="About"
+        app:icon="@drawable/apps"
+        app:fragment="com.example.ihomie.AboutFragment" />
+
+</androidx.preference.PreferenceScreen>
