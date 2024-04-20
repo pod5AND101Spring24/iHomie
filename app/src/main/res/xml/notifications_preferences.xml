@@ -1,0 +1,11 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Preference
+        app:key="permissions"
+        app:title="Permissions"/>
+
+    <Preference
+        app:key="recommendations"
+        app:title="Recommendations"/>
+
+</PreferenceScreen>
