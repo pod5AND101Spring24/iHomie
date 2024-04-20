@@ -139,25 +139,31 @@ https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3
 ## Issues worked on this sprint
 
 - List the issues you completed this sprint
+ - Custom launcher implemented.  A house icon with "iHomie" logo shows first during onboarding process.
+ - Login feature implemented. User can sign up or sign in on the Login screen. "iHomie" shows at top of the screen.
+ - Property Browsing feature implemented.Data parsing using Get/propertyExtendedSearch successful. User can search property by address, city, or code with the search bar.Results 
+   appear in vertical recyclerView.Float button added to property images to be later used for adding a property to Saved Homes screen.
+ - Property Detail feature implemented. Data parsing from Browse Screen successful. Used 2 zillow API endpoints. Get/images for the horizontal RecyclerView of pictures. Get/property 
+   for content in vertical scroll view. When user clicks an image in horizontal RecyclerView of pictures, picture shows in the BigImageView above the thumbnails.Float button to save 
+   property to SavedHomes screen added to big picture.
+
 - [Add giphy that shows current build progress for Milestone 2. Note: We will be looking for progression of work between Milestone 2 and 3. Make sure your giphys are not duplicated and clearly show the change from Sprint 1 to 2.]
 - 
 ![Animation-ezgif com-optimize](https://github.com/pod5AND101Spring24/iHomie/assets/75619539/c1c82b1c-7c73-464b-872f-c83583e54747)
 
-Browse Screen with searching functionality
+Browse Screen with searching functionality-by Anson
 
 <img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/Kapture2024-04-19at00.46.25-ezgif.com-resize.gif' title='Video Walkthrough' width='250' alt='Video Walkthrough' />
-
+Login screen-by Abdinahmen
 - Users can login using email
 - Users can login using google sign in
 
 <img src='demoLauncherloginsearchdetail.gif' title='Video Walkthrough 4 screens' width='250' alt='Video Walkthrough' />
-
+Custom launcher and Property Detail-by Yan
 - Custom Launcher
 - User can signup and login
 - User can search by address, zipcode and city
 - User can click any individual property in search result and see details of that property.
-
-
 
 
 <br>
