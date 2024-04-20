@@ -10,6 +10,8 @@ class AccountActivity : AppCompatActivity(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_account)
+
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.account_container, AccountFragment())
@@ -18,7 +20,9 @@ class AccountActivity : AppCompatActivity(),
     override fun onPreferenceStartFragment(caller: PreferenceFragmentCompat, pref: Preference): Boolean {
         // Instantiate the new Fragment.
         val args = pref.extras
-        val fragment = supportFragmentManager.fragmentFactory.instantiate(classLoader, pref.fragment)
+        val fragment = supportFragmentManager.fragmentFactory.instantiate(classLoader,
+            pref.fragment!!
+        )
         fragment.arguments = args
         fragment.setTargetFragment(caller, 0)
         // Replace the existing Fragment with the new Fragment.
