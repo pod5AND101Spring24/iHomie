@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_browse"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:icon="@drawable/search_alt_light"
+        android:iconTint="@color/black"
+        android:title="Browse" />
+    <item
+        android:id="@+id/action_saved"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:icon="@drawable/favorite_light"
+        android:iconTint="@color/black"
+        android:title="Saved Homes" />
+    <item
+        android:id="@+id/action_statistics"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:icon="@drawable/desk_alt_light"
+        android:iconTint="@color/black"
+        android:title="Statistics" />
+    <item
+        android:id="@+id/action_account"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:icon="@drawable/user_alt_light"
+        android:iconTint="@color/black"
+        android:title="Account" />
+
+</menu>
