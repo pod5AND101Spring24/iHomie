@@ -1,4 +1,4 @@
-# Milestone 1 - iHomie GROUP 5 (Unit 8)
+# Milestone 1 - iHomie GROUP 5 (Unit 9)
 
 ## Table of Contents
 
