@@ -1,10 +1,15 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.IHomie" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <item name="colorPrimary">@color/lavender</item>
+    <!-- Light theme -->
+    <style name="AppTheme.Light" parent="Base.Theme.IHomie">
+        <!-- Customize your light theme here -->
+        <item name="colorPrimary">@color/light_background</item>
+        <!-- Add other attributes specific to the light theme -->
     </style>
 
-    <style name="Theme.IHomie" parent="Base.Theme.IHomie"/>
-
+    <!-- Dark theme -->
+    <style name="AppTheme.Dark" parent="Base.Theme.IHomie">
+        <!-- Customize your dark theme here -->
+        <item name="colorPrimary">@color/darkPrimaryColor</item>
+        <!-- Add other attributes specific to the dark theme -->
+    </style>
 </resources>
