@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:key="expandable"
+        android:title="Display"
+        app:initialExpandedChildrenCount="1">
+
+        <SeekBarPreference
+            android:key="Seekbar_preference"
+            android:title="Brightness Level"
+            android:summary="25%"/>
+<!--        <DropDownPreference>-->
+<!--            -->
+<!--        </DropDownPreference>-->
+    </PreferenceCategory>
+
+</androidx.preference.PreferenceScreen>

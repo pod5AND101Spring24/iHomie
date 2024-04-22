@@ -25,4 +25,5 @@
     <color name="lime">#FFCDDC39</color>
     <color name="beige">#F1EEE6</color>
     <color name="light_pink">#F1BAAE</color>
+    <color name="darkPrimaryColor">#212121</color> <!-- Dark primary color -->
 </resources>

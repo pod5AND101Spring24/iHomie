@@ -2,39 +2,60 @@
 <androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <Preference
-        android:key="mate"
-        android:summary="AI Companion"
-        android:title="Mate"
-        app:fragment="com.example.ihomie.MateFragment"
-        app:icon="@drawable/message" />
+    <PreferenceCategory
+        android:key="app_settings_category"
+        android:title="App Settings">
 
-    <Preference
-        android:key="settings"
-        android:summary="Theme, Sounds"
-        android:title="App Settings"
-        app:icon="@drawable/settings"
-        app:fragment="com.example.ihomie.SettingsFragment" />
+        <Preference
+            android:key="mate"
+            android:title="AI Companion"
+            android:summary="Access your AI companion"
+            app:fragment="com.example.ihomie.MateFragment"
+            app:icon="@drawable/message" />
 
-    <Preference
-        android:key="notifications"
-        android:summary="Permissions, Recommendations"
-        android:title="Notifications"
-        app:icon="@drawable/notifications_none"
-        app:fragment="com.example.ihomie.NotificationsFragment" />
+        <Preference
+            android:key="notifications"
+            android:title="Notifications"
+            android:summary="Manage app notifications and permissions"
+            app:fragment="com.example.ihomie.NotificationsFragment"
+            app:icon="@drawable/notifications_none" />
 
-    <Preference
-        android:key="accountCenter"
-        android:summary="Personal Information, Password"
-        android:title="Account Center"
-        app:icon="@drawable/accessibility"
-        app:fragment="com.example.ihomie.AccountCenterFragment" />
+        <Preference
+            android:key="accountCenter"
+            android:title="Account Center"
+            android:summary="Manage your personal information and password"
+            app:fragment="com.example.ihomie.AccountCenterFragment"
+            app:icon="@drawable/accessibility" />
 
-    <Preference
-        android:key="about"
-        android:summary="App Version, Support"
-        android:title="About"
-        app:icon="@drawable/apps"
-        app:fragment="com.example.ihomie.AboutFragment" />
+        <Preference
+            android:key="about"
+            android:title="About"
+            android:summary="View app version and get support"
+            app:fragment="com.example.ihomie.AboutFragment"
+            app:icon="@drawable/apps" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="display_settings_category"
+        android:title="Display">
+
+        <SeekBarPreference
+            android:key="brightness_preference"
+            android:title="Brightness Level"
+            android:summary="Adjust the brightness of the app interface"
+            app:showSeekBarValue="true"
+            app:min="0"
+            android:max="100"
+            app:defaultValue="50" />
+
+        <ListPreference
+            android:key="theme_preference"
+            android:title="Theme"
+            android:summary="Select your preferred app theme"
+            android:entries="@array/theme_entries"
+            android:entryValues="@array/theme_values"
+            app:defaultValue="light_theme" />
+    </PreferenceCategory>
 
 </androidx.preference.PreferenceScreen>
