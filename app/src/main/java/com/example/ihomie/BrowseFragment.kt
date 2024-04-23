@@ -34,12 +34,13 @@ import java.net.URLEncoder
 import java.util.Locale
 
 
-const val API_KEY =  "REPLACE API KEY HERE"
+const val API_KEY =  "Replace with your API key"
 
 class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var recyclerView: RecyclerView? = null
     private var noResultView: View? = null
+    private var lastSearchQuery: String? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -60,10 +61,21 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         // Initialize the adapter
-        recyclerView.adapter = PropertyItemAdapter(emptyList(), this@BrowseFragment)
+
+        val adapter = PropertyItemAdapter(emptyList(), this@BrowseFragment)
+        recyclerView.adapter = adapter
+        // Check if there is a saved search query
+        if (lastSearchQuery != null) {
+            // Use the saved search query to update the adapter
+            updateAdapter(recyclerView, lastSearchQuery!!)
+        } else {
+            // Initialize the default recycler view with user's current location
+            setDefaultViewWithCurrentLocation(recyclerView)
+        }
+
 
         // Initialize the default recycler view with user's current location
-        setDefaultViewWithCurrentLocation(recyclerView)
+       // setDefaultViewWithCurrentLocation(recyclerView)
 
         // Parse query and use API endpoint
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -77,6 +89,7 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
                 // pass encoded query to API
                 if (locationQuery != null) {
                     Log.d("Location Query", locationQuery)
+                    lastSearchQuery = locationQuery
                     updateAdapter(recyclerView, locationQuery)
                 }
 
