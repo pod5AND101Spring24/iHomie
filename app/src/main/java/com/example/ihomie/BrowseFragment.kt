@@ -33,7 +33,7 @@ import java.net.URLEncoder
 import java.util.Locale
 
 
-const val API_KEY =  "REPLACE API KEY HERE"
+const val API_KEY =  "c3edc14719msh4a26113a052aad5p106f35jsnb821df2123d5"
 
 class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
