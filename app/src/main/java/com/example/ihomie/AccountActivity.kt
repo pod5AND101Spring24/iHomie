@@ -15,9 +15,9 @@ class AccountActivity : AppCompatActivity(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Retrieve the selected theme preference and apply it
-        applyTheme()
 
         super.onCreate(savedInstanceState)
+        applyTheme()
         setContentView(R.layout.activity_account)
 
         supportFragmentManager
@@ -32,6 +32,18 @@ class AccountActivity : AppCompatActivity(),
         PreferenceManager.getDefaultSharedPreferences(this)
             .unregisterOnSharedPreferenceChangeListener(this)
     }
+    override fun onResume() {
+        super.onResume()
+        PreferenceManager.getDefaultSharedPreferences(this)
+            .registerOnSharedPreferenceChangeListener(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        PreferenceManager.getDefaultSharedPreferences(this)
+            .unregisterOnSharedPreferenceChangeListener(this)
+    }
+
 
     override fun onPreferenceStartFragment(caller: PreferenceFragmentCompat, pref: Preference): Boolean {
         // Instantiate the new Fragment.
@@ -53,25 +65,21 @@ class AccountActivity : AppCompatActivity(),
         // Handle theme preference change
         if (key == "theme_preference") {
             applyTheme()
+            recreate()
         }
     }
+
 
     private fun applyTheme() {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        val themePreference = sharedPreferences.getString("theme_preference", "light_theme") // Default to light theme if not found
-
-        // Log the retrieved theme preference
-        Log.d("Theme", "Selected theme preference: $themePreference")
+        val themePreference = sharedPreferences.getString("theme_preference", "light_theme")
 
         when (themePreference) {
-            "light_theme" -> {
-                Log.d("Theme", "Applying light theme")
-                setTheme(R.style.AppTheme_Light)
-            }
-            "dark_theme" -> {
-                Log.d("Theme", "Applying dark theme")
-                setTheme(R.style.AppTheme_Dark)
-            }
+            "light_theme" -> setTheme(R.style.AppTheme_Light)
+            "dark_theme" -> setTheme(R.style.AppTheme_Dark)
         }
+
     }
+
 }
+

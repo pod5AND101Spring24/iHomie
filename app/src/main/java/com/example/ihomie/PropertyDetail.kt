@@ -33,10 +33,14 @@ import android.text.style.AbsoluteSizeSpan
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import android.content.Context
+import android.graphics.BlurMaskFilter
+import android.graphics.MaskFilter
 import androidx.core.content.ContextCompat
+import android.text.style.*
+import androidx.appcompat.widget.Toolbar
 
 
-class PropertyDetail  : AppCompatActivity() {
+class PropertyDetail  : BaseActivity() {
 
     private lateinit var bigImageView: ImageView
     private lateinit var thumbnailRecyclerView: RecyclerView
@@ -48,7 +52,6 @@ class PropertyDetail  : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.property_detail)
-
 
         bigImageView = findViewById(R.id.bigImageView)
         thumbnailRecyclerView = findViewById(R.id.thumbnailRecyclerView)
@@ -171,17 +174,26 @@ class PropertyDetail  : AppCompatActivity() {
         // Update the UI with the parsed data
         val spannableStringBuilder = SpannableStringBuilder()
 
-        // ... Build the string with the parsed data ...
+
         if (!property.description.isNullOrEmpty()) {
             val descriptionStart = spannableStringBuilder.length
             spannableStringBuilder.append("${property.description}\n\n")
             val descriptionEnd = spannableStringBuilder.length
+            /* val shadowColor = Color.WHITE
+             spannableStringBuilder.setSpan(
+                 BackgroundColorSpan(ContextCompat.getColor(this@PropertyDetail, R.color.light_background)),
+                 descriptionStart,
+                 descriptionEnd,
+                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+             )*/
             spannableStringBuilder.setSpan(
                 ForegroundColorSpan(ContextCompat.getColor(this@PropertyDetail, R.color.teal)),
                 descriptionStart,
                 descriptionEnd,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
             )
+
+
             spannableStringBuilder.setSpan(
                 AbsoluteSizeSpan(20, true),
                 descriptionStart,
@@ -189,6 +201,7 @@ class PropertyDetail  : AppCompatActivity() {
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
             )
         }
+
         if (property.isListedByOwner==true) {
             spannableStringBuilder.append("Is Listed By Owner: ${property.isListedByOwner}\n\n")
         }
