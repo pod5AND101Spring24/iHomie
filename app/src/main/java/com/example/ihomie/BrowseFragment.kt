@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.GlobalScope
@@ -34,7 +33,7 @@ import java.net.URLEncoder
 import java.util.Locale
 
 
-const val API_KEY =  "Replace with your API key"
+const val API_KEY =  "Replace API KEY HERE"
 
 class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -61,7 +60,6 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         // Initialize the adapter
-
         val adapter = PropertyItemAdapter(emptyList(), this@BrowseFragment)
         recyclerView.adapter = adapter
         // Check if there is a saved search query
@@ -72,7 +70,6 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
             // Initialize the default recycler view with user's current location
             setDefaultViewWithCurrentLocation(recyclerView)
         }
-
 
         // Initialize the default recycler view with user's current location
        // setDefaultViewWithCurrentLocation(recyclerView)
@@ -123,7 +120,6 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
     /*
     * Update recycler view adapter with the list of properties for the property cards
     */
-    @OptIn(DelicateCoroutinesApi::class)
     private fun updateAdapter(recyclerView: RecyclerView, query: String) {
         GlobalScope.launch(IO) {
             val client = OkHttpClient()
@@ -287,7 +283,6 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
     }
 
     private fun setDefaultViewWithCurrentLocation(recyclerView: RecyclerView) {
-        // If permission is not yet granted
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -307,7 +302,7 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
         }
 
         lifecycleScope.launch {
-            val location = withContext(IO) {
+            val location = withContext(Dispatchers.IO) {
                 val locationTask = fusedLocationClient.lastLocation
                 locationTask.await()
             }
@@ -318,14 +313,18 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
                 val zipcode = addresses?.firstOrNull()?.postalCode
 
                 if (zipcode != null) {
-                    updateAdapter(recyclerView, zipcode)
-
+                    withContext(Dispatchers.Main) {
+                        updateAdapter(recyclerView, zipcode)
+                    }
                 } else {
-                    updateAdapter(recyclerView, "San Jose, CA") // default zip code
-
+                    withContext(Dispatchers.Main) {
+                        updateAdapter(recyclerView, "90024") // default zip code
+                    }
                 }
             } else {
-                updateAdapter(recyclerView, "San Jose, CA") // default zip code
+                withContext(Dispatchers.Main) {
+                    updateAdapter(recyclerView, "90024") // default zip code
+                }
             }
         }
     }
