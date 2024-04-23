@@ -33,7 +33,7 @@ import java.net.URLEncoder
 import java.util.Locale
 
 
-const val API_KEY =  "c3edc14719msh4a26113a052aad5p106f35jsnb821df2123d5"
+const val API_KEY =  "REPLACE API KEY HERE"
 
 class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -130,7 +130,7 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
                 } else {
                     recyclerView.visibility = View.VISIBLE
                     noResultView!!.visibility = View.GONE
-                    recyclerView.adapter = properties?.let { PropertyItemAdapter(it, this@BrowseFragment) }
+                    recyclerView.adapter = PropertyItemAdapter(properties, this@BrowseFragment)
                 }
                 Log.d("BrowseFragment", "response successful")
             }
