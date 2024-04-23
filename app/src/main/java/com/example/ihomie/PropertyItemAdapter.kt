@@ -52,7 +52,7 @@ class PropertyItemAdapter(
 
         holder.bedroomTextView.text = "${property.bedrooms} bds  |  "
         holder.bathroomTextView.text = "${property.bathrooms} ba  |  "
-        holder.sqftTextView.text = "${property.sqft} sqft |  ${property.zpid} zpid"
+        holder.sqftTextView.text = "${property.sqft} sqft"
         holder.addressTextView.text = property.address
 
         Glide.with(holder.itemView)

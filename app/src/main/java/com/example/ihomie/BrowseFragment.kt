@@ -1,32 +1,50 @@
 package com.example.ihomie
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Geocoder
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.SearchView
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONObject
 import java.net.URLEncoder
+import java.util.Locale
 
 
-const val API_KEY =  "REPLACE API KEY HERE"
+const val API_KEY =  "c3edc14719msh4a26113a052aad5p106f35jsnb821df2123d5"
 
-class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
+class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private var recyclerView: RecyclerView? = null
+    private var noResultView: View? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,6 +53,7 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
         val view = inflater.inflate(R.layout.fragment_browse, container, false)
         val recyclerView = view.findViewById<View>(R.id.rv_browse_list) as RecyclerView
         val searchView = view.findViewById<View>(R.id.search_view) as SearchView
+        noResultView = view.findViewById(R.id.tv_no_result)
 
         val context = view.context
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -43,11 +62,15 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
         val adapter = PropertyItemAdapter(emptyList(), this@BrowseFragment)
         recyclerView.adapter = adapter
 
+        // Initialize the default recycler view with user's current location
+        setDefaultViewWithCurrentLocation(recyclerView)
+
         // Parse query and use API endpoint
-        searchView.setOnQueryTextListener(object :  SearchView.OnQueryTextListener {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String): Boolean {
                 return false
             }
+
             override fun onQueryTextSubmit(query: String): Boolean {
                 //on submit send query to be encoded
                 val locationQuery = encodeQuery(query)
@@ -73,6 +96,9 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
     }
 
 
+    /*
+    * Navigate to Property Detail page when clicked
+    */
     override fun onItemClick(item: PropertyModel) {
         //Toast.makeText(context, "test: " + item.zpid, Toast.LENGTH_LONG).show()
         val intent = Intent(context, PropertyDetail::class.java).apply {
@@ -98,7 +124,14 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
             val properties = response.body?.let { parseProperty(it.string()) }
 
             withContext(Dispatchers.Main) {
-                recyclerView.adapter = properties?.let { PropertyItemAdapter(it, this@BrowseFragment) }
+                if (properties.isNullOrEmpty()) {
+                    recyclerView.visibility = View.GONE
+                    noResultView!!.visibility = View.VISIBLE
+                } else {
+                    recyclerView.visibility = View.VISIBLE
+                    noResultView!!.visibility = View.GONE
+                    recyclerView.adapter = properties?.let { PropertyItemAdapter(it, this@BrowseFragment) }
+                }
                 Log.d("BrowseFragment", "response successful")
             }
         }
@@ -149,6 +182,8 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
                     )
                     properties.add(property)
                 }
+            } else {
+                Log.d("BrowseFragment", "No results found")
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -223,5 +258,64 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener  {
         properties.addAll(listOf(property1, property2, property3, property4, property5))
 
         return properties
+    }
+
+    private val locationPermissionRequest = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { permissions ->
+        if (permissions.isNotEmpty() && permissions.all { it.value }) {
+            recyclerView?.let { rv ->
+                setDefaultViewWithCurrentLocation(rv)
+            }
+        } else {
+            // Handle permission denied
+        }
+    }
+
+    private fun setDefaultViewWithCurrentLocation(recyclerView: RecyclerView) {
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // Request location permissions
+            locationPermissionRequest.launch(
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                )
+            )
+            return
+        }
+
+        lifecycleScope.launch {
+            val location = withContext(Dispatchers.IO) {
+                val locationTask = fusedLocationClient.lastLocation
+                locationTask.await()
+            }
+
+            if (location != null) {
+                val geocoder = Geocoder(requireContext(), Locale.getDefault())
+                val addresses = geocoder.getFromLocation(location.latitude, location.longitude, 1)
+                val zipcode = addresses?.firstOrNull()?.postalCode
+
+                if (zipcode != null) {
+                    withContext(Dispatchers.Main) {
+                        updateAdapter(recyclerView, zipcode)
+                    }
+                } else {
+                    withContext(Dispatchers.Main) {
+                        updateAdapter(recyclerView, "90024") // default zip code
+                    }
+                }
+            } else {
+                withContext(Dispatchers.Main) {
+                    updateAdapter(recyclerView, "90024") // default zip code
+                }
+            }
+        }
     }
 }
