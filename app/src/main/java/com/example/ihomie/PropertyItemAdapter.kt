@@ -20,6 +20,7 @@ import androidx.room.Insert
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 const val PROPERTY_EXTRA = "PROPERTY_EXTRA"
@@ -75,34 +76,57 @@ class PropertyItemAdapter(
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(holder.propertyImage)
 
-        // Set save button background tint based on saved status
-        if (property.isSaved) {
-            holder.saveButton.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#F1BAAE"))
-        } else {
-            holder.saveButton.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFFFFF"))
+
+        // Change button state based on if the property zpid is found in the saved home list
+        var savedHomesList: List<SavedHomes>
+        CoroutineScope(Dispatchers.IO).launch {
+            savedHomesList = savedHomesDao.getAllSavedHomes()
+
+            // Update UI on the main thread
+            withContext(Dispatchers.Main) {
+                // Set save button background tint based on saved status
+                if (savedHomesList.any { it.zpid == property.zpid }) {
+                    holder.saveButton.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#F1BAAE"))
+                } else {
+                    holder.saveButton.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFFFFF"))
+                }
+            }
         }
 
         // Handle save button click
         holder.saveButton.setOnClickListener {
+
+            Log.d("PropertyItemAdapter", "isSaved before database operation: ${property.isSaved}")
+
+            // Toggle saved status
             property.isSaved = !property.isSaved
 
-            // Insert or remove item from the database based on saved status
-            if (property.isSaved) {
-                CoroutineScope(Dispatchers.IO).launch {
-                    val zpid = property.zpid?.let { SavedHomes(zpid = it) }
-                    zpid?.let { savedHomesDao.insert(it) }
-                }
-            } else {
-                CoroutineScope(Dispatchers.IO).launch {
-                    property.zpid?.let { savedHomesDao.delete(it) }
-                }
-            }
+            Log.d("PropertyItemAdapter", "isSaved before database operation: ${property.isSaved}")
 
-            // Update save button background tint
-            if (property.isSaved) {
-                holder.saveButton.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#F1BAAE"))
-            } else {
-                holder.saveButton.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFFFFF"))
+            // Insert/remove item from the database based on saved status
+            CoroutineScope(Dispatchers.IO).launch {
+                Log.d("PropertyItemAdapter", "Inside coroutine block: property.isSaved = ${property.isSaved}")
+                if (property.isSaved) {
+                    val zpid = property.zpid?.let { SavedHomes(zpid = it) }
+                    zpid?.let {
+                        savedHomesDao.insert(it)
+                        Log.d("Database", "Inserted ZPID: ${it.zpid}")
+                    }
+                } else {
+                    property.zpid?.let {
+                        savedHomesDao.delete(it)
+                        Log.d("Database", "Deleted ZPID: $it")
+                    }
+                }
+
+                // Update button background tint on the main thread
+                withContext(Dispatchers.Main) {
+                    if (property.isSaved) {
+                        holder.saveButton.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#F1BAAE"))
+                    } else {
+                        holder.saveButton.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFFFFF"))
+                    }
+                }
             }
         }
 
@@ -117,4 +141,5 @@ class PropertyItemAdapter(
     override fun getItemCount(): Int {
         return properties.size
     }
+
 }
