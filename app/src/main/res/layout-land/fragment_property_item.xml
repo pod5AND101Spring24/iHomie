@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    android:layout_gravity="center"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="6dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_property"
+            android:layout_width="293dp"
+            android:layout_height="242dp"
+            android:background="@color/ic_placeholder_image_background"
+            android:src="@drawable/ic_placeholder_image_foreground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+        <RelativeLayout
+            android:id="@+id/relative_layout_bottom"
+            android:layout_width="435dp"
+            android:layout_height="236dp"
+            android:layout_below="@+id/iv_property"
+            android:padding="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_property"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="4sp"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                tools:text="Price" />
+
+            <TextView
+                android:id="@+id/tv_listing_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="80dp"
+                android:text="For sale"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_bedroom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_price"
+                android:paddingBottom="4sp"
+                android:textSize="17sp"
+                tools:text="3 bds  |  " />
+
+            <TextView
+                android:id="@+id/tv_bathroom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_price"
+                android:layout_toEndOf="@+id/tv_bedroom"
+                android:textSize="17sp"
+                tools:text="2 ba  |  " />
+
+            <TextView
+                android:id="@+id/tv_sqft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_price"
+                android:layout_toEndOf="@+id/tv_bathroom"
+                android:textSize="17sp"
+                tools:text="1,500 sqft" />
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="285dp"
+                android:layout_height="55dp"
+                android:layout_below="@id/tv_bedroom"
+                android:minLines="1"
+                android:paddingBottom="4sp"
+                android:textSize="17sp"
+                tools:text="Address" />
+
+        </RelativeLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_button"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#F1BAAE"
+            android:src="@drawable/sharp_favorite_border_24"
+            app:elevation="4dp"
+            app:fabCustomSize="55dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:maxImageSize="30dp"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Button" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
