@@ -95,37 +95,33 @@ class PropertyItemAdapter(
 
         // Handle save button click
         holder.saveButton.setOnClickListener {
-
-            Log.d("PropertyItemAdapter", "isSaved before database operation: ${property.isSaved}")
-
             // Toggle saved status
-            property.isSaved = !property.isSaved
-
-            Log.d("PropertyItemAdapter", "isSaved before database operation: ${property.isSaved}")
-
-            // Insert/remove item from the database based on saved status
             CoroutineScope(Dispatchers.IO).launch {
-                Log.d("PropertyItemAdapter", "Inside coroutine block: property.isSaved = ${property.isSaved}")
-                if (property.isSaved) {
+                savedHomesList = savedHomesDao.getAllSavedHomes()
+
+                if (savedHomesList.any { it.zpid == property.zpid }) {
+                    property.zpid?.let {
+                        savedHomesDao.delete(it)
+                        Log.d("Database", "Deleted ZPID: $it")
+                    }
+                } else {
                     val zpid = property.zpid?.let { SavedHomes(zpid = it) }
                     zpid?.let {
                         savedHomesDao.insert(it)
                         Log.d("Database", "Inserted ZPID: ${it.zpid}")
                     }
-                } else {
-                    property.zpid?.let {
-                        savedHomesDao.delete(it)
-                        Log.d("Database", "Deleted ZPID: $it")
-                    }
                 }
 
-                // Update button background tint on the main thread
+                // Update UI on the main thread after database operations
                 withContext(Dispatchers.Main) {
-                    if (property.isSaved) {
-                        holder.saveButton.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#F1BAAE"))
+                    if (savedHomesList.any { it.zpid == property.zpid }) {
+                        holder.saveButton.backgroundTintList =
+                            ColorStateList.valueOf(Color.parseColor("#F1BAAE"))
                     } else {
-                        holder.saveButton.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFFFFF"))
+                        holder.saveButton.backgroundTintList =
+                            ColorStateList.valueOf(Color.parseColor("#FFFFFF"))
                     }
+                    notifyDataSetChanged()
                 }
             }
         }
