@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_color">
@@ -9,8 +10,8 @@
 
     <ImageView
         android:id="@+id/bigImageView"
-        android:layout_width="457dp"
-        android:layout_height="202dp"
+        android:layout_width="589dp"
+        android:layout_height="200dp"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -19,41 +20,42 @@
         android:id="@+id/add_button"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:backgroundTint="#F1BAAE"
         android:src="@drawable/sharp_favorite_border_24"
         app:elevation="4dp"
-
         app:fabCustomSize="41dp"
         app:layout_constraintEnd_toEndOf="@+id/bigImageView"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bigImageView"
         app:maxImageSize="20dp"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Button" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/thumbnailRecyclerView"
-        android:layout_width="279dp"
-        android:layout_height="201dp"
-        android:layout_marginStart="3dp"
-        app:layout_constraintStart_toEndOf="@+id/bigImageView"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        android:layout_width="136dp"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="@id/constraint"
+        app:layout_constraintTop_toTopOf="@id/constraint" />
 
     <RelativeLayout
         android:id="@+id/relative_layout_bottom"
-        android:layout_width="733dp"
-        android:layout_height="78dp"
+        android:layout_width="729dp"
+        android:layout_height="76dp"
         android:layout_below="@+id/thumbnailRecyclerView"
         android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/constraint"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/thumbnailRecyclerView">
+        app:layout_constraintTop_toBottomOf="@+id/bigImageView">
 
         <TextView
             android:id="@+id/tv_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="1dp"
             android:paddingBottom="4sp"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -73,6 +75,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_price"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="25dp"
             android:paddingBottom="4sp"
             android:textSize="15sp"
             tools:text="3 bds  |  " />
@@ -83,8 +87,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_price"
             android:layout_toEndOf="@+id/tv_bedroom"
-            android:textSize="15sp"
             android:paddingBottom="4sp"
+            android:textSize="15sp"
             tools:text="2 ba  |  " />
 
         <TextView
@@ -93,8 +97,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_price"
             android:layout_toEndOf="@+id/tv_bathroom"
-            android:textSize="15sp"
             android:paddingBottom="4sp"
+            android:textSize="15sp"
             tools:text="1,500 sqft" />
 
         <TextView

@@ -33,10 +33,12 @@ import android.text.style.AbsoluteSizeSpan
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import android.content.Context
+import android.content.res.Configuration
 import android.graphics.BlurMaskFilter
 import android.graphics.MaskFilter
 import androidx.core.content.ContextCompat
 import android.text.style.*
+import android.view.OrientationEventListener
 import androidx.appcompat.widget.Toolbar
 
 
@@ -48,6 +50,8 @@ class PropertyDetail  : BaseActivity() {
     private  var thumbnails: MutableList<String> = mutableListOf()
     private lateinit var adapter:DetailImageAdapter
     var propertyzpid:String=""
+    // Declare currentOrientation as a member variable
+    private var currentOrientation = Configuration.ORIENTATION_UNDEFINED
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,15 +92,40 @@ class PropertyDetail  : BaseActivity() {
                 .into(bigImageView)
         }
         thumbnailRecyclerView.adapter = adapter
-        // Set up the RecyclerView
-        thumbnailRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        thumbnailRecyclerView.addItemDecoration(DividerItemDecoration(this@PropertyDetail,LinearLayoutManager.HORIZONTAL))
+
+        //Store the current orientation
+        currentOrientation = resources.configuration.orientation
+
+        // Register a listener to detect orientation changes
+        val orientationEventListener = object : OrientationEventListener(this) {
+            override fun onOrientationChanged(orientation: Int) {
+                // Update the current orientation
+                currentOrientation = resources.configuration.orientation
+                // Update the orientation of the LinearLayoutManager
+                updateRecyclerViewOrientation()
+            }
+        }
+
+        // Start listening for orientation changes
+        orientationEventListener.enable()
+
+        // Set up the RecyclerView initially
+        updateRecyclerViewOrientation()
 
         // Fetch the real estate images from the API
         fetchRealEstateImages()
         fetchScrollContent()
 
 
+    }
+
+    private fun updateRecyclerViewOrientation() {
+        // Update the orientation of the LinearLayoutManager based on device orientation
+        thumbnailRecyclerView.layoutManager = if (currentOrientation == Configuration.ORIENTATION_PORTRAIT) {
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        } else {
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        }
     }
 
 
