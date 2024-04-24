@@ -34,12 +34,13 @@ import java.net.URLEncoder
 import java.util.Locale
 
 
-const val API_KEY =  "REPLACE API KEY HERE"
+const val API_KEY =  "02205f9fbemsh4dc23c36ef28688p1ee0adjsn268caf4d45e6"
 
 class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var recyclerView: RecyclerView? = null
     private var noResultView: View? = null
+    private lateinit var savedHomesDao: SavedHomesDao
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -51,16 +52,22 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_browse, container, false)
         val recyclerView = view.findViewById<View>(R.id.rv_browse_list) as RecyclerView
         val searchView = view.findViewById<View>(R.id.search_view) as SearchView
         noResultView = view.findViewById(R.id.tv_no_result)
+        savedHomesDao = AppDatabase.getInstance(requireContext()).savedHomesDao()
 
         val context = view.context
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         // Initialize the adapter
-        recyclerView.adapter = PropertyItemAdapter(emptyList(), this@BrowseFragment)
+        recyclerView.adapter = PropertyItemAdapter(
+            context,
+            (activity?.application as SavedHomesApplication).db.savedHomesDao(),
+            emptyList(),
+            this@BrowseFragment)
 
         // Initialize the default recycler view with user's current location
         setDefaultViewWithCurrentLocation(recyclerView)
@@ -131,7 +138,11 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
                 } else {
                     recyclerView.visibility = View.VISIBLE
                     noResultView!!.visibility = View.GONE
-                    recyclerView.adapter = PropertyItemAdapter(properties, this@BrowseFragment)
+                    recyclerView.adapter = context?.let { PropertyItemAdapter(
+                        it,
+                        (activity?.application as SavedHomesApplication).db.savedHomesDao(),
+                        properties,
+                        this@BrowseFragment) }
                 }
                 Log.d("BrowseFragment", "response successful")
             }

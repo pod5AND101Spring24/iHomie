@@ -26,7 +26,9 @@ data class Property(
     val priceHistory: List<PriceHistory>?,
     val schools: List<School>?,
     val isListedByOwner: Boolean?,
-    val listingSubtype: ListingSubtype?
+    val listingSubtype: ListingSubtype?,
+    val homeStatus: String?,
+    val imageUrl: String?
 )
 
 data class ContactRecipient(
