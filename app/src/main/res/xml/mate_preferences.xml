@@ -2,6 +2,7 @@
 
     <Preference
         app:key="aiCompanion"
-        app:title="AI Companion" />
+        app:title="AI Companion"
+        app:icon="@drawable/message"/>
 
 </PreferenceScreen>

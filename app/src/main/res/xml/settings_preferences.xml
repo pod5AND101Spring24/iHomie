@@ -3,10 +3,12 @@
 
     <Preference
         android:key="theme"
-        android:title="Theme"/>
+        android:title="Theme"
+        android:icon="@drawable/theme_light_dark"/>
 
     <Preference
         android:key="sounds"
-        android:title="Sounds"/>
+        android:title="Sounds"
+        android:icon="@drawable/sounds"/>
 
 </PreferenceScreen>

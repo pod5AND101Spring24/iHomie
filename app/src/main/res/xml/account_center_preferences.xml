@@ -2,10 +2,12 @@
 
     <Preference
         app:key="personalInfo"
-        app:title="Personal Information"/>
+        app:title="Personal Information"
+        app:icon="@drawable/personal"/>
 
     <Preference
         app:key="password"
-        app:title="Password"/>
+        app:title="Password"
+        app:icon="@drawable/password"/>
 
 </PreferenceScreen>

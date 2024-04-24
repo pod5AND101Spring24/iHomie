@@ -2,10 +2,12 @@
 
     <Preference
         app:key="permissions"
-        app:title="Permissions"/>
+        app:title="Permissions"
+        app:icon="@drawable/privacy"/>
 
     <Preference
         app:key="recommendations"
-        app:title="Recommendations"/>
+        app:title="Recommendations"
+        app:icon="@drawable/notif"/>
 
 </PreferenceScreen>

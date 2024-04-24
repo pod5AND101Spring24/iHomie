@@ -47,7 +47,8 @@
             app:showSeekBarValue="true"
             app:min="0"
             android:max="100"
-            app:defaultValue="50" />
+            app:defaultValue="50"
+            app:icon="@drawable/bx_sun"/>
 
         <ListPreference
             android:key="theme_preference"
@@ -55,7 +56,8 @@
             android:summary="Select your preferred app theme"
             android:entries="@array/theme_entries"
             android:entryValues="@array/theme_values"
-            app:defaultValue="light_theme" />
+            app:defaultValue="light_theme"
+            android:icon="@drawable/theme_light_dark"/>
     </PreferenceCategory>
 
 </androidx.preference.PreferenceScreen>

@@ -2,10 +2,13 @@
 
     <Preference
         app:key="appVer"
-        app:title="App Version"/>
+        app:title="App Version"
+        app:icon="@drawable/info"
+        app:summary="1.0"/>
 
     <Preference
         app:key="support"
-        app:title="Support"/>
+        app:title="Support"
+        app:icon="@drawable/help"/>
 
 </PreferenceScreen>
