@@ -44,8 +44,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:paddingStart="18dp"
-            android:paddingEnd="18dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
             app:layoutManager="LinearLayoutManager"
             tools:context=".BrowseFragment"
             tools:listitem="@layout/fragment_property_item" />
