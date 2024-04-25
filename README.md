@@ -174,11 +174,11 @@ Custom launcher and Property Detail-by Yan
 
 ![Dynamic Default Screen with GPS](https://github.com/pod5AND101Spring24/iHomie/assets/75619539/d42ee043-41a8-4a45-a56c-9a14fccc371f)
 
-Location-based default browse screen
+Location-based default browse screen - Users can get a default result in the browse screen based on their last-known location, if location is disabled, result from the default city (San Jose, CA) will be shown.
 
 ![Save   Unsave Homes](https://github.com/pod5AND101Spring24/iHomie/assets/75619539/be7ffb72-8382-42fe-b5ea-7a393f208671)
 
-Save/unsave buttons on browse and save home screens
+Save/unsave buttons on browse and save home screens - Users can save properties with the save buttons, view the list of favorited properties, and remove properties from favorites.
 
 
 ## Completed user stories
