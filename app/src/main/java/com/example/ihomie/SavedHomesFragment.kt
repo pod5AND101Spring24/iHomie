@@ -70,7 +70,7 @@ class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
     }
 
     /*
-    *
+    * Update recycler view adapter with the list of properties for the property cards
     */
     @OptIn(DelicateCoroutinesApi::class)
     private fun updateAdapter(progressBar: ContentLoadingProgressBar, recyclerView: RecyclerView) {
@@ -189,7 +189,7 @@ class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
             // Create a PropertyModel object and add it to the list
             val property = PropertyModel(
                 zpid = zpid,
-                address = "$streetAddress, $city, $state, $zipcode",
+                address = "$streetAddress, $city, $state $zipcode",
                 price = price,
                 bedrooms = bedrooms,
                 bathrooms = bathrooms,
