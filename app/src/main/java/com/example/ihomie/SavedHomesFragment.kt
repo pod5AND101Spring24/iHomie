@@ -35,6 +35,7 @@ class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("SavedHomesFragment", "onCreate")
     }
 
     override fun onCreateView(
@@ -42,6 +43,7 @@ class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.d("SavedHomesFragment", "onCreateView")
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_saved_homes, container, false)
         itemsRv = view.findViewById(R.id.rv_saved_list)
@@ -66,10 +68,9 @@ class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        Log.d("SavedHomesFragment", "onViewCreated")
         updateAdapter(progressBar, itemsRv)
     }
-
 
     /*
     * Navigate to Property Detail page when clicked
@@ -104,7 +105,6 @@ class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
                 val properties = propertiesDetails.flatMap { responseBody ->
                     responseBody?.let { parseProperty(it) } ?: emptyList()
                 }
-                Log.d("properties", properties.toString())
 
                 progressBar.hide()
 
@@ -165,6 +165,7 @@ class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
                     response.body?.close()
                 }
             }
+            Log.d("SavedHomesFragment", "response successful")
             return@withContext responses
         }
     }
