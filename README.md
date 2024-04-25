@@ -178,7 +178,7 @@ Location-based default browse screen - Users can get a default result in the bro
 
 ![Save   Unsave Homes](https://github.com/pod5AND101Spring24/iHomie/assets/75619539/be7ffb72-8382-42fe-b5ea-7a393f208671)
 
-Save/unsave buttons on browse and save home screens - Users can save properties with the save buttons, view the list of favorited properties, and remove properties from favorites.
+Save/unsave buttons on browse and save home screens - Users can save properties with the save buttons, view the list of favorited properties, and remove properties from favorites. Color of the button will change dynamically to reflect the state of the property.
 
 
 ## Completed user stories
