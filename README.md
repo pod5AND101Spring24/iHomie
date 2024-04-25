@@ -180,6 +180,13 @@ Location-based default browse screen - Users can get a default result in the bro
 
 Save/unsave buttons on browse and save home screens - Users can save properties with the save buttons, view the list of favorited properties, and remove properties from favorites. Color of the button will change dynamically to reflect the state of the property.
 
+![Statistics Screen](https://github.com/pod5AND101Spring24/iHomie/blob/main/StatisticsSprint3Demo.gif)
+
+Display statistics (e.g. average, minimum, and maximum price) based on the user's favorited properties. Statistics will change dynamically to reflect the information of the currently favorited properties.
+
+![Account Settings Screen](https://github.com/pod5AND101Spring24/iHomie/blob/main/AccountSettingsSprint3Demo.gif)
+
+Mock settings screen - Includes placeholder settings for app's final product. Currently,  users may change the theme from light mode or dark mode.
 
 ## Completed user stories
 
