@@ -30,28 +30,15 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
 
-
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/search_view"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:defaultQueryHint="500 Tech Way, Palo Alto, CA 94020"
-            app:iconifiedByDefault="false"
-            app:queryBackground="@null"
-            app:layout_constraintTop_toBottomOf="@id/container_group"
-            app:layout_constraintStart_toStartOf="@id/container_group"
-            app:layout_constraintEnd_toEndOf="@id/container_group"
-            />
-
         <FrameLayout
             android:id="@+id/container_group"
             android:layout_width="367dp"
             android:layout_height="82dp"
-            android:layout_marginTop="18dp"
             android:layout_gravity="top|left"
-            app:layout_constraintTop_toBottomOf="@+id/statistics_label"
+            android:layout_marginTop="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/statistics_label">
 
             <FrameLayout
                 android:id="@+id/container_destination_instruct"
@@ -68,32 +55,50 @@
 
                 <TextView
                     android:id="@+id/text_enter_destination"
-                    android:layout_width="269dp"
-                    android:layout_height="47dp"
+                    android:layout_width="261dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="68dp"
-                    android:layout_marginRight="30dp"
                     android:layout_marginTop="18dp"
+                    android:layout_marginRight="30dp"
                     android:layout_marginBottom="17dp"
                     android:alpha="0.6000000238418579"
-                    android:gravity="left|top"
+                    android:gravity="center"
                     android:includeFontPadding="false"
                     android:lineHeight="25.03dp"
-                    android:text="Enter destination address to compare commute time"
-                    android:textSize="21dp" />
+                    android:text="Your property statistics, personalized."
+                    android:textSize="18dp" />
             </FrameLayout>
 
             <ImageView
-                android:id="@+id/container_road"
+                android:id="@+id/chartIcon"
                 android:layout_width="42dp"
                 android:layout_height="42dp"
+                android:layout_gravity="left"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="23dp"
                 android:layout_marginBottom="17dp"
-                android:layout_gravity="left"
                 android:scaleType="centerInside"
-                android:src="@drawable/road" />
+                android:src="@drawable/statschart" />
 
         </FrameLayout>
+
+        <ScrollView
+            android:id="@+id/statsScrollView"
+            android:layout_width="409dp"
+            android:layout_height="649dp"
+            android:fillViewport="true"
+            android:layout_marginTop="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/container_group">
+
+            <TextView
+                android:id="@+id/statsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:textSize="18sp" />
+        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
