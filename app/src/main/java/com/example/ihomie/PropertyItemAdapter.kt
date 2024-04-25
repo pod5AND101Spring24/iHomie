@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -16,7 +15,6 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.text.NumberFormat
 import java.util.Locale
-import androidx.room.Insert
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -28,6 +26,7 @@ class PropertyItemAdapter(
     private val context: Context,
     private val savedHomesDao: SavedHomesDao,
     private var properties: List<PropertyModel>,
+    private val isSavedHomesScreen: Boolean = false,
     private val mListener: OnListFragmentInteractionListener?
 ) :
     RecyclerView.Adapter<PropertyItemAdapter.PropertyViewHolder>() {
@@ -103,6 +102,11 @@ class PropertyItemAdapter(
                     property.zpid?.let {
                         savedHomesDao.delete(it)
                         Log.d("Database", "Deleted ZPID: $it")
+
+                        // If it's the saved homes screen, remove the property from the list
+                        if (isSavedHomesScreen) {
+                            properties = properties.filter { property -> property.zpid != it }
+                        }
                     }
                 } else {
                     val zpid = property.zpid?.let { SavedHomes(zpid = it) }

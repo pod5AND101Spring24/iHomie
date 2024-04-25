@@ -67,6 +67,7 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
             context,
             (activity?.application as SavedHomesApplication).db.savedHomesDao(),
             emptyList(),
+            isSavedHomesScreen = false,
             this@BrowseFragment)
 
         // Initialize the default recycler view with user's current location
@@ -142,6 +143,7 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
                         it,
                         (activity?.application as SavedHomesApplication).db.savedHomesDao(),
                         properties,
+                        isSavedHomesScreen = false,
                         this@BrowseFragment) }
                 }
                 Log.d("BrowseFragment", "response successful")
