@@ -1,5 +1,9 @@
 package com.example.ihomie
 
+import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,12 +12,21 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.text.NumberFormat
 import java.util.Locale
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+
 
 const val PROPERTY_EXTRA = "PROPERTY_EXTRA"
 class PropertyItemAdapter(
+    private val context: Context,
+    private val savedHomesDao: SavedHomesDao,
     private var properties: List<PropertyModel>,
+    private val isSavedHomesScreen: Boolean = false,
     private val mListener: OnListFragmentInteractionListener?
 ) :
     RecyclerView.Adapter<PropertyItemAdapter.PropertyViewHolder>() {
@@ -34,6 +47,7 @@ class PropertyItemAdapter(
         val bathroomTextView: TextView = itemView.findViewById(R.id.tv_bathroom)
         val sqftTextView: TextView = itemView.findViewById(R.id.tv_sqft)
         val propertyImage: ImageView = itemView.findViewById(R.id.iv_property)
+        val saveButton: FloatingActionButton = itemView.findViewById(R.id.save_button)
     }
 
     override fun onBindViewHolder(holder: PropertyViewHolder, position: Int) {
@@ -61,6 +75,62 @@ class PropertyItemAdapter(
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(holder.propertyImage)
 
+
+        // Change button state based on if the property zpid is found in the saved home list
+        var savedHomesList: List<SavedHomes>
+        CoroutineScope(Dispatchers.IO).launch {
+            savedHomesList = savedHomesDao.getAllSavedHomes()
+
+            // Update UI on the main thread
+            withContext(Dispatchers.Main) {
+                // Set save button background tint based on saved status
+                if (savedHomesList.any { it.zpid == property.zpid }) {
+                    holder.saveButton.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#F1BAAE"))
+                } else {
+                    holder.saveButton.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFFFFF"))
+                }
+            }
+        }
+
+        // Handle save button click
+        holder.saveButton.setOnClickListener {
+            // Toggle saved status
+            CoroutineScope(Dispatchers.IO).launch {
+                savedHomesList = savedHomesDao.getAllSavedHomes()
+
+                if (savedHomesList.any { it.zpid == property.zpid }) {
+                    property.zpid?.let {
+                        savedHomesDao.delete(it)
+                        Log.d("Database", "Deleted ZPID: $it")
+
+                        // If it's the saved homes screen, remove the property from the list
+                        if (isSavedHomesScreen) {
+                            properties = properties.filter { property -> property.zpid != it }
+                        }
+                    }
+                } else {
+                    val zpid = property.zpid?.let { SavedHomes(zpid = it) }
+                    zpid?.let {
+                        savedHomesDao.insert(it)
+                        Log.d("Database", "Inserted ZPID: ${it.zpid}")
+                    }
+                }
+
+                // Update UI on the main thread after database operations
+                withContext(Dispatchers.Main) {
+                    if (savedHomesList.any { it.zpid == property.zpid }) {
+                        holder.saveButton.backgroundTintList =
+                            ColorStateList.valueOf(Color.parseColor("#F1BAAE"))
+                    } else {
+                        holder.saveButton.backgroundTintList =
+                            ColorStateList.valueOf(Color.parseColor("#FFFFFF"))
+                    }
+                    notifyDataSetChanged()
+                }
+            }
+        }
+
+        // Handle save button click
         holder.itemView.setOnClickListener {
             holder.mPropertyModel?.let { movie ->
                 mListener?.onItemClick(movie)
@@ -71,4 +141,5 @@ class PropertyItemAdapter(
     override fun getItemCount(): Int {
         return properties.size
     }
+
 }

@@ -32,13 +32,13 @@ import org.json.JSONObject
 import java.net.URLEncoder
 import java.util.Locale
 
-
 const val API_KEY =  "Replace API KEY HERE"
 
 class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var recyclerView: RecyclerView? = null
     private var noResultView: View? = null
+    private lateinit var savedHomesDao: SavedHomesDao
     private var lastSearchQuery: String? = null
 
     override fun onAttach(context: Context) {
@@ -51,17 +51,24 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_browse, container, false)
         val recyclerView = view.findViewById<View>(R.id.rv_browse_list) as RecyclerView
         val searchView = view.findViewById<View>(R.id.search_view) as SearchView
         noResultView = view.findViewById(R.id.tv_no_result)
+        savedHomesDao = AppDatabase.getInstance(requireContext()).savedHomesDao()
 
         val context = view.context
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         // Initialize the adapter
-        val adapter = PropertyItemAdapter(emptyList(), this@BrowseFragment)
-        recyclerView.adapter = adapter
+        recyclerView.adapter = PropertyItemAdapter(
+            context,
+            (activity?.application as SavedHomesApplication).db.savedHomesDao(),
+            emptyList(),
+            isSavedHomesScreen = false,
+            this@BrowseFragment)
+        
         // Check if there is a saved search query
         if (lastSearchQuery != null) {
             // Use the saved search query to update the adapter
@@ -70,9 +77,6 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
             // Initialize the default recycler view with user's current location
             setDefaultViewWithCurrentLocation(recyclerView)
         }
-
-        // Initialize the default recycler view with user's current location
-       // setDefaultViewWithCurrentLocation(recyclerView)
 
         // Parse query and use API endpoint
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -140,7 +144,12 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
                 } else {
                     recyclerView.visibility = View.VISIBLE
                     noResultView!!.visibility = View.GONE
-                    recyclerView.adapter = PropertyItemAdapter(properties, this@BrowseFragment)
+                    recyclerView.adapter = context?.let { PropertyItemAdapter(
+                        it,
+                        (activity?.application as SavedHomesApplication).db.savedHomesDao(),
+                        properties,
+                        isSavedHomesScreen = false,
+                        this@BrowseFragment) }
                 }
                 Log.d("BrowseFragment", "response successful")
             }
