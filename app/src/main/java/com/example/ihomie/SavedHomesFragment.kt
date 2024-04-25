@@ -190,6 +190,8 @@ class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
             val homeStatus = jsonObject.optString("homeStatus")
             val homeType = jsonObject.optString("homeType")
             val imageUrl = jsonObject.optString("imgSrc")
+            val longitude: Double = jsonObject.optDouble("longitude")
+            val latitude: Double? = jsonObject.optDouble("latitude")
 
             // Create a PropertyModel object and add it to the list
             val property = PropertyModel(
@@ -202,6 +204,8 @@ class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
                 listingStatus = homeStatus,
                 propertyType = homeType,
                 imageUrl = imageUrl,
+                longitude = longitude,
+                latitude = latitude
             )
             properties.add(property)
         } catch (e: Exception) {

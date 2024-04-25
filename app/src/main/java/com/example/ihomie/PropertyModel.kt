@@ -10,4 +10,6 @@ class PropertyModel(
     val listingStatus: String?,
     val propertyType: String?,
     val imageUrl: String?,
+    val longitude: Double?,
+    val latitude: Double?
 ) : java.io.Serializable
