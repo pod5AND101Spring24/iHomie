@@ -25,11 +25,10 @@ const val PROPERTY_EXTRA = "PROPERTY_EXTRA"
 class PropertyItemAdapter(
     private val context: Context,
     private val savedHomesDao: SavedHomesDao,
-    private var properties: List<PropertyModel>,
+    private var properties: MutableList<PropertyModel>,
     private val isSavedHomesScreen: Boolean = false,
     private val mListener: OnListFragmentInteractionListener?
-) :
-    RecyclerView.Adapter<PropertyItemAdapter.PropertyViewHolder>() {
+) : RecyclerView.Adapter<PropertyItemAdapter.PropertyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PropertyViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -105,7 +104,7 @@ class PropertyItemAdapter(
 
                         // If it's the saved homes screen, remove the property from the list
                         if (isSavedHomesScreen) {
-                            properties = properties.filter { property -> property.zpid != it }
+                            properties = properties.filter { property -> property.zpid != it }.toMutableList()
                         }
                     }
                 } else {
@@ -140,6 +139,16 @@ class PropertyItemAdapter(
 
     override fun getItemCount(): Int {
         return properties.size
+    }
+
+    fun setItems(newItems: List<PropertyModel>) {
+        properties.clear()
+        properties.addAll(newItems)
+        notifyDataSetChanged()
+    }
+
+    fun getAllItems(): List<PropertyModel> {
+        return properties
     }
 
 }

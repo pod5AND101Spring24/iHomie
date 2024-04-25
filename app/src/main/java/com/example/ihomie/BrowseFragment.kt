@@ -32,6 +32,7 @@ import org.json.JSONObject
 import java.net.URLEncoder
 import java.util.Locale
 
+//const val API_KEY =  "REPLACE"
 const val API_KEY =  "4e72379795msh0fffca9887c3f3dp1b4723jsnfccbc46b9845"
 
 class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
@@ -87,7 +88,7 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
         recyclerView.adapter = PropertyItemAdapter(
             context,
             (activity?.application as SavedHomesApplication).db.savedHomesDao(),
-            emptyList(),
+            mutableListOf(),
             isSavedHomesScreen = false,
             this@BrowseFragment)
 
@@ -163,7 +164,10 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
                 .build()
 
             val response = client.newCall(request).execute()
-            val properties = response.body?.let { parseProperty(it.string()) }
+            val properties = mutableListOf<PropertyModel>()
+            response.body?.let { responseBody ->
+                parseProperty(responseBody.string())?.let { properties.addAll(it) }
+            }
 
             withContext(Dispatchers.Main) {
                 if (properties.isNullOrEmpty()) {

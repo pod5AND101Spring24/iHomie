@@ -27,8 +27,15 @@ import org.json.JSONObject
  * create an instance of this fragment.
  */
 class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
-    private var recyclerView: RecyclerView? = null
-    private var noResultView: View? = null
+    private lateinit var itemsRv: RecyclerView
+    private lateinit var adapter: PropertyItemAdapter
+    private lateinit var savedHomesDao: SavedHomesDao
+    private lateinit var progressBar: ContentLoadingProgressBar
+    private lateinit var noResultView: View
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,26 +44,32 @@ class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_saved_homes, container, false)
-        val recyclerView = view.findViewById<View>(R.id.rv_saved_list) as RecyclerView
-        val progressBar = view.findViewById<View>(R.id.progress) as ContentLoadingProgressBar
+        itemsRv = view.findViewById(R.id.rv_saved_list)
+        progressBar = view.findViewById(R.id.progress)
         noResultView = view.findViewById(R.id.tv_no_result)
+        savedHomesDao = AppDatabase.getInstance(requireContext()).savedHomesDao()
 
-        val context = view.context
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        itemsRv.layoutManager = LinearLayoutManager(context)
 
-        // Initialize the adapter
-        recyclerView.adapter = PropertyItemAdapter(
-            context,
+        adapter = PropertyItemAdapter(
+            requireContext(),
             (activity?.application as SavedHomesApplication).db.savedHomesDao(),
-            emptyList(),
+            mutableListOf(),
             isSavedHomesScreen = true,
-            this@SavedHomesFragment
-        )
+            this@SavedHomesFragment)
+        itemsRv.adapter = adapter
 
-        updateAdapter(progressBar, recyclerView)
+        updateAdapter(progressBar, itemsRv)
 
         return view
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        updateAdapter(progressBar, itemsRv)
+    }
+
 
     /*
     * Navigate to Property Detail page when clicked
@@ -78,47 +91,38 @@ class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
         progressBar.show()
 
         GlobalScope.launch(Dispatchers.Main) {
-            val zpidList = fetchSavedHomesZpidFromDatabase()
+            val zpidList = savedHomesDao.getAllSavedHomes()     // Get the zpid from the database
+            Log.d("fetchSavedHomesZpidFromDatabase", zpidList.toString())
             if (zpidList.isNotEmpty()) {
                 val queryUrls = constructQueryUrls(zpidList)
-                Log.d("queryUrls", "$queryUrls")
+                Log.d("queryUrls", queryUrls.toString())
 
                 val propertiesDetails = fetchPropertyDetailsFromEndpoints(queryUrls)
-                Log.d("propertiesDetails", "$propertiesDetails")
+                Log.d("propertiesDetails", propertiesDetails.toString())
 
-                // Pars the list of saved properties
+                // Parse the list of saved properties
                 val properties = propertiesDetails.flatMap { responseBody ->
                     responseBody?.let { parseProperty(it) } ?: emptyList()
                 }
+                Log.d("properties", properties.toString())
 
                 progressBar.hide()
 
                 if (properties.isNotEmpty()) {
                     recyclerView.visibility = View.VISIBLE
-                    noResultView?.visibility = View.GONE
-                    recyclerView.adapter = context?.let { PropertyItemAdapter(
-                        it,
-                        (activity?.application as SavedHomesApplication).db.savedHomesDao(),
-                        properties,
-                        isSavedHomesScreen = true,
-                        this@SavedHomesFragment) }
+                    noResultView.visibility = View.GONE
+
+                    adapter.setItems(properties)
+                    adapter.notifyDataSetChanged()
                 } else {
                     recyclerView.visibility = View.GONE
-                    noResultView?.visibility = View.VISIBLE
+                    noResultView.visibility = View.VISIBLE
                 }
             } else {
+                progressBar.hide()
                 recyclerView.visibility = View.GONE
-                noResultView?.visibility = View.VISIBLE
+                noResultView.visibility = View.VISIBLE
             }
-        }
-    }
-
-    /*
-    * Get the ZPID of the saved homes
-    */
-    private suspend fun fetchSavedHomesZpidFromDatabase(): List<SavedHomes> {
-        return withContext(IO) {
-            (activity?.application as SavedHomesApplication).db.savedHomesDao().getAllSavedHomes()
         }
     }
 
