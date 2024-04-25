@@ -32,7 +32,7 @@ import org.json.JSONObject
 import java.net.URLEncoder
 import java.util.Locale
 
-const val API_KEY =  "Replace API KEY HERE"
+const val API_KEY =  "4e72379795msh0fffca9887c3f3dp1b4723jsnfccbc46b9845"
 
 class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -46,11 +46,33 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
     }
 
+    companion object {
+        private const val LAST_SEARCH_QUERY_KEY = "last_search_query"
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        // Save the last search query
+        outState.putString(LAST_SEARCH_QUERY_KEY, lastSearchQuery)
+        Log.d("BrowseFragment", "onSaveInstanceState: lastSearchQuery=$lastSearchQuery")
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        // Restore the last search query if it exists
+        if (savedInstanceState != null) {
+            lastSearchQuery = savedInstanceState.getString(LAST_SEARCH_QUERY_KEY)
+            Log.d("BrowseFragment", "onActivityCreated: lastSearchQuery=$lastSearchQuery")
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.d("BrowseFragment", "onCreateView: savedInstanceState=$savedInstanceState")
+
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_browse, container, false)
         val recyclerView = view.findViewById<View>(R.id.rv_browse_list) as RecyclerView
@@ -68,7 +90,13 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
             emptyList(),
             isSavedHomesScreen = false,
             this@BrowseFragment)
-        
+
+        // Restore the last search query if it exists
+        if (savedInstanceState != null) {
+            lastSearchQuery = savedInstanceState.getString(LAST_SEARCH_QUERY_KEY)
+            Log.d("BrowseFragment", "onCreate: lastSearchQuery=$lastSearchQuery")
+        }
+
         // Check if there is a saved search query
         if (lastSearchQuery != null) {
             // Use the saved search query to update the adapter
