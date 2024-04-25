@@ -66,7 +66,8 @@
                     android:includeFontPadding="false"
                     android:lineHeight="25.03dp"
                     android:text="Your favorited property statistics."
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    android:background="@drawable/pinkrectangle" />
             </FrameLayout>
 
             <ImageView
@@ -78,7 +79,8 @@
                 android:layout_marginTop="23dp"
                 android:layout_marginBottom="17dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/statschart" />
+                android:src="@drawable/statschart"
+                android:background="@drawable/pinkrectangle" />
 
         </FrameLayout>
 

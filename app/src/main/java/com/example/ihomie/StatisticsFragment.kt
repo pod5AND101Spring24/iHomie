@@ -80,22 +80,22 @@ class StatisticsFragment : Fragment() {
 
                 if (properties.isNotEmpty()) {
                     // Calculate statistics for prices
-                    val averagePrice = roundOffDecimal(properties.map { it.price?.toDouble() ?: 0.0 }.average(), 2)
+                    val averagePrice = roundOffDecimal(properties.map { it.price?.toDouble() ?: 0.00 }.average(), 2)
                     val maxPrice = properties.maxByOrNull { it.price ?: 0 }?.price
                     val minPrice = properties.minByOrNull { it.price ?: 0 }?.price
 
                     // Calculate statistics for bedrooms
-                    val averageBedrooms = roundOffDecimal(properties.map { it.bedrooms?.toDouble() ?: 0.0 }.average(), 2)
+                    val averageBedrooms = roundOffDecimal(properties.map { it.bedrooms?.toDouble() ?: 0.00 }.average(), 2)
                     val maxBedrooms = properties.maxByOrNull { it.bedrooms ?: 0 }?.bedrooms
                     val minBedrooms = properties.minByOrNull { it.bedrooms ?: 0 }?.bedrooms
 
                     // Calculate statistics for bathrooms
-                    val averageBathrooms = roundOffDecimal(properties.map { it.bathrooms?.toDouble() ?: 0.0 }.average(), 2)
+                    val averageBathrooms = roundOffDecimal(properties.map { it.bathrooms?.toDouble() ?: 0.00 }.average(), 2)
                     val maxBathrooms = properties.maxByOrNull { it.bathrooms?.toDouble() ?: 0.0}?.bathrooms
                     val minBathrooms = properties.minByOrNull { it.bathrooms?.toDouble() ?: 0.0}?.bathrooms
 
                     // Calculate statistics for sqft
-                    val averageSqft = roundOffDecimal(properties.map { it.sqft?.toDouble() ?: 0.0 }.average(), 2)
+                    val averageSqft = roundOffDecimal(properties.map { it.sqft?.toDouble() ?: 0.00 }.average(), 2)
                     val maxSqft = properties.maxByOrNull { it.sqft ?: 0 }?.sqft
                     val minSqft = properties.minByOrNull { it.sqft ?: 0 }?.sqft
 
@@ -104,18 +104,22 @@ class StatisticsFragment : Fragment() {
                         statsTextView.append("Average price: $$averagePrice\n")
                         statsTextView.append("Max price: $$maxPrice\n")
                         statsTextView.append("Min price: $$minPrice\n")
+                        statsTextView.append("\n")
 
                         statsTextView.append("Average bedrooms: $averageBedrooms\n")
                         statsTextView.append("Max bedrooms: $maxBedrooms\n")
                         statsTextView.append("Min bedrooms: $minBedrooms\n")
+                        statsTextView.append("\n")
 
                         statsTextView.append("Average bathrooms: $averageBathrooms\n")
                         statsTextView.append("Max bathrooms: $maxBathrooms\n")
                         statsTextView.append("Min bathrooms: $minBathrooms\n")
+                        statsTextView.append("\n")
 
                         statsTextView.append("Average sqft: $averageSqft\n")
                         statsTextView.append("Max sqft: $maxSqft\n")
                         statsTextView.append("Min sqft: $minSqft\n")
+                        statsTextView.append("\n")
                     }
                 } else {
                     withContext(Dispatchers.Main) {
