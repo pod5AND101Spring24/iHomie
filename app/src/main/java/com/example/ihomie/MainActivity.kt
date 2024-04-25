@@ -2,6 +2,7 @@ package com.example.ihomie
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -20,6 +21,9 @@ import com.google.android.material.elevation.SurfaceColors
 private lateinit var accountButton: Button
 
 class MainActivity : AppCompatActivity(){
+    private lateinit var browseFragment: Fragment
+    private lateinit var savedHomesFragment: Fragment
+    private lateinit var statisticsFragment: Fragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setSupportActionBar(findViewById(R.id.toolbar))
@@ -31,17 +35,14 @@ class MainActivity : AppCompatActivity(){
         val fragmentTransaction = supportFragmentManager.beginTransaction()
 
         // define your fragments here
-        val browseFragment: Fragment = BrowseFragment()  // Replace fragment with main screen when implemented
-        val savedHomesFragment: Fragment = SavedHomesFragment()
-        val statisticsFragment: Fragment = StatisticsFragment()
+        browseFragment = BrowseFragment()  // Replace fragment with main screen when implemented
+        savedHomesFragment = SavedHomesFragment()
+        statisticsFragment = StatisticsFragment()
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
-
-
         // handle navigation selection
         bottomNavigationView.setOnItemSelectedListener { item ->
-            lateinit var fragment: Fragment
             when (item.itemId) {
                 R.id.action_browse -> replaceFragment(browseFragment)
                 R.id.action_saved -> replaceFragment(savedHomesFragment)

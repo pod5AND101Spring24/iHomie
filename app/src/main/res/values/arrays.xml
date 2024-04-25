@@ -10,4 +10,54 @@
         <item>light_theme</item>
         <item>dark_theme</item>
     </string-array>
+
+    <string-array name="status_type_options">
+        <item>ForSale</item>
+        <item>ForRent</item>
+        <item>RecentlySold</item>
+    </string-array>
+
+    <!-- Home type options for For Rent -->
+    <string-array name="home_type_options_for_rent">
+        <item>Townhomes</item>
+        <item>Houses</item>
+        <item>Apartments_Condos_Co-ops</item>
+    </string-array>
+
+    <!-- Home type options for For Sale and Recently Sold -->
+    <string-array name="home_type_options_others">
+        <item>Houses</item>
+        <item>Townhomes</item>
+        <item>Apartments</item>
+        <item>Multi-family</item>
+        <item>Condos</item>
+        <item>Manufactured</item>
+        <item>LotsLand</item>
+
+    </string-array>
+
+    <!-- Sort options for For Sale and Recently Sold -->
+    <string-array name="sort_options_for_sale_or_sold">
+        <item>Homes_for_You</item>
+        <item>Price_High_Low</item>
+        <item>Price_Low_High</item>
+        <item>Newest</item>
+        <item>Bedrooms</item>
+        <item>Bathrooms</item>
+        <item>Square_Feet</item>
+        <item>Lot_Size</item>
+    </string-array>
+
+    <!-- Sort options for For Rent -->
+    <string-array name="sort_options_for_rent">
+        <item>Verified_Source</item>
+        <item>Payment_High_Low</item>
+        <item>Payment_Low_High</item>
+        <item>Newest</item>
+        <item>Bedrooms</item>
+        <item>Bathrooms</item>
+        <item>Square_Feet</item>
+        <item>Lot_Size</item>
+    </string-array>
 </resources>
+
