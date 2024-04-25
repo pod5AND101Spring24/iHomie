@@ -9,7 +9,7 @@
 
     <application
         android:name=".SavedHomesApplication"
-        android:configChanges="keyboardHidden|orientation|screenSize"
+        android:configChanges="keyboardHidden|screenSize"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -21,7 +21,8 @@
         tools:targetApi="31">
         <activity
             android:name=".LoginActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:configChanges="keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -29,18 +30,22 @@
         </activity>
         <activity
             android:name=".SignUpActivity"
-            android:exported="false"/>
+            android:exported="false"
+            android:configChanges="keyboardHidden|screenSize"/>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:configChanges="keyboardHidden|screenSize">
         </activity>
         <activity
             android:name=".PropertyDetail"
-            android:exported="true">
+            android:exported="true"
+            android:configChanges="keyboardHidden|screenSize">
         </activity>
         <activity
             android:name=".AccountActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:configChanges="keyboardHidden|screenSize"/>
     </application>
 
 </manifest>

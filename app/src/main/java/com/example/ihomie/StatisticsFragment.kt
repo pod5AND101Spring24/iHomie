@@ -22,6 +22,8 @@ import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONObject
+import kotlin.math.pow
+import kotlin.math.round
 
 /**
  * A simple [Fragment] subclass.
@@ -78,22 +80,22 @@ class StatisticsFragment : Fragment() {
 
                 if (properties.isNotEmpty()) {
                     // Calculate statistics for prices
-                    val averagePrice = properties.map { it.price?.toDouble() ?: 0.0 }.average()
+                    val averagePrice = roundOffDecimal(properties.map { it.price?.toDouble() ?: 0.0 }.average(), 2)
                     val maxPrice = properties.maxByOrNull { it.price ?: 0 }?.price
                     val minPrice = properties.minByOrNull { it.price ?: 0 }?.price
 
                     // Calculate statistics for bedrooms
-                    val averageBedrooms = properties.map { it.bedrooms?.toDouble() ?: 0.0 }.average()
+                    val averageBedrooms = roundOffDecimal(properties.map { it.bedrooms?.toDouble() ?: 0.0 }.average(), 2)
                     val maxBedrooms = properties.maxByOrNull { it.bedrooms ?: 0 }?.bedrooms
                     val minBedrooms = properties.minByOrNull { it.bedrooms ?: 0 }?.bedrooms
 
                     // Calculate statistics for bathrooms
-                    val averageBathrooms = properties.map { it.bathrooms?.toDouble() ?: 0.0 }.average()
+                    val averageBathrooms = roundOffDecimal(properties.map { it.bathrooms?.toDouble() ?: 0.0 }.average(), 2)
                     val maxBathrooms = properties.maxByOrNull { it.bathrooms?.toDouble() ?: 0.0}?.bathrooms
                     val minBathrooms = properties.minByOrNull { it.bathrooms?.toDouble() ?: 0.0}?.bathrooms
 
                     // Calculate statistics for sqft
-                    val averageSqft = properties.map { it.sqft?.toDouble() ?: 0.0 }.average()
+                    val averageSqft = roundOffDecimal(properties.map { it.sqft?.toDouble() ?: 0.0 }.average(), 2)
                     val maxSqft = properties.maxByOrNull { it.sqft ?: 0 }?.sqft
                     val minSqft = properties.minByOrNull { it.sqft ?: 0 }?.sqft
 
@@ -127,6 +129,12 @@ class StatisticsFragment : Fragment() {
             }
         }
 
+    }
+
+    // Rounding a double function
+    fun roundOffDecimal(number: Double, decimalPlace: Int): Double {
+        val factor = 10.0.pow(decimalPlace.toDouble())
+        return round(number * factor) / factor
     }
 
     /*

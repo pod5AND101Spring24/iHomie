@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="823dp"
+    android:layout_height="match_parent"
     android:background="@drawable/background_color"
     tools:context=".StatisticsFragment">
 
@@ -31,22 +31,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/search_view"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:defaultQueryHint="500 Tech Way, Palo Alto, CA 94020"
-            app:iconifiedByDefault="false"
-            app:queryBackground="@null"
-            app:layout_constraintTop_toBottomOf="@id/container_group"
-            app:layout_constraintStart_toStartOf="@id/container_group"
-            app:layout_constraintEnd_toEndOf="@id/container_group"
-            />
-
         <FrameLayout
             android:id="@+id/container_group"
-            android:layout_width="617dp"
-            android:layout_height="51dp"
+            android:layout_width="466dp"
+            android:layout_height="50dp"
             android:layout_gravity="top|left"
             android:layout_marginTop="18dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,7 +48,7 @@
 
                 <ImageView
                     android:id="@+id/image_rectangle"
-                    android:layout_width="613dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:background="@drawable/pinkrectangle"
@@ -68,17 +56,17 @@
 
                 <TextView
                     android:id="@+id/text_enter_destination"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="49dp"
                     android:layout_marginLeft="68dp"
                     android:layout_marginTop="18dp"
                     android:layout_marginRight="30dp"
                     android:layout_marginBottom="17dp"
                     android:alpha="0.6000000238418579"
-                    android:gravity="top"
+                    android:gravity="top|center"
                     android:includeFontPadding="false"
                     android:lineHeight="25.03dp"
-                    android:text="Enter destination address to compare commute time"
+                    android:text="Your favorited property statistics."
                     android:textSize="21dp" />
 
                 <ImageView
@@ -90,13 +78,47 @@
                     android:layout_marginTop="23dp"
                     android:layout_marginBottom="17dp"
                     android:scaleType="centerInside"
-                    android:src="@drawable/road" />
+                    android:src="@drawable/statschart" />
             </FrameLayout>
 
         </FrameLayout>
 
+        <ScrollView
+            android:id="@+id/statsScrollView"
+            android:layout_width="732dp"
+            android:layout_height="614dp"
+            android:fillViewport="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/container_group">
+
+            <TextView
+                android:id="@+id/statsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:textSize="18sp" />
+        </ScrollView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/statsProgress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:theme="@style/Widget.AppCompat.ProgressBar" />
+
+    <TextView
+        android:id="@+id/no_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Looks like this location is vacant..."
+        android:gravity="center"
+        android:visibility="gone" />
 
 
 </FrameLayout>
