@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -101,6 +102,9 @@ class PropertyItemAdapter(
                     property.zpid?.let {
                         savedHomesDao.delete(it)
                         Log.d("Database", "Deleted ZPID: $it")
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(context, "Property Removed", Toast.LENGTH_SHORT).show()
+                        }
 
                         // If it's the saved homes screen, remove the property from the list
                         if (isSavedHomesScreen) {
