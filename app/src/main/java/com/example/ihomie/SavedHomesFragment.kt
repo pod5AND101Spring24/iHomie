@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.ContentLoadingProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -37,6 +38,7 @@ class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_saved_homes, container, false)
         val recyclerView = view.findViewById<View>(R.id.rv_saved_list) as RecyclerView
+        val progressBar = view.findViewById<View>(R.id.progress) as ContentLoadingProgressBar
         noResultView = view.findViewById(R.id.tv_no_result)
 
         val context = view.context
@@ -47,9 +49,11 @@ class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
             context,
             (activity?.application as SavedHomesApplication).db.savedHomesDao(),
             emptyList(),
-            this@SavedHomesFragment)
+            isSavedHomesScreen = true,
+            this@SavedHomesFragment
+        )
 
-        updateAdapter(recyclerView)
+        updateAdapter(progressBar, recyclerView)
 
         return view
     }
@@ -69,7 +73,10 @@ class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
     *
     */
     @OptIn(DelicateCoroutinesApi::class)
-    private fun updateAdapter(recyclerView: RecyclerView) {
+    private fun updateAdapter(progressBar: ContentLoadingProgressBar, recyclerView: RecyclerView) {
+
+        progressBar.show()
+
         GlobalScope.launch(Dispatchers.Main) {
             val zpidList = fetchSavedHomesZpidFromDatabase()
             if (zpidList.isNotEmpty()) {
@@ -84,6 +91,8 @@ class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
                     responseBody?.let { parseProperty(it) } ?: emptyList()
                 }
 
+                progressBar.hide()
+
                 if (properties.isNotEmpty()) {
                     recyclerView.visibility = View.VISIBLE
                     noResultView?.visibility = View.GONE
@@ -91,6 +100,7 @@ class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
                         it,
                         (activity?.application as SavedHomesApplication).db.savedHomesDao(),
                         properties,
+                        isSavedHomesScreen = true,
                         this@SavedHomesFragment) }
                 } else {
                     recyclerView.visibility = View.GONE
