@@ -7,12 +7,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.ContentLoadingProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
@@ -36,6 +38,7 @@ class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_saved_homes, container, false)
         val recyclerView = view.findViewById<View>(R.id.rv_saved_list) as RecyclerView
+        val progressBar = view.findViewById<View>(R.id.progress) as ContentLoadingProgressBar
         noResultView = view.findViewById(R.id.tv_no_result)
 
         val context = view.context
@@ -46,9 +49,11 @@ class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
             context,
             (activity?.application as SavedHomesApplication).db.savedHomesDao(),
             emptyList(),
-            this@SavedHomesFragment)
+            isSavedHomesScreen = true,
+            this@SavedHomesFragment
+        )
 
-        updateAdapter(recyclerView)
+        updateAdapter(progressBar, recyclerView)
 
         return view
     }
@@ -65,9 +70,13 @@ class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
     }
 
     /*
-*
-*/
-    private fun updateAdapter(recyclerView: RecyclerView) {
+    * Update recycler view adapter with the list of properties for the property cards
+    */
+    @OptIn(DelicateCoroutinesApi::class)
+    private fun updateAdapter(progressBar: ContentLoadingProgressBar, recyclerView: RecyclerView) {
+
+        progressBar.show()
+
         GlobalScope.launch(Dispatchers.Main) {
             val zpidList = fetchSavedHomesZpidFromDatabase()
             if (zpidList.isNotEmpty()) {
@@ -77,22 +86,25 @@ class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
                 val propertiesDetails = fetchPropertyDetailsFromEndpoints(queryUrls)
                 Log.d("propertiesDetails", "$propertiesDetails")
 
-                val properties = propertiesDetails?.let { parseProperty(it) }
-                Log.d("properties", "$properties")
+                // Pars the list of saved properties
+                val properties = propertiesDetails.flatMap { responseBody ->
+                    responseBody?.let { parseProperty(it) } ?: emptyList()
+                }
 
-                if (properties != null) {
-                    if (properties.isNotEmpty()) {
-                        recyclerView.visibility = View.VISIBLE
-                        noResultView?.visibility = View.GONE
-                        recyclerView.adapter = context?.let { PropertyItemAdapter(
-                            it,
-                            (activity?.application as SavedHomesApplication).db.savedHomesDao(),
-                            properties,
-                            this@SavedHomesFragment) }
-                    } else {
-                        recyclerView.visibility = View.GONE
-                        noResultView?.visibility = View.VISIBLE
-                    }
+                progressBar.hide()
+
+                if (properties.isNotEmpty()) {
+                    recyclerView.visibility = View.VISIBLE
+                    noResultView?.visibility = View.GONE
+                    recyclerView.adapter = context?.let { PropertyItemAdapter(
+                        it,
+                        (activity?.application as SavedHomesApplication).db.savedHomesDao(),
+                        properties,
+                        isSavedHomesScreen = true,
+                        this@SavedHomesFragment) }
+                } else {
+                    recyclerView.visibility = View.GONE
+                    noResultView?.visibility = View.VISIBLE
                 }
             } else {
                 recyclerView.visibility = View.GONE
@@ -102,7 +114,7 @@ class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
     }
 
     /*
-    *
+    * Get the ZPID of the saved homes
     */
     private suspend fun fetchSavedHomesZpidFromDatabase(): List<SavedHomes> {
         return withContext(IO) {
@@ -118,36 +130,38 @@ class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
     }
 
     /*
-    *
+    * Feed the URLs of the saved homes to the endpoint and return the responses
     */
-    private suspend fun fetchPropertyDetailsFromEndpoints(urls: List<String>): String? {
+    private suspend fun fetchPropertyDetailsFromEndpoints(urls: List<String>): List<String?> {
         return withContext(IO) {
             val client = OkHttpClient()
 
-            val request = Request.Builder()
-                .url(urls[0])
-                .get()
-                .addHeader("X-RapidAPI-Key", API_KEY)
-                .addHeader("X-RapidAPI-Host", "zillow-com1.p.rapidapi.com")
-                .build()
+            val responses = mutableListOf<String?>()
+            for (url in urls) {
+                val request = Request.Builder()
+                    .url(url)
+                    .get()
+                    .addHeader("X-RapidAPI-Key", API_KEY)
+                    .addHeader("X-RapidAPI-Host", "zillow-com1.p.rapidapi.com")
+                    .build()
 
-            val response = client.newCall(request).execute()
+                val response = client.newCall(request).execute()
 
-            return@withContext try {
-                // Check if the response is successful
-                if (response.isSuccessful) {
-                    val responseBodyString = response.body?.string()
-                    Log.d("fetchPropertyDetailsFromEndpoints", responseBodyString ?: "Response body is null")
-                    responseBodyString // Return the response body string if successful
-                } else {
-                    // Log error message if the response is not successful
-                    Log.e("fetchPropertyDetailsFromEndpoints", "Error: ${response.code} ${response.message}")
-                    null
+                delay(500)
+
+                try {
+                    if (response.isSuccessful) {
+                        val responseBodyString = response.body?.string()
+                        responses.add(responseBodyString)
+                    } else {
+                        Log.e("fetchPropertyDetailsFromEndpoints", "Error: ${response.code} ${response.message}")
+                        responses.add(null)
+                    }
+                } finally {
+                    response.body?.close()
                 }
-            } finally {
-                // Close the response body
-                response.body?.close()
             }
+            return@withContext responses
         }
     }
 
@@ -175,20 +189,21 @@ class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
             // Create a PropertyModel object and add it to the list
             val property = PropertyModel(
                 zpid = zpid,
-                address = "$streetAddress, $city, $state, $zipcode",
+                address = "$streetAddress, $city, $state $zipcode",
                 price = price,
                 bedrooms = bedrooms,
                 bathrooms = bathrooms,
                 sqft = livingAreaValue,
                 listingStatus = homeStatus,
                 propertyType = homeType,
-                imageUrl = imageUrl
+                imageUrl = imageUrl,
             )
             properties.add(property)
         } catch (e: Exception) {
             Log.e("SavedHomesFragment", "No results found")
             e.printStackTrace()
         }
+
         return properties
     }
 }

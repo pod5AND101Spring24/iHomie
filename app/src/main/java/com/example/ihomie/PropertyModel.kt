@@ -10,5 +10,4 @@ class PropertyModel(
     val listingStatus: String?,
     val propertyType: String?,
     val imageUrl: String?,
-    var isSaved: Boolean = false
 ) : java.io.Serializable

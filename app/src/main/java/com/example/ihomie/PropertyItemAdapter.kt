@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -16,10 +15,10 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.text.NumberFormat
 import java.util.Locale
-import androidx.room.Insert
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 const val PROPERTY_EXTRA = "PROPERTY_EXTRA"
@@ -27,6 +26,7 @@ class PropertyItemAdapter(
     private val context: Context,
     private val savedHomesDao: SavedHomesDao,
     private var properties: List<PropertyModel>,
+    private val isSavedHomesScreen: Boolean = false,
     private val mListener: OnListFragmentInteractionListener?
 ) :
     RecyclerView.Adapter<PropertyItemAdapter.PropertyViewHolder>() {
@@ -75,34 +75,58 @@ class PropertyItemAdapter(
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(holder.propertyImage)
 
-        // Set save button background tint based on saved status
-        if (property.isSaved) {
-            holder.saveButton.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#F1BAAE"))
-        } else {
-            holder.saveButton.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFFFFF"))
+
+        // Change button state based on if the property zpid is found in the saved home list
+        var savedHomesList: List<SavedHomes>
+        CoroutineScope(Dispatchers.IO).launch {
+            savedHomesList = savedHomesDao.getAllSavedHomes()
+
+            // Update UI on the main thread
+            withContext(Dispatchers.Main) {
+                // Set save button background tint based on saved status
+                if (savedHomesList.any { it.zpid == property.zpid }) {
+                    holder.saveButton.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#F1BAAE"))
+                } else {
+                    holder.saveButton.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFFFFF"))
+                }
+            }
         }
 
         // Handle save button click
         holder.saveButton.setOnClickListener {
-            property.isSaved = !property.isSaved
+            // Toggle saved status
+            CoroutineScope(Dispatchers.IO).launch {
+                savedHomesList = savedHomesDao.getAllSavedHomes()
 
-            // Insert or remove item from the database based on saved status
-            if (property.isSaved) {
-                CoroutineScope(Dispatchers.IO).launch {
+                if (savedHomesList.any { it.zpid == property.zpid }) {
+                    property.zpid?.let {
+                        savedHomesDao.delete(it)
+                        Log.d("Database", "Deleted ZPID: $it")
+
+                        // If it's the saved homes screen, remove the property from the list
+                        if (isSavedHomesScreen) {
+                            properties = properties.filter { property -> property.zpid != it }
+                        }
+                    }
+                } else {
                     val zpid = property.zpid?.let { SavedHomes(zpid = it) }
-                    zpid?.let { savedHomesDao.insert(it) }
+                    zpid?.let {
+                        savedHomesDao.insert(it)
+                        Log.d("Database", "Inserted ZPID: ${it.zpid}")
+                    }
                 }
-            } else {
-                CoroutineScope(Dispatchers.IO).launch {
-                    property.zpid?.let { savedHomesDao.delete(it) }
-                }
-            }
 
-            // Update save button background tint
-            if (property.isSaved) {
-                holder.saveButton.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#F1BAAE"))
-            } else {
-                holder.saveButton.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFFFFF"))
+                // Update UI on the main thread after database operations
+                withContext(Dispatchers.Main) {
+                    if (savedHomesList.any { it.zpid == property.zpid }) {
+                        holder.saveButton.backgroundTintList =
+                            ColorStateList.valueOf(Color.parseColor("#F1BAAE"))
+                    } else {
+                        holder.saveButton.backgroundTintList =
+                            ColorStateList.valueOf(Color.parseColor("#FFFFFF"))
+                    }
+                    notifyDataSetChanged()
+                }
             }
         }
 
@@ -117,4 +141,5 @@ class PropertyItemAdapter(
     override fun getItemCount(): Int {
         return properties.size
     }
+
 }

@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.GlobalScope
@@ -33,14 +32,14 @@ import org.json.JSONObject
 import java.net.URLEncoder
 import java.util.Locale
 
-
-const val API_KEY =  "4e72379795msh0fffca9887c3f3dp1b4723jsnfccbc46b9845"
+const val API_KEY =  "Replace API KEY HERE"
 
 class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var recyclerView: RecyclerView? = null
     private var noResultView: View? = null
     private lateinit var savedHomesDao: SavedHomesDao
+    private var lastSearchQuery: String? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -67,10 +66,17 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
             context,
             (activity?.application as SavedHomesApplication).db.savedHomesDao(),
             emptyList(),
+            isSavedHomesScreen = false,
             this@BrowseFragment)
-
-        // Initialize the default recycler view with user's current location
-        setDefaultViewWithCurrentLocation(recyclerView)
+        
+        // Check if there is a saved search query
+        if (lastSearchQuery != null) {
+            // Use the saved search query to update the adapter
+            updateAdapter(recyclerView, lastSearchQuery!!)
+        } else {
+            // Initialize the default recycler view with user's current location
+            setDefaultViewWithCurrentLocation(recyclerView)
+        }
 
         // Parse query and use API endpoint
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -84,6 +90,7 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
                 // pass encoded query to API
                 if (locationQuery != null) {
                     Log.d("Location Query", locationQuery)
+                    lastSearchQuery = locationQuery
                     updateAdapter(recyclerView, locationQuery)
                 }
 
@@ -117,7 +124,6 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
     /*
     * Update recycler view adapter with the list of properties for the property cards
     */
-    @OptIn(DelicateCoroutinesApi::class)
     private fun updateAdapter(recyclerView: RecyclerView, query: String) {
         GlobalScope.launch(IO) {
             val client = OkHttpClient()
@@ -142,6 +148,7 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
                         it,
                         (activity?.application as SavedHomesApplication).db.savedHomesDao(),
                         properties,
+                        isSavedHomesScreen = false,
                         this@BrowseFragment) }
                 }
                 Log.d("BrowseFragment", "response successful")
@@ -285,7 +292,6 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
     }
 
     private fun setDefaultViewWithCurrentLocation(recyclerView: RecyclerView) {
-        // If permission is not yet granted
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -305,7 +311,7 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
         }
 
         lifecycleScope.launch {
-            val location = withContext(IO) {
+            val location = withContext(Dispatchers.IO) {
                 val locationTask = fusedLocationClient.lastLocation
                 locationTask.await()
             }
@@ -316,14 +322,18 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
                 val zipcode = addresses?.firstOrNull()?.postalCode
 
                 if (zipcode != null) {
-                    updateAdapter(recyclerView, zipcode)
-
+                    withContext(Dispatchers.Main) {
+                        updateAdapter(recyclerView, zipcode)
+                    }
                 } else {
-                    updateAdapter(recyclerView, "San Jose, CA") // default zip code
-
+                    withContext(Dispatchers.Main) {
+                        updateAdapter(recyclerView, "90024") // default zip code
+                    }
                 }
             } else {
-                updateAdapter(recyclerView, "San Jose, CA") // default zip code
+                withContext(Dispatchers.Main) {
+                    updateAdapter(recyclerView, "90024") // default zip code
+                }
             }
         }
     }
