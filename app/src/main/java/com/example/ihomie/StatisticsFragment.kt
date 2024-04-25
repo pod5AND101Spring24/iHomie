@@ -99,9 +99,9 @@ class StatisticsFragment : Fragment() {
 
                     // Update UI with statistics
                     withContext(Dispatchers.Main) {
-                        statsTextView.append("Average price: $averagePrice\n")
-                        statsTextView.append("Max price: $maxPrice\n")
-                        statsTextView.append("Min price: $minPrice\n")
+                        statsTextView.append("Average price: $$averagePrice\n")
+                        statsTextView.append("Max price: $$maxPrice\n")
+                        statsTextView.append("Min price: $$minPrice\n")
 
                         statsTextView.append("Average bedrooms: $averageBedrooms\n")
                         statsTextView.append("Max bedrooms: $maxBedrooms\n")
@@ -189,6 +189,8 @@ class StatisticsFragment : Fragment() {
             val homeStatus = jsonObject.optString("homeStatus")
             val homeType = jsonObject.optString("homeType")
             val imageUrl = jsonObject.optString("imgSrc")
+            val longitude = jsonObject.optDouble("longitude")
+            val latitude = jsonObject.optDouble("latitude")
 
             // Create a PropertyModel object and add it to the list
             val property = PropertyModel(
@@ -201,6 +203,8 @@ class StatisticsFragment : Fragment() {
                 listingStatus = homeStatus,
                 propertyType = homeType,
                 imageUrl = imageUrl,
+                longitude = longitude,
+                latitude = latitude
             )
             properties.add(property)
         } catch (e: Exception) {
