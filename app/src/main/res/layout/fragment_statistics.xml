@@ -65,7 +65,7 @@
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:lineHeight="25.03dp"
-                    android:text="Your property statistics, personalized."
+                    android:text="Your favorited property statistics."
                     android:textSize="18dp" />
             </FrameLayout>
 
