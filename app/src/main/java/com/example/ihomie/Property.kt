@@ -9,6 +9,7 @@ data class Property(
     val address: Address?,
     val propertyTaxRate: Double?,
     val contactRecipients: List<ContactRecipient>?,
+    val listed_by: ListedBy?,
     @field:JsonAdapter(OpenHouseScheduleDeserializer::class)
     val openHouseSchedule: List<OpenHouseSchedule>?,
     val longitude: Double?,
@@ -34,6 +35,17 @@ data class Property(
 data class ContactRecipient(
     val displayName: String?,
     val badgeType: String?,
+    val phone: Phone?
+)
+data class ListedBy(
+    val agent_reason: Int?,
+    val zpro: Boolean?,
+    val recent_sales: Int?,
+    val review_count: Int?,
+    val display_name: String?,
+    val badge_type: String?,
+    val business_name: String?,
+    val rating_average: Int?,
     val phone: Phone?
 )
 

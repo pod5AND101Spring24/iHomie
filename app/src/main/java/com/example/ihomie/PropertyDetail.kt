@@ -6,12 +6,16 @@ import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.Typeface
+import android.net.Uri
 import android.os.Bundle
 import android.text.Spannable
+import android.text.SpannableString
 import android.text.SpannableStringBuilder
+import android.text.Spanned
 import android.text.style.*
 import android.util.Log
 import android.view.OrientationEventListener
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -33,6 +37,12 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.text.NumberFormat
 import java.util.Locale
+import android.text.style.ClickableSpan
+import android.text.style.UnderlineSpan
+import android.content.pm.PackageManager
+import android.text.method.LinkMovementMethod
+import android.widget.Toast
+
 
 
 class PropertyDetail  : BaseActivity() {
@@ -285,6 +295,48 @@ class PropertyDetail  : BaseActivity() {
                     spannableStringBuilder.append("Phone: (${recipient.phone?.areacode}) ${recipient.phone?.prefix}-${recipient.phone?.number}\n\n")
                 }
             }
+        }
+
+        // Inside the updateUI function in PropertyDetail.kt
+
+// Display listed_by information
+        val listedBy = property.listed_by
+        if (listedBy != null) {
+            if (!listedBy.display_name.isNullOrEmpty()) {
+                spannableStringBuilder.append("${listedBy.display_name}")
+                if (!listedBy.badge_type.isNullOrEmpty()) {
+                    spannableStringBuilder.append(" (${listedBy.badge_type})")
+                }
+                spannableStringBuilder.append("\n")
+            }
+            if (!listedBy.business_name.isNullOrEmpty()) {
+                spannableStringBuilder.append("${listedBy.business_name}\n")
+            }
+            val phone = listedBy.phone
+            if (phone != null && !phone.areacode.isNullOrEmpty() && !phone.prefix.isNullOrEmpty() && !phone.number.isNullOrEmpty()) {
+                val phoneNumber = "(${phone.areacode}) ${phone.prefix}-${phone.number}"
+                val phoneSpan = SpannableString(phoneNumber)
+                phoneSpan.setSpan(UnderlineSpan(), 0, phoneNumber.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                phoneSpan.setSpan(object : ClickableSpan() {
+                    override fun onClick(widget: View) {
+                        // Check if the device supports phone calls
+                        val packageManager = widget.context.packageManager
+                        if (packageManager.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
+                            // Device supports phone calls, start the phone intent
+                            val intent = Intent(Intent.ACTION_DIAL)
+                            intent.data = Uri.parse("tel:$phoneNumber")
+                            startActivity(intent)
+                        } else {
+                            // Device doesn't support phone calls, show a toast message
+                            Toast.makeText(widget.context, "Phone calls are not supported on this device", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }, 0, phoneNumber.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                spannableStringBuilder.append("Phone: ")
+                spannableStringBuilder.append(phoneSpan)
+                spannableStringBuilder.append("\n\n")
+            }
+            spannableStringBuilder.append("\n")
         }
 
         // Display open house schedule
@@ -817,6 +869,8 @@ class PropertyDetail  : BaseActivity() {
 // Display the formatted data
 
         dataTextView.text = spannableStringBuilder
+        dataTextView.movementMethod = LinkMovementMethod.getInstance()
+
 
     }
 
