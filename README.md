@@ -51,16 +51,20 @@ iHomie is an app that allows users to search, filter, get statistics of specific
     - User can enter user name(EditView), password(EditView), and click login button(Button).
     - User can also create a new account by clicking "Sign up" link.
 - Browse Screen(Home/Search Screen)
+    - Users can view a list of properties by their last known location by default, or if location is disabled, a list of properties from Los Angeles, CA will be shown
     - Users can search for properties by zipcode or address(search bar), view results in a vertical recyclerview, and click heart icon to save a property to favorites.
     - Each search result in the recyclerviw contains property address, number of bedrooms, price, and 1 image.
+    - User can filter the search using parameters like min/max price, min/max bedrooms, min/max bathrooms, min/max sqft, garage, and pool.
+    - User can go back to the Browse screen with their last search parameters retained.
     - There is a bottom navigation menu with options of "Browse","Saved Homes","Stats","Account".
 - Property Detail Screen
   - Users can view detailed information about a specific property, including images(horizontal recyclerview), footage, year built, rooms, garage space, listing history, 
     transaction history, neighborhood information, etc. Detailed information of the property is contained in a vertical scolling view.
-  - Users can click heart icon to add a property to "Saved Homes".
-  - User can click <- to go back to Browse screen.
+  - Users can click the heart icon to add a property to "Saved Homes".
+  - User can click <- to go back to the Browse screen.
+  - User can click phone number in the Property Detail vertical scrollable view to make calls
 - Saved Homes screen (Favorites Screen)
-    - Users can view a list of favorited properties(vertical recyclerview) and remove properties from favorites by long click if desired.
+    - Users can view a list of favorited properties(vertical recyclerview) and remove properties from favorites if desired.
     - Users can go click any propety to go to detailed view of that property.
     - There is a bottom navigation menu with options of "Browse","Saved Homes","Stats","Account".
 - Statistics Screen(optional)
