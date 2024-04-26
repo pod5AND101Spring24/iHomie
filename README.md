@@ -224,6 +224,9 @@ Mock settings screen - Includes placeholder settings for app's final product. Cu
 <img src='demoFilteredSearch.gif' title='Filtered Search on Browse screen' width='250' alt='Video Walkthrough' />
 Filtered search results based on user's choice and input, such as ForRent, ForSale, RecentlySold, Houses, Townhomes, minBeds, maxPrice, etc. Toggle-able filter to give user a better view of the search result.
 
+<img src='demoLogin3danimation.gif' title='3d animation effect of iHomie logo on login screen' width='250' alt='Video Walkthrough' />
+Login screen has a flying in 3d iHomie logo.
+
 ## App Demo Video
 
 - Embed the YouTube/Vimeo link of your Completed Demo Day prep video
