@@ -33,7 +33,8 @@
                     android:background="#E8E8E8"
                     app:defaultQueryHint="Search address, city, zip code..."
                     app:queryBackground="@null"
-                    app:iconifiedByDefault="false"/>
+                    app:iconifiedByDefault="false"
+                    android:textColorHint="@color/hint_color"/>
             </androidx.cardview.widget.CardView>
         </androidx.appcompat.widget.Toolbar>
 
@@ -97,6 +98,7 @@
                     android:layout_weight="1"
                     android:inputType="number"
                     android:hint="Min Price"
+                    android:textColorHint="@color/hint_color"
                     android:visibility="gone"/>
 
                 <EditText
@@ -106,6 +108,7 @@
                     android:layout_weight="1"
                     android:inputType="number"
                     android:hint="Max Price"
+                    android:textColorHint="@color/hint_color"
                     android:visibility="gone"/>
 
                 <EditText
@@ -115,6 +118,7 @@
                     android:layout_weight="1"
                     android:inputType="number"
                     android:hint="Min Rent Price"
+                    android:textColorHint="@color/hint_color"
                     android:visibility="gone"/>
 
                 <EditText
@@ -124,6 +128,7 @@
                     android:layout_weight="1"
                     android:inputType="number"
                     android:hint="Max Rent Price"
+                    android:textColorHint="@color/hint_color"
                     android:visibility="gone"/>
 
             </LinearLayout>
@@ -140,6 +145,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:inputType="number"
+                    android:textColorHint="@color/hint_color"
                     android:hint="Min Beds" />
 
                 <EditText
@@ -148,6 +154,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:inputType="number"
+                    android:textColorHint="@color/hint_color"
                     android:hint="Max Beds" />
 
                 <EditText
@@ -156,6 +163,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:inputType="number"
+                    android:textColorHint="@color/hint_color"
                     android:hint="Min Baths" />
 
                 <EditText
@@ -164,6 +172,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:inputType="number"
+                    android:textColorHint="@color/hint_color"
                     android:hint="Max Baths" />
 
             </LinearLayout>
@@ -180,6 +189,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:inputType="number"
+                    android:textColorHint="@color/hint_color"
                     android:hint="Min Sqft" />
 
                 <EditText
@@ -188,6 +198,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:inputType="number"
+                    android:textColorHint="@color/hint_color"
                     android:hint="Max Sqft" />
 
                 <CheckBox

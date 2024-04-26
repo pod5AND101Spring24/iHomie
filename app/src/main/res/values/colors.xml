@@ -39,4 +39,5 @@
     <color name="teal_700">#FF018786</color>
     <color name="my_primary">#5E35B1</color>
     <color name="my_secondary">#673AB7</color>
+    <color name="hint_color">#A4000000</color>
 </resources>
