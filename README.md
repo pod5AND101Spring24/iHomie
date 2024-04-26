@@ -188,14 +188,23 @@ Display statistics (e.g. average, minimum, and maximum price) based on the user'
 
 Mock settings screen - Includes placeholder settings for app's final product. Currently,  users may change the theme from light mode or dark mode.
 
+
+
+
+
 ## Completed user stories
 
 - List the completed user stories from this unit
+ -  Filtered search results based on user's choice and input, such as ForRent, ForSale, RecentlySold, Houses, Townhomes, minBeds, maxPrice, etc. Toggle-able filter to give user a better view of the search results.
+ -  User can visit another fragment and come back to browse to view latest search results.
+ -  User can change light/dark theme in Account screen, and light/dark mode will apply to the whole app.
+   
 - List any pending user stories / any user stories you decided to cut
 from the original requirements
 
 [Add video/gif of your current application that shows build progress]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+<img src='demoFilteredSearch.gif' title='Filtered Search on Browse screen' width='250' alt='Video Walkthrough' />
+Filtered search results based on user's choice and input, such as ForRent, ForSale, RecentlySold, Houses, Townhomes, minBeds, maxPrice, etc. Toggle-able filter to give user a better view of the search result.
 
 ## App Demo Video
 
