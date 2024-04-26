@@ -28,8 +28,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -38,27 +36,21 @@ import okhttp3.Request
 import org.json.JSONObject
 import java.net.URLEncoder
 import java.util.Locale
-import androidx.core.content.ContextCompat
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
-
-
 
 //const val API_KEY =  "REPLACE"
 const val API_KEY =  "4e72379795msh0fffca9887c3f3dp1b4723jsnfccbc46b9845"
 
 class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private var recyclerView: RecyclerView? = null
+    private lateinit var itemsRv: RecyclerView
+
     private var noResultView: View? = null
     private lateinit var savedHomesDao: SavedHomesDao
     private var lastSearchQuery: String? = null
     private var lastOptionalUrl: String? = null
 
     private var optionalUrl: String? = null
+    private var zipcode: String? = null
 
     private var statusTypeSpinner: Spinner? = null
     private var homeTypeSpinner: Spinner? = null
@@ -93,7 +85,7 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
 
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_browse, container, false)
-        val recyclerView = view.findViewById<View>(R.id.rv_browse_list) as RecyclerView
+        itemsRv = view.findViewById<View>(R.id.rv_browse_list) as RecyclerView
         val searchView = view.findViewById<View>(R.id.search_view) as SearchView
         searchView.isQueryRefinementEnabled = false
         searchView.isFocusable = false
@@ -101,10 +93,10 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
         savedHomesDao = AppDatabase.getInstance(requireContext()).savedHomesDao()
 
         val context = view.context
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        itemsRv.layoutManager = LinearLayoutManager(context)
 
         // Initialize the adapter
-        recyclerView.adapter = PropertyItemAdapter(
+        itemsRv.adapter = PropertyItemAdapter(
             context,
             (activity?.application as SavedHomesApplication).db.savedHomesDao(),
             mutableListOf(),
@@ -138,10 +130,10 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
         // Check if there is a saved search query
         if (lastSearchQuery != null) {
             // Use the saved search query to update the adapter
-            updateAdapter(recyclerView, lastSearchQuery!!,lastOptionalUrl?:"")
+            updateAdapter(itemsRv, lastSearchQuery!!,lastOptionalUrl?:"")
         } else {
             // Initialize the default recycler view with user's current location
-            setDefaultViewWithCurrentLocation(recyclerView)
+            setDefaultViewWithCurrentLocation(itemsRv)
         }
         // Parse query and use API endpoint
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -203,7 +195,7 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
                 if (locationQuery != null) {
                     Log.d("Location Query", locationQuery)
                     lastSearchQuery = locationQuery
-                    updateAdapter(recyclerView, locationQuery,lastOptionalUrl?:"")
+                    updateAdapter(itemsRv, locationQuery,lastOptionalUrl?:"")
                 }
 
                 // Hide the keyboard
@@ -248,7 +240,7 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
 
     }
 
-
+    val REQUEST_CODE = 1000
     /*
     * Navigate to Property Detail page when clicked
     */
@@ -257,8 +249,24 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
         val intent = Intent(context, PropertyDetail::class.java).apply {
             putExtra(PROPERTY_EXTRA, item)
         }
-        startActivity(intent)
+        startActivityForResult(intent, REQUEST_CODE)
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.d("BrowseFragment", "onActivityResult: requestCode=$requestCode, resultCode=$resultCode")
+
+        var locationQuery: String?
+        if (lastSearchQuery != null) {
+            locationQuery = lastSearchQuery
+        } else if (zipcode != null) {
+            locationQuery = zipcode
+        } else {
+            locationQuery = "90024"
+        }
+        updateAdapter(itemsRv, locationQuery!!, lastOptionalUrl ?: "")
+    }
+
     private fun updateSpinnersBasedOnStatusType(statusType: String) {
         when (statusType) {
             "ForRent" -> {
@@ -462,7 +470,7 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
         ActivityResultContracts.RequestMultiplePermissions()
     ) { permissions ->
         if (permissions.isNotEmpty() && permissions.all { it.value }) {
-            recyclerView?.let { rv ->
+            itemsRv?.let { rv ->
                 setDefaultViewWithCurrentLocation(rv)
             }
         } else {
@@ -498,11 +506,11 @@ class BrowseFragment : Fragment(), OnListFragmentInteractionListener {
             if (location != null) {
                 val geocoder = Geocoder(requireContext(), Locale.getDefault())
                 val addresses = geocoder.getFromLocation(location.latitude, location.longitude, 1)
-                val zipcode = addresses?.firstOrNull()?.postalCode
+                zipcode = addresses?.firstOrNull()?.postalCode
 
                 if (zipcode != null) {
                     withContext(Dispatchers.Main) {
-                        updateAdapter(recyclerView, zipcode,"")
+                        updateAdapter(recyclerView, zipcode!!,"")
                     }
                 } else {
                     withContext(Dispatchers.Main) {

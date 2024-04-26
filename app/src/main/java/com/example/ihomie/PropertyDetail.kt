@@ -1,11 +1,20 @@
 package com.example.ihomie
 
+import android.app.Activity
+import android.content.Intent
+import android.content.res.ColorStateList
+import android.content.res.Configuration
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.*
 import android.util.Log
+import android.view.OrientationEventListener
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.ContentLoadingProgressBar
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,33 +22,17 @@ import com.bumptech.glide.Glide
 import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.RequestParams
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
-import okhttp3.Headers
-import androidx.recyclerview.widget.DividerItemDecoration
-import java.text.NumberFormat
-import java.util.Locale
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import okhttp3.Headers
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import org.json.JSONObject
-import java.net.URLEncoder
-import android.graphics.Color
-import android.graphics.Typeface
-import android.text.Spannable
-import android.text.SpannableStringBuilder
-import android.text.style.AbsoluteSizeSpan
-import android.text.style.ForegroundColorSpan
-import android.text.style.StyleSpan
-import android.content.Context
-import android.content.res.Configuration
-import android.graphics.BlurMaskFilter
-import android.graphics.MaskFilter
-import androidx.core.content.ContextCompat
-import android.text.style.*
-import android.view.OrientationEventListener
-import androidx.appcompat.widget.Toolbar
+import java.text.NumberFormat
+import java.util.Locale
 
 
 class PropertyDetail  : BaseActivity() {
@@ -49,6 +42,9 @@ class PropertyDetail  : BaseActivity() {
     private lateinit var dataTextView: TextView
     private  var thumbnails: MutableList<String> = mutableListOf()
     private lateinit var adapter:DetailImageAdapter
+    private lateinit var saveButton: FloatingActionButton
+    private lateinit var savedHomesDao: SavedHomesDao
+
     var propertyzpid:String=""
     // Declare currentOrientation as a member variable
     private var currentOrientation = Configuration.ORIENTATION_UNDEFINED
@@ -116,7 +112,51 @@ class PropertyDetail  : BaseActivity() {
         fetchRealEstateImages()
         fetchScrollContent()
 
+        saveButton = findViewById(R.id.add_button)
+        savedHomesDao = AppDatabase.getInstance(applicationContext).savedHomesDao()
+        var savedHomesList: List<SavedHomes>
 
+        // Handle save button click
+        saveButton.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                savedHomesList = savedHomesDao.getAllSavedHomes()
+
+                if (propertyModel != null) {
+                    if (savedHomesList.any { it.zpid == propertyModel.zpid }) {
+                        propertyModel.zpid?.let {
+                            savedHomesDao.delete(it)
+                            saveButton.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFFFFF"))
+                            Log.d("Database", "Deleted ZPID: $it")
+                        }
+                    } else {
+                        val zpid = propertyModel.zpid?.let { SavedHomes(zpid = it) }
+                        zpid?.let {
+                            savedHomesDao.insert(it)
+                            saveButton.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#F1BAAE"))
+                            Log.d("Database", "Inserted ZPID: ${it.zpid}")
+                        }
+                    }
+                }
+            }
+        }
+        // Update button color according to whether the zpid is in the database
+        CoroutineScope(Dispatchers.IO).launch {
+            savedHomesList = savedHomesDao.getAllSavedHomes()
+            if (propertyModel != null) {
+                if (savedHomesList.any { it.zpid == propertyModel.zpid }) {
+                    saveButton.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#F1BAAE"))
+                } else {
+                    saveButton.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFFFFF"))
+                }
+            }
+        }
+    }
+
+    override fun onBackPressed() {
+        // If a property was saved or unsaved, set result OK to indicate a change
+        val intent = Intent()
+        setResult(Activity.RESULT_OK, intent)
+        super.onBackPressed()
     }
 
     private fun updateRecyclerViewOrientation() {

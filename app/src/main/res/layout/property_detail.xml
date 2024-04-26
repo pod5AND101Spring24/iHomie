@@ -22,7 +22,6 @@
         android:layout_height="40dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="130dp"
-        android:backgroundTint="#F1BAAE"
         android:src="@drawable/sharp_favorite_border_24"
         app:elevation="4dp"
         app:maxImageSize="20dp"

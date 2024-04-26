@@ -133,7 +133,6 @@ class PropertyItemAdapter(
             }
         }
 
-        // Handle save button click
         holder.itemView.setOnClickListener {
             holder.mPropertyModel?.let { movie ->
                 mListener?.onItemClick(movie)

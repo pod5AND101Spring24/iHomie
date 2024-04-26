@@ -1,5 +1,6 @@
 package com.example.ihomie
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -72,6 +73,7 @@ class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
         updateAdapter(progressBar, itemsRv)
     }
 
+    val REQUEST_CODE = 1001
     /*
     * Navigate to Property Detail page when clicked
     */
@@ -80,7 +82,16 @@ class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
         val intent = Intent(context, PropertyDetail::class.java).apply {
             putExtra(PROPERTY_EXTRA, item)
         }
-        startActivity(intent)
+        startActivityForResult(intent, REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            Log.d("onActivityResult", "Refresh Saved Homes Fragment")
+            // Refresh your saved homes fragment here
+            updateAdapter(progressBar, itemsRv)
+        }
     }
 
     /*

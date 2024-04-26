@@ -226,7 +226,7 @@
             android:id="@+id/tv_no_result"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Looks like this location is vacant..."
+            android:text="Looks like this location is vacant!"
             android:gravity="center"
             android:visibility="gone" />
     </LinearLayout>
