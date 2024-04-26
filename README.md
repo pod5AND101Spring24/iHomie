@@ -183,12 +183,25 @@ Custom launcher and Property Detail-by Yan
 ## Completed user stories
 
 - List the completed user stories from this unit
- -  Filtered search results based on user's choice and input, such as ForRent, ForSale, RecentlySold, Houses, Townhomes, minBeds, maxPrice, etc. Toggle-able filter to give user a better view of the search results.
- -  User can visit another fragment and come back to browse to view latest search results.
- -  User can change light/dark theme in Account screen, and light/dark mode will apply to the whole app.
+ -   GPS tracker option enabled.
+ -   Browse screen populated with property lists of Mountain View, CA when first loaded. 
+ -   Filter search results on Browse based on user's choice and input, such as ForRent, ForSale, RecentlySold, Houses, Townhomes, minBeds, maxPrice, etc. Toggle-able filter gives 
+     user a better view of the search results.
+ -   User can visit another fragment and come back to browse to view latest search results.
+ -   User can click heart-shaped button on Browse screen to favor/unfavor a property. Favored property will be shown on SavedHomes screen.
+ -   Data in "Saved Homes" is persistent. When user relaunches the app, the saved homes list is unchanged.
+ -   User can click heart-shaped button on SavedHomes screen to unfavor a property. Unfavored property will be removed from SaveHomes screen. Once user goes back to Browse, heart 
+     button on the unfavored property changes to white.
+ -   User can click a property on SavedHomes screen to view its details on Property Detail screen.
+ -   User can view statistics(min, max and average price) of saved homes on Statistics screen.
+ -   User can change light/dark theme in Account screen, and light/dark mode will apply to the whole app.
+ 
    
 - List any pending user stories / any user stories you decided to cut
 from the original requirements
+  - AI assistant feature.(Optional feature)
+  - Market/trend statistics.(Optional feature)
+  - Gravity orientation.(Optional feature)
 
 [Add video/gif of your current application that shows build progress]
 
