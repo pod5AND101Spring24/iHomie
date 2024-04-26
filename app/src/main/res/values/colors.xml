@@ -25,10 +25,18 @@
     <color name="lime">#FFCDDC39</color>
     <color name="beige">#F1EEE6</color>
     <color name="light_pink">#F1BAAE</color>
-    <color name="darkPrimaryColor">#212121</color>
     <color name="colorPrimaryDarkLight">#CCCCCC</color>
     <color name="colorPrimaryDarkMedium">#AD9E9595</color>
     <color name="colorPrimaryDarkGray">#C9898383</color>
     <color name="colorAccentLight">#000000</color>
     <!-- Dark primary color -->
+    <color name="darkPrimaryColor">#212121</color> <!-- Dark primary color -->
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="my_primary">#5E35B1</color>
+    <color name="my_secondary">#673AB7</color>
 </resources>

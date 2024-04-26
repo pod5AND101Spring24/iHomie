@@ -26,7 +26,7 @@ class SignUpActivity : AppCompatActivity() {
         signupEmail = findViewById(R.id.signup_email)
         signupPassword = findViewById(R.id.signup_password)
         signupButton = findViewById(R.id.signup_button)
-        loginRedirectText = findViewById(R.id.loginRedirectText)
+        loginRedirectText = findViewById(R.id.login_text)
 //        googleSignUpBtn = findViewById(R.id.googleSignUpBtn) // Initialize Google SignInButton
 
         signupButton.setOnClickListener {
