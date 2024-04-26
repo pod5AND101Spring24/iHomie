@@ -5,11 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+<!--    <ImageView-->
+<!--        android:layout_width="55dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:src="@drawable/baseline_logout_24"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/account_container"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/signOutButton"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        tools:layout_editor_absoluteX="99dp"-->
+<!--        tools:layout_editor_absoluteY="345dp" />-->
+
     <Button
-        android:id="@+id/button"
+        android:id="@+id/signOutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SIGN OUT"
+        android:text="@string/sign_out"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/account_container"

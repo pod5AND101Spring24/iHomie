@@ -1,19 +1,22 @@
 package com.example.ihomie
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.graphics.drawable.DrawableCompat.applyTheme
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
+import com.google.firebase.auth.FirebaseAuth
 
 class AccountActivity : AppCompatActivity(),
     PreferenceFragmentCompat.OnPreferenceStartFragmentCallback,
     SharedPreferences.OnSharedPreferenceChangeListener {
 
+    private lateinit var signOutButton: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         // Retrieve the selected theme preference and apply it
 
@@ -25,6 +28,21 @@ class AccountActivity : AppCompatActivity(),
             .beginTransaction()
             .replace(R.id.account_container, AccountFragment())
             .commit()
+
+        // Sign-out button
+        signOutButton = findViewById(R.id.signOutButton)
+        signOutButton.setOnClickListener {
+            signOut();
+        }
+
+    }
+
+    private fun signOut()
+    {
+        FirebaseAuth.getInstance().signOut()
+        // Navigate to the login pagee
+        startActivity(Intent(this, LoginActivity::class.java))
+        finish()
     }
 
     override fun onDestroy() {
