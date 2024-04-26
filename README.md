@@ -172,13 +172,7 @@ Custom launcher and Property Detail-by Yan
 
 [Add screenshot of your Project Board with the updated status of issues for Milestone 3. Note that these should include the updated issues you worked on for this sprint and not be a duplicate of Milestone 2 Project board.] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
 
-![Dynamic Default Screen with GPS](https://github.com/pod5AND101Spring24/iHomie/assets/75619539/d42ee043-41a8-4a45-a56c-9a14fccc371f)
 
-Location-based default browse screen - Users can get a default result in the browse screen based on their last-known location, if location is disabled, result from the default city (San Jose, CA) will be shown.
-
-![Save   Unsave Homes](https://github.com/pod5AND101Spring24/iHomie/assets/75619539/be7ffb72-8382-42fe-b5ea-7a393f208671)
-
-Save/unsave buttons on browse and save home screens - Users can save properties with the save buttons, view the list of favorited properties, and remove properties from favorites. Color of the button will change dynamically to reflect the state of the property.
 
 
 
@@ -198,6 +192,14 @@ from the original requirements
 
 [Add video/gif of your current application that shows build progress]
 
+![Dynamic Default Screen with GPS](https://github.com/pod5AND101Spring24/iHomie/assets/75619539/d42ee043-41a8-4a45-a56c-9a14fccc371f)
+
+Location-based default browse screen - Users can get a default result in the browse screen based on their last-known location, if location is disabled, result from the default city (San Jose, CA) will be shown.
+
+![Save   Unsave Homes](https://github.com/pod5AND101Spring24/iHomie/assets/75619539/be7ffb72-8382-42fe-b5ea-7a393f208671)
+
+Save/unsave buttons on browse and save home screens - Users can save properties with the save buttons, view the list of favorited properties, and remove properties from favorites. Color of the button will change dynamically to reflect the state of the property.
+
 <img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/StatisticsSprint3Demo.gif' title='Statistics Screen' width='250' alt='Video Walkthrough' />
 
 Display statistics (e.g. average, minimum, and maximum price) based on the user's favorited properties. Statistics will change dynamically to reflect the information of the currently favorited properties.
@@ -206,7 +208,7 @@ Display statistics (e.g. average, minimum, and maximum price) based on the user'
 
 Mock settings screen - Includes placeholder settings for app's final product. Currently,  users may change the theme from light mode or dark mode.
 
-<img src='demoFilteredSearch.gif' title='Filtered Search on Browse screen' width='600' alt='Video Walkthrough' />
+<img src='demoFilteredSearch.gif' title='Filtered Search on Browse screen' width='250' alt='Video Walkthrough' />
 Filtered search results based on user's choice and input, such as ForRent, ForSale, RecentlySold, Houses, Townhomes, minBeds, maxPrice, etc. Toggle-able filter to give user a better view of the search result.
 
 ## App Demo Video
