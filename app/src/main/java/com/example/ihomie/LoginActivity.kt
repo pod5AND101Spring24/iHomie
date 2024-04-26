@@ -22,6 +22,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var signupRedirectText: TextView
     private lateinit var loginButton: Button
     private lateinit var googleSignInButton: SignInButton
+    private lateinit var forgotPassword: TextView
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
     companion object {
@@ -38,8 +39,9 @@ class LoginActivity : AppCompatActivity() {
         loginEmail = findViewById(R.id.login_email)
         loginPassword = findViewById(R.id.login_password)
         loginButton = findViewById(R.id.login_button)
-        signupRedirectText = findViewById(R.id.singUpRedirectText)
+        signupRedirectText = findViewById(R.id.signup_text)
         googleSignInButton = findViewById(R.id.googleBtn)
+        forgotPassword = findViewById(R.id.forgotLoginPassword)
 
         loginButton.setOnClickListener {
             val email = loginEmail.text.toString()
@@ -68,6 +70,11 @@ class LoginActivity : AppCompatActivity() {
         signupRedirectText.setOnClickListener {
             startActivity(Intent(this@LoginActivity, SignUpActivity::class.java))
         }
+
+        forgotPassword.setOnClickListener{
+            startActivity(Intent(this@LoginActivity, ForgotPasswordActivity::class.java))
+        }
+
 
         // Configure Google Sign-In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

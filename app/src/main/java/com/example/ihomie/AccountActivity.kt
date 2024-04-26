@@ -64,14 +64,15 @@ class AccountActivity : AppCompatActivity(),
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         // Handle theme preference change
-        if (key == "theme_preference") {
+        if (key == "theme_preference")
+        {
             applyTheme()
             recreate()
         }
     }
 
-
-    private fun applyTheme() {
+    private fun applyTheme()
+    {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         val themePreference = sharedPreferences.getString("theme_preference", "light_theme")
 
@@ -81,6 +82,5 @@ class AccountActivity : AppCompatActivity(),
         }
 
     }
-
 }
 
