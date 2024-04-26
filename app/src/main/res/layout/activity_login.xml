@@ -10,30 +10,36 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:alpha="0.7"/>
+        android:alpha="0.7">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_above="@id/card_view"
-        android:padding="28dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/location_icon"/>
 
         <TextView
-            android:layout_width="140dp"
+            android:id="@+id/iHomieTextView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
-            android:text="GO MAP"
+            android:fontFamily="@font/acme"
+            android:layout_marginTop="15dp"
+            android:layout_centerHorizontal="true"
+            android:text="iHomie"
+            android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="32sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+            android:textStyle="bold"
+            android:shadowColor="#8000"
+            android:shadowDx="15"
+            android:shadowDy="10"
+            android:shadowRadius="8" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="1dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="28dp">
+
+        </LinearLayout>
+    </RelativeLayout>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

@@ -15,6 +15,10 @@ import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
+import android.view.animation.AnimationUtils
+
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var loginEmail: EditText
@@ -32,6 +36,14 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        // Find the "iHomie" TextView
+        val iHomieTextView = findViewById<TextView>(R.id.iHomieTextView)
+
+        // Load the animation from the XML file
+        val animation = AnimationUtils.loadAnimation(this, R.anim.text_animation)
+
+        // Start the animation on the "iHomie" TextView
+        iHomieTextView.startAnimation(animation)
 
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
