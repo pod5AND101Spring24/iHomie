@@ -180,13 +180,7 @@ Location-based default browse screen - Users can get a default result in the bro
 
 Save/unsave buttons on browse and save home screens - Users can save properties with the save buttons, view the list of favorited properties, and remove properties from favorites. Color of the button will change dynamically to reflect the state of the property.
 
-<img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/StatisticsSprint3Demo.gif' title='Statistics Screen' width='250' alt='Video Walkthrough' />
 
-Display statistics (e.g. average, minimum, and maximum price) based on the user's favorited properties. Statistics will change dynamically to reflect the information of the currently favorited properties.
-
-<img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/AccountSettingsSprint3Demo.gif' title='Account Settings Screen' width='250' alt='Video Walkthrough' />
-
-Mock settings screen - Includes placeholder settings for app's final product. Currently,  users may change the theme from light mode or dark mode.
 
 
 
@@ -203,7 +197,16 @@ Mock settings screen - Includes placeholder settings for app's final product. Cu
 from the original requirements
 
 [Add video/gif of your current application that shows build progress]
-<img src='demoFilteredSearch.gif' title='Filtered Search on Browse screen' width='250' alt='Video Walkthrough' />
+
+<img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/StatisticsSprint3Demo.gif' title='Statistics Screen' width='250' alt='Video Walkthrough' />
+
+Display statistics (e.g. average, minimum, and maximum price) based on the user's favorited properties. Statistics will change dynamically to reflect the information of the currently favorited properties.
+
+<img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/AccountSettingsSprint3Demo.gif' title='Account Settings Screen' width='250' alt='Video Walkthrough' />
+
+Mock settings screen - Includes placeholder settings for app's final product. Currently,  users may change the theme from light mode or dark mode.
+
+<img src='demoFilteredSearch.gif' title='Filtered Search on Browse screen' width='600' alt='Video Walkthrough' />
 Filtered search results based on user's choice and input, such as ForRent, ForSale, RecentlySold, Houses, Townhomes, minBeds, maxPrice, etc. Toggle-able filter to give user a better view of the search result.
 
 ## App Demo Video
