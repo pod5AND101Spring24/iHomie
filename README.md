@@ -124,7 +124,7 @@ https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3
 
 ### [BONUS] Interactive Prototype
 
- <img src="wireframe/demoiHomiePrototype.gif" width=250>
+ <img src="wireframe/iHomiePrototype.gif" width=250>
  
  https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3A1&mode=design&t=MbAQlYKpJeaI37gI-1
 
@@ -150,7 +150,7 @@ https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3
    property to SavedHomes screen added to big picture.
  - Account Settings PreferenceScreens have been created with their respective fragments. A test button to enter the screen has been implemented, but there is currently a bug where the app
    crashes if trying to change to the Account screen.
-<img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/Sprint2MilestoneDemo.gif' title='Sprint 2 Milestone' width='600' alt='Video Walkthrough' />
+<img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/Sprint2Milestone.gif' title='Sprint 2 Milestone' width='600' alt='Video Walkthrough' />
 
 
 <img src='https://github.com/pod5AND101Spring24/iHomie/assets/75619539/c1c82b1c-7c73-464b-872f-c83583e54747' title='Animation-ezgif com-optimize' width='250' alt='Video Walkthrough' />
@@ -162,7 +162,7 @@ Login screen-by Abdinahmen
 - Users can login using email
 - Users can login using google sign in
 
-<img src='demoLauncherloginsearchdetail.gif' title='Video Walkthrough 4 screens' width='250' alt='Video Walkthrough' />
+<img src='Launcherloginsearchdetail.gif' title='Video Walkthrough 4 screens' width='250' alt='Video Walkthrough' />
 Custom launcher and Property Detail-by Yan
 - Custom Launcher
 - User can signup and login
@@ -180,18 +180,11 @@ Custom launcher and Property Detail-by Yan
 <img src="https://github.com/pod5AND101Spring24/iHomie/blob/main/Sprint3ProjectBoard(2).PNG" width=600>
 
 
-
-
-
-
-
-
-
 ## Completed user stories
 
 - List the completed user stories from this unit
   - GPS tracker option enabled.
-  - Browse screen populated with property lists of Mountain View, CA when first loaded. 
+  - Browse screen populated with property lists of user's last known location when first loaded. 
   - Filter search results on Browse based on user's choice and input, such as ForRent, ForSale, RecentlySold, Houses, Townhomes, minBeds, maxPrice, etc. Toggle-able filter gives 
      user a better view of the search results.
   - User can visit another fragment and come back to browse to view latest search results.
@@ -218,21 +211,21 @@ Location-based default browse screen - Users can get a default result in the bro
 
 Save/unsave buttons on browse and save home screens - Users can save properties with the save buttons, view the list of favorited properties, and remove properties from favorites. Color of the button will change dynamically to reflect the state of the property.
 
-<img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/StatisticsSprint3Demo.gif' title='Statistics Screen' width='250' alt='Video Walkthrough' />
+<img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/StatisticsSprint3.gif' title='Statistics Screen' width='250' alt='Video Walkthrough' />
 
 Display statistics (e.g. average, minimum, and maximum price) based on the user's favorited properties. Statistics will change dynamically to reflect the information of the currently favorited properties.
 
-<img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/AccountSettingsSprint3Demo.gif' title='Account Settings Screen' width='250' alt='Video Walkthrough' />
+<img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/AccountSettingsSprint3.gif' title='Account Settings Screen' width='250' alt='Video Walkthrough' />
 
 Mock settings screen - Includes placeholder settings for app's final product. Currently,  users may change the theme from light mode or dark mode.
 
-<img src='demoFilteredSearch.gif' title='Filtered Search on Browse screen' width='250' alt='Video Walkthrough' />
+<img src='FilteredSearch.gif' title='Filtered Search on Browse screen' width='250' alt='Video Walkthrough' />
 Filtered search results based on user's choice and input, such as ForRent, ForSale, RecentlySold, Houses, Townhomes, minBeds, maxPrice, etc. Toggle-able filter to give user a better view of the search result.
 
-<img src='demoLogin3danimation.gif' title='3d animation effect of iHomie logo on login screen' width='250' alt='Video Walkthrough' />
+<img src='Login3danimation.gif' title='3d animation effect of iHomie logo on login screen' width='250' alt='Video Walkthrough' />
 Login screen has a flying in 3d iHomie logo.
 
-<img src='demoCallingFeature.gif' title='demo of Callling Feature triggered when user click phone number on Property Detail screen' width='250' alt='Video Walkthrough' />
+<img src='CallingFeature.gif' title=' of Callling Feature triggered when user click phone number on Property Detail screen' width='250' alt='Video Walkthrough' />
 When user click on any phone number, it will trigger phone's dial pad and calling feature.
 
-### [App Demo Video](https://photos.onedrive.com/share/A70670C5E08631CA!65854?cid=A70670C5E08631CA&resId=A70670C5E08631CA!65854&authkey=!ACiSplji9P2-UFc&ithint=video&e=tmrhJe)
+### [App  Video](https://www.youtube.com/watch?v=yo-wLrQHV30)
