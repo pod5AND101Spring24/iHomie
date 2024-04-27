@@ -124,7 +124,7 @@ https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3
 
 ### [BONUS] Interactive Prototype
 
- <img src="wireframe/demoiHomiePrototype.gif" width=300>
+ <img src="wireframe/demoiHomiePrototype.gif" width=250>
  
  https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3A1&mode=design&t=MbAQlYKpJeaI37gI-1
 
@@ -132,7 +132,7 @@ https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3
 
 ## GitHub Project board
 
-![image](https://github.com/pod5AND101Spring24/iHomie/assets/75619539/6af51779-68a4-416b-a587-c8d5f5389d62)
+<img src="https://github.com/pod5AND101Spring24/iHomie/assets/75619539/6af51779-68a4-416b-a587-c8d5f5389d62" width=600>
 
 
 ## Issue cards
@@ -150,12 +150,12 @@ https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3
    property to SavedHomes screen added to big picture.
  - Account Settings PreferenceScreens have been created with their respective fragments. A test button to enter the screen has been implemented, but there is currently a bug where the app
    crashes if trying to change to the Account screen.
-- <img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/Sprint2MilestoneDemo.gif' title='Video Walkthrough' width='800' alt='Video Walkthrough' />
+- <img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/Sprint2MilestoneDemo.gif' title='Browse Screen' width='250' alt='Video Walkthrough' />
 ![Animation-ezgif com-optimize](https://github.com/pod5AND101Spring24/iHomie/assets/75619539/c1c82b1c-7c73-464b-872f-c83583e54747)
 
 Browse Screen with searching functionality-by Anson
 
-<img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/Kapture2024-04-19at00.46.25-ezgif.com-resize.gif' title='Video Walkthrough' width='250' alt='Video Walkthrough' />
+<img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/Kapture2024-04-19at00.46.25-ezgif.com-resize.gif' title='Login Screen' width='250' alt='Video Walkthrough' />
 Login screen-by Abdinahmen
 - Users can login using email
 - Users can login using google sign in
@@ -208,12 +208,11 @@ from the original requirements
   - Market/trend statistics.(Optional feature)
   - Gravity orientation.(Optional feature)
 
-
-![Dynamic Default Screen with GPS](https://github.com/pod5AND101Spring24/iHomie/assets/75619539/d42ee043-41a8-4a45-a56c-9a14fccc371f)
+<img src='https://github.com/pod5AND101Spring24/iHomie/assets/75619539/d42ee043-41a8-4a45-a56c-9a14fccc371f' title='Dynamic Default Screen with GPS' width='250' alt='Video Walkthrough' />
 
 Location-based default browse screen - Users can get a default result in the browse screen based on their last-known location, if location is disabled, result from the default city (San Jose, CA) will be shown.
 
-![Save   Unsave Homes](https://github.com/pod5AND101Spring24/iHomie/assets/75619539/be7ffb72-8382-42fe-b5ea-7a393f208671)
+<img src='https://github.com/pod5AND101Spring24/iHomie/assets/75619539/be7ffb72-8382-42fe-b5ea-7a393f208671' title='Save and Unsave Homes' width='250' alt='Video Walkthrough' />
 
 Save/unsave buttons on browse and save home screens - Users can save properties with the save buttons, view the list of favorited properties, and remove properties from favorites. Color of the button will change dynamically to reflect the state of the property.
 
@@ -234,4 +233,4 @@ Login screen has a flying in 3d iHomie logo.
 <img src='demoCallingFeature.gif' title='demo of Callling Feature triggered when user click phone number on Property Detail screen' width='250' alt='Video Walkthrough' />
 When user click on any phone number, it will trigger phone's dial pad and calling feature.
 
-## [App Demo Video](https://photos.onedrive.com/share/A70670C5E08631CA!65854?cid=A70670C5E08631CA&resId=A70670C5E08631CA!65854&authkey=!ACiSplji9P2-UFc&ithint=video&e=tmrhJe)
+### [App Demo Video](https://photos.onedrive.com/share/A70670C5E08631CA!65854?cid=A70670C5E08631CA&resId=A70670C5E08631CA!65854&authkey=!ACiSplji9P2-UFc&ithint=video&e=tmrhJe)
