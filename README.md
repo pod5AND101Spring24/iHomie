@@ -193,8 +193,10 @@ Custom launcher and Property Detail-by Yan
   - User can click heart-shaped button on SavedHomes screen to unfavor a property. Unfavored property will be removed from SaveHomes screen. Once user goes back to Browse, heart 
      button on the unfavored property changes to white.
   - User can click a property on SavedHomes screen to view its details on Property Detail screen.
+  - User can click a phone number on Propery Detail screen to trigger call feature on the phone. 
   - User can view statistics(min, max and average price) of saved homes on Statistics screen.
   - User can change light/dark theme in Account screen, and light/dark mode will apply to the whole app.
+  - User can sign out app. 
  
    
 - List any pending user stories / any user stories you decided to cut
