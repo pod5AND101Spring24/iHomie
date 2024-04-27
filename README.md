@@ -137,8 +137,8 @@ https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3
 
 ## Issue cards
 
-- [Add screenshot of your Project Board with the issues that you've been working on for this unit's milestone] <img src="https://github.com/pod5AND101Spring24/iHomie/blob/main/Sprint2%263ProjectBoard.PNG" width=600>
-- [Add screenshot of your Project Board with the issues that you're working on in the **NEXT sprint**. It should include issues for next unit with assigned owners.] <img src="https://github.com/pod5AND101Spring24/iHomie/blob/main/Sprint2%263ProjectBoard.PNG" width=600>
+<img src="https://github.com/pod5AND101Spring24/iHomie/blob/main/Sprint2%263ProjectBoard.PNG" width=600>
+<img src="https://github.com/pod5AND101Spring24/iHomie/blob/main/Sprint2%263ProjectBoard.PNG" width=600>
 
 ## Issues worked on this sprint
  - Custom launcher implemented.  A house icon with "iHomie" logo shows first during onboarding process.
@@ -150,8 +150,10 @@ https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3
    property to SavedHomes screen added to big picture.
  - Account Settings PreferenceScreens have been created with their respective fragments. A test button to enter the screen has been implemented, but there is currently a bug where the app
    crashes if trying to change to the Account screen.
-- <img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/Sprint2MilestoneDemo.gif' title='Browse Screen' width='250' alt='Video Walkthrough' />
-![Animation-ezgif com-optimize](https://github.com/pod5AND101Spring24/iHomie/assets/75619539/c1c82b1c-7c73-464b-872f-c83583e54747)
+<img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/Sprint2MilestoneDemo.gif' title='Sprint 2 Milestone' width='600' alt='Video Walkthrough' />
+
+
+<img src='https://github.com/pod5AND101Spring24/iHomie/assets/75619539/c1c82b1c-7c73-464b-872f-c83583e54747' title='Animation-ezgif com-optimize' width='250' alt='Video Walkthrough' />
 
 Browse Screen with searching functionality-by Anson
 
