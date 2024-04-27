@@ -174,7 +174,7 @@ Custom launcher and Property Detail-by Yan
 
 ## GitHub Project board
 
-[Add screenshot of your Project Board with the updated status of issues for Milestone 3. Note that these should include the updated issues you worked on for this sprint and not be a duplicate of Milestone 2 Project board.] <img src="https://github.com/pod5AND101Spring24/iHomie/blob/main/Sprint3ProjectBoard(1).PNG" width=600>
+<img src="https://github.com/pod5AND101Spring24/iHomie/blob/main/Sprint3ProjectBoard(1).PNG" width=600>
 <img src="https://github.com/pod5AND101Spring24/iHomie/blob/main/Sprint3ProjectBoard(2).PNG" width=600>
 
 
@@ -208,7 +208,6 @@ from the original requirements
   - Market/trend statistics.(Optional feature)
   - Gravity orientation.(Optional feature)
 
-[Add video/gif of your current application that shows build progress]
 
 ![Dynamic Default Screen with GPS](https://github.com/pod5AND101Spring24/iHomie/assets/75619539/d42ee043-41a8-4a45-a56c-9a14fccc371f)
 
@@ -235,6 +234,4 @@ Login screen has a flying in 3d iHomie logo.
 <img src='demoCallingFeature.gif' title='demo of Callling Feature triggered when user click phone number on Property Detail screen' width='250' alt='Video Walkthrough' />
 When user click on any phone number, it will trigger phone's dial pad and calling feature.
 
-## App Demo Video
-
-- Embed the YouTube/Vimeo link of your Completed Demo Day prep video
+## [App Demo Video](https://photos.onedrive.com/share/A70670C5E08631CA!65854?cid=A70670C5E08631CA&resId=A70670C5E08631CA!65854&authkey=!ACiSplji9P2-UFc&ithint=video&e=tmrhJe)
