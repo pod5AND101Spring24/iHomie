@@ -5,7 +5,9 @@ import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
@@ -24,17 +26,33 @@ class AccountActivity : AppCompatActivity(),
         applyTheme()
         setContentView(R.layout.activity_account)
 
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.account_container, AccountFragment())
-            .commit()
-
         // Sign-out button
         signOutButton = findViewById(R.id.signOutButton)
         signOutButton.setOnClickListener {
             signOut();
         }
 
+        // Load AccountFragment initially
+        loadAccountFragment()
+
+        // Register onBackPressedDispatcher callback
+        registerOnBackPressedCallback()
+
+    }
+
+    // Function to load AccountFragment
+    private fun loadAccountFragment() {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.account_container, AccountFragment())
+            .commit()
+        // Show sign-out button when AccountFragment is loaded
+        signOutButton.visibility = View.VISIBLE
+    }
+
+    // Function to hide sign-out button when navigating away from AccountFragment
+    private fun hideSignOutButton() {
+        signOutButton.visibility = View.GONE
     }
 
     private fun signOut()
@@ -64,6 +82,7 @@ class AccountActivity : AppCompatActivity(),
     }
 
 
+    // Changing Fragment view
     override fun onPreferenceStartFragment(caller: PreferenceFragmentCompat, pref: Preference): Boolean {
         // Instantiate the new Fragment.
         val args = pref.extras
@@ -77,7 +96,27 @@ class AccountActivity : AppCompatActivity(),
             .replace(R.id.account_container, fragment)
             .addToBackStack(null)
             .commit()
+
+        // Hide the sign-out button for other fragments
+        hideSignOutButton()
+
         return true
+    }
+
+    // Customize back navigation to show sign-out button visible when returning to AccountFragment
+    private fun registerOnBackPressedCallback() {
+        onBackPressedDispatcher.addCallback(this, object: OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // Check if the current fragment in the container is the AccountFragment
+                val currentFragment = supportFragmentManager.findFragmentById(R.id.account_container)
+                if (currentFragment is AccountFragment) {
+                    // Make the sign-out button visible
+                    signOutButton.visibility = View.VISIBLE
+                    finish()
+                }
+                loadAccountFragment()
+            }
+        })
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
