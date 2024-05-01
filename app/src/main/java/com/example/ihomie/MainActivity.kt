@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity(){
         // Set default selection only if savedInstanceState is null
         if (savedInstanceState == null) {
             bottomNavigationView.selectedItemId = R.id.action_browse
-        }]
+        }
 
     }
 
