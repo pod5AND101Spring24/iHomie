@@ -47,6 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/thumbnailRecyclerView"
         android:padding="15dp"
+        android:elevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/thumbnailRecyclerView">
@@ -123,8 +124,10 @@
             android:id="@+id/dataTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:textSize="18sp" />
+            android:paddingTop="15dp"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
+            android:textSize="16sp" />
 
 
 
