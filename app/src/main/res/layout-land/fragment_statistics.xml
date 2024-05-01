@@ -67,7 +67,8 @@
                     android:includeFontPadding="false"
                     android:lineHeight="25.03dp"
                     android:text="Your favourited property statistics."
-                    android:textSize="21dp" />
+                    android:textSize="21dp"
+                    android:background="@drawable/pinkrectangle" />
 
                 <ImageView
                     android:id="@+id/container_road"
@@ -78,7 +79,8 @@
                     android:layout_marginTop="23dp"
                     android:layout_marginBottom="17dp"
                     android:scaleType="centerInside"
-                    android:src="@drawable/statschart" />
+                    android:src="@drawable/statschart"
+                    android:background="@drawable/pinkrectangle" />
             </FrameLayout>
 
         </FrameLayout>
@@ -86,7 +88,7 @@
         <ScrollView
             android:id="@+id/statsScrollView"
             android:layout_width="732dp"
-            android:layout_height="614dp"
+            android:layout_height="wrap_content"
             android:fillViewport="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
