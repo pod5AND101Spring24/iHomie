@@ -9,6 +9,6 @@
     <Preference
         app:key="support"
         app:title="Support"
-        app:icon="@drawable/help"/>
+        app:icon="@drawable/support"/>
 
 </PreferenceScreen>

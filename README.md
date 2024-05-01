@@ -124,7 +124,7 @@ https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3
 
 ### [BONUS] Interactive Prototype
 
- <img src="wireframe/demoiHomiePrototype.gif" width=300>
+ <img src="wireframe/demoiHomiePrototype.gif" width=250>
  
  https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3A1&mode=design&t=MbAQlYKpJeaI37gI-1
 
@@ -132,13 +132,13 @@ https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3
 
 ## GitHub Project board
 
-![image](https://github.com/pod5AND101Spring24/iHomie/assets/75619539/6af51779-68a4-416b-a587-c8d5f5389d62)
+<img src="https://github.com/pod5AND101Spring24/iHomie/assets/75619539/6af51779-68a4-416b-a587-c8d5f5389d62" width=600>
 
 
 ## Issue cards
 
-- [Add screenshot of your Project Board with the issues that you've been working on for this unit's milestone] <img src="https://github.com/pod5AND101Spring24/iHomie/blob/main/Sprint2%263ProjectBoard.PNG" width=600>
-- [Add screenshot of your Project Board with the issues that you're working on in the **NEXT sprint**. It should include issues for next unit with assigned owners.] <img src="https://github.com/pod5AND101Spring24/iHomie/blob/main/Sprint2%263ProjectBoard.PNG" width=600>
+<img src="https://github.com/pod5AND101Spring24/iHomie/blob/main/Sprint2%263ProjectBoard.PNG" width=600>
+<img src="https://github.com/pod5AND101Spring24/iHomie/blob/main/Sprint2%263ProjectBoard.PNG" width=600>
 
 ## Issues worked on this sprint
  - Custom launcher implemented.  A house icon with "iHomie" logo shows first during onboarding process.
@@ -150,12 +150,14 @@ https://www.figma.com/file/ROkz3bhHwBu3HADjl3oNp2/iHomie?type=design&node-id=0%3
    property to SavedHomes screen added to big picture.
  - Account Settings PreferenceScreens have been created with their respective fragments. A test button to enter the screen has been implemented, but there is currently a bug where the app
    crashes if trying to change to the Account screen.
-- <img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/Sprint2MilestoneDemo.gif' title='Video Walkthrough' width='800' alt='Video Walkthrough' />
-![Animation-ezgif com-optimize](https://github.com/pod5AND101Spring24/iHomie/assets/75619539/c1c82b1c-7c73-464b-872f-c83583e54747)
+<img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/Sprint2MilestoneDemo.gif' title='Sprint 2 Milestone' width='600' alt='Video Walkthrough' />
+
+
+<img src='https://github.com/pod5AND101Spring24/iHomie/assets/75619539/c1c82b1c-7c73-464b-872f-c83583e54747' title='Animation-ezgif com-optimize' width='250' alt='Video Walkthrough' />
 
 Browse Screen with searching functionality-by Anson
 
-<img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/Kapture2024-04-19at00.46.25-ezgif.com-resize.gif' title='Video Walkthrough' width='250' alt='Video Walkthrough' />
+<img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/Kapture2024-04-19at00.46.25-ezgif.com-resize.gif' title='Login Screen' width='250' alt='Video Walkthrough' />
 Login screen-by Abdinahmen
 - Users can login using email
 - Users can login using google sign in
@@ -174,21 +176,15 @@ Custom launcher and Property Detail-by Yan
 
 ## GitHub Project board
 
-[Add screenshot of your Project Board with the updated status of issues for Milestone 3. Note that these should include the updated issues you worked on for this sprint and not be a duplicate of Milestone 2 Project board.] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
-
-
-
-
-
-
-
+<img src="https://github.com/pod5AND101Spring24/iHomie/blob/main/Sprint3ProjectBoard(1).PNG" width=600>
+<img src="https://github.com/pod5AND101Spring24/iHomie/blob/main/Sprint3ProjectBoard(2).PNG" width=600>
 
 
 ## Completed user stories
 
 - List the completed user stories from this unit
   - GPS tracker option enabled.
-  - Browse screen populated with property lists of Mountain View, CA when first loaded. 
+  - Browse screen populated with property lists of user's last known location when first loaded. 
   - Filter search results on Browse based on user's choice and input, such as ForRent, ForSale, RecentlySold, Houses, Townhomes, minBeds, maxPrice, etc. Toggle-able filter gives 
      user a better view of the search results.
   - User can visit another fragment and come back to browse to view latest search results.
@@ -197,8 +193,10 @@ Custom launcher and Property Detail-by Yan
   - User can click heart-shaped button on SavedHomes screen to unfavor a property. Unfavored property will be removed from SaveHomes screen. Once user goes back to Browse, heart 
      button on the unfavored property changes to white.
   - User can click a property on SavedHomes screen to view its details on Property Detail screen.
+  - User can click a phone number on Propery Detail screen to trigger call feature on the phone. 
   - User can view statistics(min, max and average price) of saved homes on Statistics screen.
   - User can change light/dark theme in Account screen, and light/dark mode will apply to the whole app.
+  - User can sign out app. 
  
    
 - List any pending user stories / any user stories you decided to cut
@@ -207,13 +205,11 @@ from the original requirements
   - Market/trend statistics.(Optional feature)
   - Gravity orientation.(Optional feature)
 
-[Add video/gif of your current application that shows build progress]
-
-![Dynamic Default Screen with GPS](https://github.com/pod5AND101Spring24/iHomie/assets/75619539/d42ee043-41a8-4a45-a56c-9a14fccc371f)
+<img src='https://github.com/pod5AND101Spring24/iHomie/assets/75619539/d42ee043-41a8-4a45-a56c-9a14fccc371f' title='Dynamic Default Screen with GPS' width='250' alt='Video Walkthrough' />
 
 Location-based default browse screen - Users can get a default result in the browse screen based on their last-known location, if location is disabled, result from the default city (San Jose, CA) will be shown.
 
-![Save   Unsave Homes](https://github.com/pod5AND101Spring24/iHomie/assets/75619539/be7ffb72-8382-42fe-b5ea-7a393f208671)
+<img src='https://github.com/pod5AND101Spring24/iHomie/assets/75619539/be7ffb72-8382-42fe-b5ea-7a393f208671' title='Save and Unsave Homes' width='250' alt='Video Walkthrough' />
 
 Save/unsave buttons on browse and save home screens - Users can save properties with the save buttons, view the list of favorited properties, and remove properties from favorites. Color of the button will change dynamically to reflect the state of the property.
 
@@ -231,9 +227,7 @@ Filtered search results based on user's choice and input, such as ForRent, ForSa
 <img src='demoLogin3danimation.gif' title='3d animation effect of iHomie logo on login screen' width='250' alt='Video Walkthrough' />
 Login screen has a flying in 3d iHomie logo.
 
-<img src='demoCallingFeature.gif' title='demo of Callling Feature triggered when user click phone number on Property Detail screen' width='250' alt='Video Walkthrough' />
+<img src='demoCallingFeature.gif' title=' of Callling Feature triggered when user click phone number on Property Detail screen' width='250' alt='Video Walkthrough' />
 When user click on any phone number, it will trigger phone's dial pad and calling feature.
 
-## App Demo Video
-
-- Embed the YouTube/Vimeo link of your Completed Demo Day prep video
+### [App Demo Video](https://www.youtube.com/watch?v=yo-wLrQHV30)

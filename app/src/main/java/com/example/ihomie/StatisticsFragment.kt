@@ -41,7 +41,7 @@ class StatisticsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_statistics, container, false)
-        val statsTextView = view.findViewById<View>(R.id.statsTextView) as TextView
+        statsTextView = view.findViewById<View>(R.id.statsTextView) as TextView
         val progressBar = view.findViewById<View>(R.id.statsProgress) as ContentLoadingProgressBar
         noResultView = view.findViewById(R.id.no_result)
 

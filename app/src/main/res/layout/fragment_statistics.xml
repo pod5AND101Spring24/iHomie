@@ -65,7 +65,7 @@
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:lineHeight="25.03dp"
-                    android:text="Your favorited property statistics."
+                    android:text="Your favourited property statistics."
                     android:textSize="18dp"
                     android:background="@drawable/pinkrectangle" />
             </FrameLayout>
@@ -87,7 +87,7 @@
         <ScrollView
             android:id="@+id/statsScrollView"
             android:layout_width="409dp"
-            android:layout_height="649dp"
+            android:layout_height="wrap_content"
             android:fillViewport="true"
             android:layout_marginTop="1dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -107,6 +107,7 @@
     <androidx.core.widget.ContentLoadingProgressBar
         android:id="@+id/statsProgress"
         style="?android:attr/progressBarStyleLarge"
+        android:background="@android:color/transparent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

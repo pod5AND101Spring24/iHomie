@@ -19,7 +19,6 @@ import com.example.ihomie.R.id
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.elevation.SurfaceColors
 
-private lateinit var accountButton: Button
 
 class MainActivity : AppCompatActivity(){
     private lateinit var browseFragment: Fragment
@@ -59,14 +58,12 @@ class MainActivity : AppCompatActivity(){
             }
             true
         }
-        // Set default selection
-        bottomNavigationView.selectedItemId = R.id.action_browse
 
-        // Replace fragment with main screen when implemented
-        fragmentTransaction.replace(id.frame_layout, BrowseFragment(), null).commit()
+        // Set default selection only if savedInstanceState is null
+        if (savedInstanceState == null) {
+            bottomNavigationView.selectedItemId = R.id.action_browse
+        }
 
-        // Call helper method to swap the FrameLayout with the fragment
-//        replaceFragment(BrowseFragment())
     }
 
     /*
