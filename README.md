@@ -237,7 +237,7 @@ When user click on any phone number, it will trigger phone's dial pad and callin
 - List the completed user stories from this unit
   - Browse, Property Detail, Saved Homes, and Statistics Screen have landscape layouts
 
-<img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/OrientationResponsivity.gif' title='Orientation Repositivity' width='500' alt='Video Walkthrough' />
-Browse, Saved Homes, and Statistics screens have implemented orientation positivity.
+<img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/OrientationResponsivity.gif' title='Orientation Respositivity' width='500' alt='Video Walkthrough' />
+Browse, Saved Homes, and Statistics screens have implemented orientation respositivity.
 
 ### [App Demo Video](https://www.youtube.com/watch?v=yo-wLrQHV30)
