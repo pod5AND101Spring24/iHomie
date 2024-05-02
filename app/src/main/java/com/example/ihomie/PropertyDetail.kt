@@ -266,15 +266,7 @@ class PropertyDetail  : BaseActivity() {
                  Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
              )*/
             spannableStringBuilder.setSpan(
-                ForegroundColorSpan(ContextCompat.getColor(this@PropertyDetail, R.color.teal)),
-                descriptionStart,
-                descriptionEnd,
-                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-            )
-
-
-            spannableStringBuilder.setSpan(
-                AbsoluteSizeSpan(20, true),
+                ForegroundColorSpan(ContextCompat.getColor(this@PropertyDetail, R.color.black)),
                 descriptionStart,
                 descriptionEnd,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -343,7 +335,7 @@ class PropertyDetail  : BaseActivity() {
         val openHouseSchedule = property.openHouseSchedule
         if (!openHouseSchedule.isNullOrEmpty()) {
             val openHouseScheduleStart = spannableStringBuilder.length
-            spannableStringBuilder.append("Open House Schedule:\n")
+            spannableStringBuilder.append("Open House Schedule\n")
             val openHouseScheduleEnd = spannableStringBuilder.length
             spannableStringBuilder.setSpan(
                 StyleSpan(Typeface.BOLD),
@@ -364,17 +356,26 @@ class PropertyDetail  : BaseActivity() {
         if (!resoFacts?.availabilityDate.isNullOrEmpty()) {
             spannableStringBuilder.append("Available Date: ${resoFacts?.availabilityDate}\n\n")
         }
-        // Display atAGlanceFacts
+
+        /*
+        Display atAGlanceFacts
+         */
         if (resoFacts?.atAGlanceFacts?.isNotEmpty()==true) {
             val atAGlanceFactsStart = spannableStringBuilder.length
-            spannableStringBuilder.append("At A Glance Facts:\n")
-            val atAGlanceFactsEnd = spannableStringBuilder.length
-            spannableStringBuilder.setSpan(
-                StyleSpan(Typeface.BOLD),
-                atAGlanceFactsStart,
-                atAGlanceFactsEnd,
-                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-            )
+            spannableStringBuilder.append("At a Glance\n").apply {
+                setSpan(
+                    StyleSpan(Typeface.BOLD),
+                    atAGlanceFactsStart,
+                    length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+                setSpan(
+                    AbsoluteSizeSpan(22, true),
+                    atAGlanceFactsStart,
+                    length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
             resoFacts?.atAGlanceFacts?.forEach { fact ->
                 if (!fact.factLabel.isNullOrEmpty() && !fact.factValue.isNullOrEmpty()) {
                     spannableStringBuilder.append("${fact.factLabel}: ${fact.factValue}\n")
@@ -414,37 +415,35 @@ class PropertyDetail  : BaseActivity() {
             }
         }
 
+//        if (property.price != 0&&property.price!=null) {
+//            spannableStringBuilder.append("Price: $${property.price}\n")
+//        }
 
-        if (property.price != 0&&property.price!=null) {
-            spannableStringBuilder.append("Price: $${property.price}\n")
-        }
 
-
-        if (property.propertyTaxRate != 0.0) {
-            spannableStringBuilder.append("Property Tax Rate: ${property.propertyTaxRate}\n\n")
-        }
         if (property.zestimate != 0&&property.zestimate!=null) {
-            spannableStringBuilder.append("Zestimate: $${property.zestimate}\n\n")
+            spannableStringBuilder.append("Zestimate: $${property.zestimate}\n")
         }
         if (property.rentZestimate != 0&&property.rentZestimate!=null) {
-            spannableStringBuilder.append("Rent Zestimate: $${property.rentZestimate}\n\n")
+            spannableStringBuilder.append("Rent Zestimate: $${property.rentZestimate}\n")
         }
-        if(property.address!=null){
-            spannableStringBuilder.append("Address:\n")
-            spannableStringBuilder.append("${property.address.streetAddress}\n")
-            spannableStringBuilder.append("${property.address.city}, ${property.address.state} ${property.address.zipcode}\n\n")
+        if (property.propertyTaxRate != 0.0) {
+            spannableStringBuilder.append("Property Tax Rate: ${property.propertyTaxRate}\n")
         }
-
-
-        if (property.zpid != 0) {
-            spannableStringBuilder.append("ZPID: ${property.zpid}\n\n")
-        }
-        if (property.longitude != 0.0) {
-            spannableStringBuilder.append("Longitude: ${property.longitude}\n")
-        }
-        if (property.latitude != 0.0) {
-            spannableStringBuilder.append("Latitude: ${property.latitude}\n\n")
-        }
+//        if(property.address!=null){
+//            spannableStringBuilder.append("Address:\n")
+//            spannableStringBuilder.append("${property.address.streetAddress}\n")
+//            spannableStringBuilder.append("${property.address.city}, ${property.address.state} ${property.address.zipcode}\n\n")
+//        }
+//
+//        if (property.zpid != 0) {
+//            spannableStringBuilder.append("ZPID: ${property.zpid}\n\n")
+//        }
+//        if (property.longitude != 0.0) {
+//            spannableStringBuilder.append("Longitude: ${property.longitude}\n")
+//        }
+//        if (property.latitude != 0.0) {
+//            spannableStringBuilder.append("Latitude: ${property.latitude}\n\n")
+//        }
         // Display listingSubtype
         val listingSubtype = property.listingSubtype
         if (listingSubtype != null) {
@@ -486,70 +485,165 @@ class PropertyDetail  : BaseActivity() {
             spannableStringBuilder.append("\n")
         }
 
-// Display ResoFacts
 
-        if (!resoFacts?.parcelNumber.isNullOrEmpty()) {
-            spannableStringBuilder.append("Parcel Number: ${resoFacts?.parcelNumber}\n")
-        }
+        /*
+        Display Interior
+         */
+        val interiorStart = spannableStringBuilder.length
+        spannableStringBuilder.append("\nInterior\n")
+        val interiorEnd = spannableStringBuilder.length
+        spannableStringBuilder.setSpan(
+            StyleSpan(Typeface.BOLD),
+            interiorStart,
+            interiorEnd,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        spannableStringBuilder.setSpan(
+            AbsoluteSizeSpan(22, true),
+            interiorStart,
+            interiorEnd,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
 
-        if (resoFacts?.taxAnnualAmount!=null) {
-            spannableStringBuilder.append("Tax Annual Amount: $${resoFacts?.taxAnnualAmount}\n")
-        }
-
-        if (!resoFacts?.zoning.isNullOrEmpty()) {
-            spannableStringBuilder.append("Zoning: ${resoFacts?.zoning}\n\n")
-        }
-        if (!resoFacts?.ownershipType.isNullOrEmpty()) {
-            spannableStringBuilder.append("Ownership Type: ${resoFacts?.ownershipType}\n")
-        }
-        if (!resoFacts?.associationName.isNullOrEmpty()) {
-            spannableStringBuilder.append("Association Name: ${resoFacts?.associationName}\n")
-        }
-
-        if (!resoFacts?.hoaFee.isNullOrEmpty()) {
-            spannableStringBuilder.append("HOA Fee: ${resoFacts?.hoaFee}\n")
-        }
-
-        val feesAndDues = resoFacts?.feesAndDues
-        if (feesAndDues is List<*> && feesAndDues.isNotEmpty()) {
-            spannableStringBuilder.append("Fees and Dues:\n")
-            feesAndDues.forEach { feeAndDue ->
-                if (feeAndDue is Map<*, *>) {
-                    val phone = feeAndDue["phone"] as? String
-                    val name = feeAndDue["name"] as? String
-                    val fee = feeAndDue["fee"] as? String
-                    val type = feeAndDue["type"] as? String
-
-                    if (!name.isNullOrBlank()) {
-                        spannableStringBuilder.append("Name: $name\n")
-                    }
-                    if (!fee.isNullOrBlank()) {
-                        spannableStringBuilder.append("Fee: $fee\n")
-                    }
-                    if (!type.isNullOrBlank()) {
-                        spannableStringBuilder.append("Type: $type\n")
-                    }
-                    if (!phone.isNullOrBlank()) {
-                        spannableStringBuilder.append("Phone: $phone\n")
-                    }
-                    spannableStringBuilder.append("\n")
-
-                }
-            }
-        }
-
-        if (!resoFacts?.lotSize.isNullOrEmpty()) {
-            spannableStringBuilder.append("Lot Size: ${resoFacts?.lotSize}\n\n")
-        }
-        if (resoFacts?.stories!=null) {
-            spannableStringBuilder.append("Stories: ${resoFacts?.stories}\n")
-        }
+        // Bedrooms & Bathrooms
+        val bdbaStart = spannableStringBuilder.length
+        spannableStringBuilder.append("Bedrooms & Bathrooms\n")
+        val bdbaEnd = spannableStringBuilder.length
+        spannableStringBuilder.setSpan(
+            StyleSpan(Typeface.BOLD),
+            bdbaStart,
+            bdbaEnd,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
         if (resoFacts?.bedrooms!=null) {
-            spannableStringBuilder.append("Bedrooms: ${resoFacts?.bedrooms}\n")
+            spannableStringBuilder.append(" - Bedrooms: ${resoFacts?.bedrooms}\n")
         }
         if (resoFacts?.bathrooms!=null) {
-            spannableStringBuilder.append("Bathrooms: ${resoFacts?.bathrooms}\n\n")
+            spannableStringBuilder.append(" - Bathrooms: ${resoFacts?.bathrooms}\n")
         }
+
+        // Heating
+        val heatingStart = spannableStringBuilder.length
+        spannableStringBuilder.append("\nHeating\n")
+        val heatingEnd = spannableStringBuilder.length
+        spannableStringBuilder.setSpan(
+            StyleSpan(Typeface.BOLD),
+            heatingStart,
+            heatingEnd,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        if (resoFacts?.heating?.isNotEmpty()==true) {
+            spannableStringBuilder.append(" - ${resoFacts.heating.joinToString(", ")}\n")
+        } else {
+            spannableStringBuilder.append(" - None\n")
+        }
+
+        // Cooling
+        val coolingStart = spannableStringBuilder.length
+        spannableStringBuilder.append("\nCooling\n")
+        val coolingEnd = spannableStringBuilder.length
+        spannableStringBuilder.setSpan(
+            StyleSpan(Typeface.BOLD),
+            coolingStart,
+            coolingEnd,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        if (resoFacts?.cooling?.isNotEmpty()==true) {
+            spannableStringBuilder.append(" - ${resoFacts.cooling.joinToString(", ")}\n")
+        } else {
+            spannableStringBuilder.append(" - None\n")
+        }
+
+        // Flooring
+        val flooringStart = spannableStringBuilder.length
+        spannableStringBuilder.append("\nFlooring\n")
+        val flooringEnd = spannableStringBuilder.length
+        spannableStringBuilder.setSpan(
+            StyleSpan(Typeface.BOLD),
+            flooringStart,
+            flooringEnd,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        if (resoFacts?.flooring?.isNotEmpty()==true) {
+            spannableStringBuilder.append(" - ${resoFacts.flooring.joinToString(", ")}\n")
+        } else {
+            spannableStringBuilder.append(" - None\n")
+        }
+
+
+        // Appliances
+        val appliancesStart = spannableStringBuilder.length
+        spannableStringBuilder.append("\nAppliances\n")
+        val appliancesEnd = spannableStringBuilder.length
+        spannableStringBuilder.setSpan(
+            StyleSpan(Typeface.BOLD),
+            appliancesStart,
+            appliancesEnd,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        if (resoFacts?.appliances?.isNotEmpty()==true){
+            spannableStringBuilder.append(" - ${resoFacts.appliances.joinToString(", ")}\n")
+        } else {
+            spannableStringBuilder.append(" - None\n")
+        }
+
+        // Interior Features
+        val interiorFeaturesStart = spannableStringBuilder.length
+        spannableStringBuilder.append("\nFeatures\n")
+        val interiorFeaturesEnd = spannableStringBuilder.length
+        spannableStringBuilder.setSpan(
+            StyleSpan(Typeface.BOLD),
+            interiorFeaturesStart,
+            interiorFeaturesEnd,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        if (resoFacts?.interiorFeatures?.isNotEmpty()==true) {
+            spannableStringBuilder.append(" - Interior: ${resoFacts.interiorFeatures.joinToString(", ")}\n")
+        }
+        if (!resoFacts?.doorFeatures.isNullOrEmpty()) {
+            spannableStringBuilder.append(" - Door: ${resoFacts?.doorFeatures?.joinToString(", ")}\n")
+        }
+        if (resoFacts?.fireplaceFeatures?.isNotEmpty()==true) {
+            spannableStringBuilder.append(" - Fireplace: ${resoFacts?.fireplaceFeatures.joinToString(", ")}\n")
+        }
+        if (resoFacts?.laundryFeatures?.isNotEmpty()==true) {
+            spannableStringBuilder.append(" - Laundry: ${resoFacts.laundryFeatures.joinToString(", ")}\n")
+        }
+        if (!resoFacts?.securityFeatures.isNullOrEmpty()) {
+            spannableStringBuilder.append(" - Security: ${resoFacts?.securityFeatures?.joinToString(", ")}\n")
+        }
+        if (resoFacts?.basementYN==true) {
+            spannableStringBuilder.append(" - Basement: ${resoFacts.basementYN}\n")
+        }
+        if (resoFacts?.hasPetsAllowed==true) {
+            spannableStringBuilder.append(" - Pets Allowed: ${resoFacts.hasPetsAllowed}\n")
+        }
+        if (!resoFacts?.attic.isNullOrEmpty()) {
+            spannableStringBuilder.append("Attic: ${resoFacts?.attic}\n")
+        }
+        if (!resoFacts?.fencing.isNullOrEmpty()) {
+            spannableStringBuilder.append("Fencing: ${resoFacts?.fencing}\n")
+        }
+
+
+        /*
+        Display Property
+         */
+        val propertyStart = spannableStringBuilder.length
+        spannableStringBuilder.append("\nProperty\n")
+        val propertyEnd = spannableStringBuilder.length
+        spannableStringBuilder.setSpan(
+            StyleSpan(Typeface.BOLD),
+            propertyStart,
+            propertyEnd,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        spannableStringBuilder.setSpan(
+            AbsoluteSizeSpan(22, true),
+            propertyStart,
+            propertyEnd,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
 
         if (resoFacts?.yearBuilt!=null) {
             spannableStringBuilder.append("Year Built: ${resoFacts?.yearBuilt}\n")
@@ -557,29 +651,25 @@ class PropertyDetail  : BaseActivity() {
         if (!resoFacts?.yearBuiltEffective.isNullOrEmpty()) {
             spannableStringBuilder.append("Year Built Effective: ${resoFacts?.yearBuiltEffective}\n\n")
         }
-
-        if (resoFacts?.isSeniorCommunity==true) {
-            spannableStringBuilder.append("Is Senior Community: ${resoFacts.isSeniorCommunity}\n")
-        }
-
-
         if (!property.homeType.isNullOrEmpty()) {
             spannableStringBuilder.append("Home Type: ${property.homeType}\n")
         }
-
         if (!resoFacts?.architecturalStyle.isNullOrEmpty()) {
             spannableStringBuilder.append("Architectural Style: ${resoFacts?.architecturalStyle}\n")
         }
         if (!resoFacts?.structureType.isNullOrEmpty()) {
             spannableStringBuilder.append("Structure Type: ${resoFacts?.structureType}\n")
         }
-        if (resoFacts?.interiorFeatures?.isNotEmpty()==true) {
-            spannableStringBuilder.append("Interior Features: ${resoFacts.interiorFeatures.joinToString(", ")}\n")
+        if (resoFacts?.stories!=null) {
+            spannableStringBuilder.append("Stories: ${resoFacts?.stories}\n")
+        }
+        if (!resoFacts?.lotSize.isNullOrEmpty()) {
+            spannableStringBuilder.append("Lot Size: ${resoFacts?.lotSize}\n")
+        }
+        if (resoFacts?.isSeniorCommunity==true) {
+            spannableStringBuilder.append("Is Senior Community: ${resoFacts.isSeniorCommunity}\n")
         }
 
-        if (resoFacts?.basementYN==true) {
-            spannableStringBuilder.append("Basement: ${resoFacts.basementYN}\n")
-        }
         val foundationDetails = resoFacts?.foundationDetails
         if (foundationDetails != null){
 
@@ -614,14 +704,9 @@ class PropertyDetail  : BaseActivity() {
             }
         }
 
-
-
-
-
         if (!resoFacts?.roofType.isNullOrEmpty()) {
             spannableStringBuilder.append("Roof Type: ${resoFacts?.roofType}\n")
         }
-
 
         val constructionMaterials = resoFacts?.constructionMaterials
         if (constructionMaterials != null) {
@@ -639,189 +724,188 @@ class PropertyDetail  : BaseActivity() {
             spannableStringBuilder.append("\n")
         }
 
-
         if (!resoFacts?.belowGradeFinishedArea.isNullOrEmpty()&& resoFacts?.belowGradeFinishedArea!="0") {
-            spannableStringBuilder.append("Below Grade Finished Area: ${resoFacts?.belowGradeFinishedArea} sqft\n\n")
+            spannableStringBuilder.append("Below Grade Finished Area: ${resoFacts?.belowGradeFinishedArea} sqft\n")
         }
 
         if (resoFacts?.hasAttachedProperty == true) {
-            spannableStringBuilder.append("Has Attached Property: ${resoFacts.hasAttachedProperty}\n\n")
+            spannableStringBuilder.append("Has Attached Property: ${resoFacts.hasAttachedProperty}\n")
         }
 
 
         val parkingFeatures = resoFacts?.parkingFeatures
         if (parkingFeatures != null){
+            val parkingFeaturesStart = spannableStringBuilder.length
+            spannableStringBuilder.append("\nParking Features\n")
+            val parkingFeaturesEnd = spannableStringBuilder.length
+            spannableStringBuilder.setSpan(
+                StyleSpan(Typeface.BOLD),
+                parkingFeaturesStart,
+                parkingFeaturesEnd,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
             when (parkingFeatures) {
                 is List<*> -> {
                     if (parkingFeatures.isNotEmpty()) {
-                        spannableStringBuilder.append("Parking Features:\n")
                         parkingFeatures.forEach { detail ->
                             spannableStringBuilder.append("- $detail\n")
                         }
-                        spannableStringBuilder.append("\n")
                     }
                 }
                 is String -> {
                     if (parkingFeatures.isNotBlank()) {
-                        spannableStringBuilder.append("Parking Features:\n")
-                        parkingFeatures.forEach { detail ->
-                            spannableStringBuilder.append("- $parkingFeatures\n")
-                        }
-                        spannableStringBuilder.append("\n")
+                        spannableStringBuilder.append("- $parkingFeatures\n")
                     }
                 }
                 is Map<*, *> -> {
                     if (parkingFeatures.isNotEmpty()) {
-                        spannableStringBuilder.append("Parking Features:\n")
                         parkingFeatures.forEach { (key, value) ->
                             spannableStringBuilder.append("$key: $value\n")
                         }
-                        spannableStringBuilder.append("\n")
                     }
                 }
             }
         }
 
-        if (resoFacts?.hasGarage==true) {
-            spannableStringBuilder.append("Has Garage: ${resoFacts.hasGarage}\n")
-        }
+//        if (resoFacts?.hasGarage==true) {
+//            spannableStringBuilder.append("Has Garage: ${resoFacts.hasGarage}\n")
+//        }
         if (resoFacts?.hasAttachedGarage==true) {
             spannableStringBuilder.append("Attached Garage: ${resoFacts.hasAttachedGarage}\n")
         }
         if (!resoFacts?.garageParkingCapacity.isNullOrEmpty()&& resoFacts?.garageParkingCapacity!="0") {
-            spannableStringBuilder.append("Garage Parking Capacity: ${resoFacts?.garageParkingCapacity}\n\n")
+            spannableStringBuilder.append("Garage Parking Capacity: ${resoFacts?.garageParkingCapacity}\n")
         }
         if (!resoFacts?.carportParkingCapacity.isNullOrEmpty()&& resoFacts?.carportParkingCapacity!="0") {
-            spannableStringBuilder.append("Carport Spaces: ${resoFacts?.carportParkingCapacity}\n\n")
-        }
-
-        if (resoFacts?.hasHeating==true) {
-            spannableStringBuilder.append("\n")
-            spannableStringBuilder.append("Has Heating: ${resoFacts.hasHeating}\n")
-        }
-
-        if (resoFacts?.heating?.isNotEmpty()==true) {
-            spannableStringBuilder.append("Heating: ${resoFacts.heating.joinToString(", ")}\n\n")
-        }
-
-        if (resoFacts?.hasCooling==true) {
-            spannableStringBuilder.append("Has Cooling: ${resoFacts.hasCooling}\n")
-        }
-        if (resoFacts?.cooling?.isNotEmpty()==true) {
-            spannableStringBuilder.append("Heating: ${resoFacts.cooling.joinToString(", ")}\n\n")
+            spannableStringBuilder.append("Carport Spaces: ${resoFacts?.carportParkingCapacity}\n")
         }
 
 
-        if (resoFacts?.hasPetsAllowed==true) {
-            spannableStringBuilder.append("Pets Allowed: ${resoFacts.hasPetsAllowed}\n")
-        }
+        // Water View
         if (resoFacts?.waterViewYN==true) {
             spannableStringBuilder.append("Water View: ${resoFacts.waterViewYN}\n")
         }
+
         if (!resoFacts?.waterView.isNullOrEmpty()) {
             spannableStringBuilder.append("Water View: ${resoFacts?.waterView}\n")
         }
-        if(resoFacts?.hasPrivatePool==true){
-            spannableStringBuilder.append("Private Pool: ${resoFacts.hasPrivatePool}\n")
-        }
+
+        // Pool
+        val poolStart = spannableStringBuilder.length
+        spannableStringBuilder.append("\nPool Features\n")
+        val poolEnd = spannableStringBuilder.length
+        spannableStringBuilder.setSpan(
+            StyleSpan(Typeface.BOLD),
+            poolStart,
+            poolEnd,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+//        if(resoFacts?.hasPrivatePool==true){
+//            spannableStringBuilder.append("Private Pool: ${resoFacts.hasPrivatePool}\n")
+//        }
         if (resoFacts?.poolFeatures?.isNotEmpty()==true) {
-            spannableStringBuilder.append("Pool Features: ${resoFacts.poolFeatures.joinToString(", ")}\n\n")
-        }
-        if (resoFacts?.flooring?.isNotEmpty()==true) {
-            spannableStringBuilder.append("Flooring: ${resoFacts.flooring.joinToString(", ")}\n\n")
+            spannableStringBuilder.append(" - ${resoFacts.poolFeatures.joinToString(", ")}\n")
         }
 
+        // Display Other Property Information
+        val otherPropertyInformationStart = spannableStringBuilder.length
+        spannableStringBuilder.append("\nOther Property Information\n")
+        val otherPropertyInformationEnd = spannableStringBuilder.length
+        spannableStringBuilder.setSpan(
+            StyleSpan(Typeface.BOLD),
+            otherPropertyInformationStart,
+            otherPropertyInformationEnd,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
 
-        //Display watersource
+        if (!property.datePosted.isNullOrEmpty()) {
+            spannableStringBuilder.append("Date Posted: ${property.datePosted}\n")
+        }
+
         val waterSource = resoFacts?.waterSource
         if (!waterSource.isNullOrEmpty()) {
-            spannableStringBuilder.append("Water Source: ${waterSource.joinToString(", ")}\n\n")
+            spannableStringBuilder.append("Water Source: ${waterSource.joinToString(", ")}\n")
         }
-        // Display gas
+
         val gas = resoFacts?.gas
         if (!gas.isNullOrEmpty()) {
-            spannableStringBuilder.append("Gas: ${gas.joinToString(", ")}\n\n")
+            spannableStringBuilder.append("Gas: ${gas.joinToString(", ")}\n")
         }
 
-// Display sewer
         val sewer = resoFacts?.sewer
         if (!sewer.isNullOrEmpty()) {
-            spannableStringBuilder.append("Sewer: ${sewer.joinToString(", ")}\n\n")
+            spannableStringBuilder.append("Sewer: ${sewer.joinToString(", ")}\n")
         }
+
         if (!resoFacts?.electric.isNullOrEmpty()) {
-            spannableStringBuilder.append("Electric: ${resoFacts?.electric?.joinToString(", ")}\n\n")
+            spannableStringBuilder.append("Electric: ${resoFacts?.electric?.joinToString(", ")}\n")
         }
 
 
-// Display other ResoFacts fields
-
-
-
-        if(resoFacts?.appliances?.isNotEmpty()==true){
-            spannableStringBuilder.append("Appliances: ${resoFacts.appliances.joinToString(", ")}\n")
+        if (!resoFacts?.parcelNumber.isNullOrEmpty()) {
+            spannableStringBuilder.append("\nParcel Number: ${resoFacts?.parcelNumber}\n")
         }
-        if (!resoFacts?.fencing.isNullOrEmpty()) {
-            spannableStringBuilder.append("Fencing: ${resoFacts?.fencing}\n")
+        if (!resoFacts?.zoning.isNullOrEmpty()) {
+            spannableStringBuilder.append("Zoning: ${resoFacts?.zoning}\n")
         }
-
-
-        if (!resoFacts?.securityFeatures.isNullOrEmpty()) {
-            spannableStringBuilder.append("Security Features: ${resoFacts?.securityFeatures?.joinToString(", ")}\n")
+        if (!resoFacts?.ownershipType.isNullOrEmpty()) {
+            spannableStringBuilder.append("Ownership Type: ${resoFacts?.ownershipType}\n")
         }
-        if (!resoFacts?.attic.isNullOrEmpty()) {
-            spannableStringBuilder.append("Attic: ${resoFacts?.attic}\n")
+        if (!resoFacts?.associationName.isNullOrEmpty()) {
+            spannableStringBuilder.append("Association Name: ${resoFacts?.associationName}\n")
         }
-        if(resoFacts?.hasFireplace==true){
-            spannableStringBuilder.append("Fireplace: ${resoFacts.hasFireplace}\n")
+        if (!resoFacts?.hoaFee.isNullOrEmpty()) {
+            spannableStringBuilder.append("HOA Fee: ${resoFacts?.hoaFee}\n")
         }
-
-        if (resoFacts?.fireplaceFeatures?.isNotEmpty()==true) {
-            spannableStringBuilder.append("Fireplace Features: ${resoFacts?.fireplaceFeatures.joinToString(", ")}\n\n")
+        if (resoFacts?.taxAnnualAmount!=null) {
+            spannableStringBuilder.append("Tax Annual Amount: $${resoFacts?.taxAnnualAmount}\n")
         }
-
-
-        if (resoFacts?.laundryFeatures?.isNotEmpty()==true) {
-            spannableStringBuilder.append("Laundry Features: ${resoFacts.laundryFeatures.joinToString(", ")}\n\n")
-        }
-
-
-
-        if (property.bedrooms != 0&&property.bedrooms!=null) {
-            spannableStringBuilder.append("Bathrooms: ${property.bathrooms}\n")
-        }
-        if (property.bathrooms != 0&&property.bathrooms!=null) {
-            spannableStringBuilder.append("Bathrooms: ${property.bathrooms}\n")
-        }
-        if (!resoFacts?.mainLevelBathrooms.isNullOrEmpty()) {
-            spannableStringBuilder.append("Main Level Bathrooms: ${resoFacts?.mainLevelBathrooms}\n")
-        }
-
-
-        if (!resoFacts?.doorFeatures.isNullOrEmpty()) {
-            spannableStringBuilder.append("Door Features: ${resoFacts?.doorFeatures?.joinToString(", ")}\n")
-
-        }
-        if (!resoFacts?.hoaFeeTotal.isNullOrEmpty()) {
-            spannableStringBuilder.append("HOA Fee Total: ${resoFacts?.hoaFeeTotal}\n\n")
-        }
-
         if (property.annualHomeownersInsurance != 0 &&property.annualHomeownersInsurance!=null) {
-            spannableStringBuilder.append("Annual Homeowners Insurance: $${property.annualHomeownersInsurance}\n\n")
+            spannableStringBuilder.append("Annual Homeowners Insurance: $${property.annualHomeownersInsurance}\n")
         }
         if (property.mortgageRates?.thirtyYearFixedRate != 0.0&&property.mortgageRates?.thirtyYearFixedRate!=null) {
-            spannableStringBuilder.append("Mortgage Rates - 30 Year Fixed Rate: ${property.mortgageRates?.thirtyYearFixedRate}\n\n")
+            spannableStringBuilder.append("Mortgage Rates - 30 Year Fixed Rate: ${property.mortgageRates?.thirtyYearFixedRate}\n")
         }
-        if (!property.datePosted.isNullOrEmpty()) {
-            spannableStringBuilder.append("Date Posted: ${property.datePosted}\n\n")
+
+        val feesAndDues = resoFacts?.feesAndDues
+        if (feesAndDues is List<*> && feesAndDues.isNotEmpty()) {
+            spannableStringBuilder.append("\nFees and Dues:\n")
+            feesAndDues.forEach { feeAndDue ->
+                if (feeAndDue is Map<*, *>) {
+                    val phone = feeAndDue["phone"] as? String
+                    val name = feeAndDue["name"] as? String
+                    val fee = feeAndDue["fee"] as? String
+                    val type = feeAndDue["type"] as? String
+
+                    if (!name.isNullOrBlank()) {
+                        spannableStringBuilder.append("Name: $name\n")
+                    }
+                    if (!fee.isNullOrBlank()) {
+                        spannableStringBuilder.append("Fee: $fee\n")
+                    }
+                    if (!type.isNullOrBlank()) {
+                        spannableStringBuilder.append("Type: $type\n")
+                    }
+                    if (!phone.isNullOrBlank()) {
+                        spannableStringBuilder.append("Phone: $phone\n")
+                    }
+                }
+            }
         }
 
 // Display price history
         if (property.priceHistory?.isNotEmpty()==true) {
             val priceHistoryStart = spannableStringBuilder.length
-            spannableStringBuilder.append("Price History:\n")
+            spannableStringBuilder.append("\nPrice History\n")
             val priceHistoryEnd = spannableStringBuilder.length
             spannableStringBuilder.setSpan(
                 StyleSpan(Typeface.BOLD),
+                priceHistoryStart,
+                priceHistoryEnd,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            spannableStringBuilder.setSpan(
+                AbsoluteSizeSpan(22, true),
                 priceHistoryStart,
                 priceHistoryEnd,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
