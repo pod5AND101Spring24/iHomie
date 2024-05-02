@@ -227,7 +227,7 @@ Filtered search results based on user's choice and input, such as ForRent, ForSa
 <img src='demoLogin3danimation.gif' title='3d animation effect of iHomie logo on login screen' width='250' alt='Video Walkthrough' />
 Login screen has a flying in 3d iHomie logo.
 
-<img src='demoCallingFeature.gif' title=' of Callling Feature triggered when user click phone number on Property Detail screen' width='500' alt='Video Walkthrough' />
+<img src='demoCallingFeature.gif' title=' of Callling Feature triggered when user click phone number on Property Detail screen' width='250' alt='Video Walkthrough' />
 When user click on any phone number, it will trigger phone's dial pad and calling feature.
 
 # Build Sprint 3 (Unit 10)
