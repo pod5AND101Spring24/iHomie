@@ -15,12 +15,11 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="4dp">
+            android:layout_height="wrap_content">
 
             <androidx.cardview.widget.CardView
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="16dp"
                 app:cardCornerRadius="50dp"
@@ -30,24 +29,29 @@
                     android:id="@+id/search_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#E8E8E8"
+                    android:background="#FFFFFF"
                     app:defaultQueryHint="Search address, city, zip code..."
                     app:queryBackground="@null"
                     app:iconifiedByDefault="false"
-                    android:editTextColor="@color/hint_color"
-                    android:textColorHint="@color/hint_color"/>
+                    android:textColorHint="@color/black"
+                    android:editTextColor="@color/hint_color" />
+
             </androidx.cardview.widget.CardView>
+
+            <ToggleButton
+                android:id="@+id/toggle_filters"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:textOn=""
+                android:textOff=""
+                android:checked="false"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/adjust"
+                android:backgroundTint="@color/hint_color"
+                android:textColor="@color/text_selector" />
+
         </androidx.appcompat.widget.Toolbar>
 
-        <ToggleButton
-            android:id="@+id/toggle_filters"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textOn="Hide Filters"
-            android:textOff="Show Filters"
-            android:checked="false"
-            android:background="@drawable/button_background_selector"
-            android:textColor="@color/text_selector" />
 
         <LinearLayout
             android:id="@+id/filter_layout"
