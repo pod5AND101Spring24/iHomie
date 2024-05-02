@@ -230,4 +230,14 @@ Login screen has a flying in 3d iHomie logo.
 <img src='demoCallingFeature.gif' title=' of Callling Feature triggered when user click phone number on Property Detail screen' width='250' alt='Video Walkthrough' />
 When user click on any phone number, it will trigger phone's dial pad and calling feature.
 
+# Build Sprint 3 (Unit 10)
+
+## Completed user stories
+
+- List the completed user stories from this unit
+  - Browse, Property Detail, Saved Homes, and Statistics Screen have landscape layouts
+
+<img src='https://github.com/pod5AND101Spring24/iHomie/blob/main/OrientationResponsivity.gif' title='Orientation Repositivity' width='500' alt='Video Walkthrough' />
+Browse, Saved Homes, and Statistics screens have implemented orientation positivity.
+
 ### [App Demo Video](https://www.youtube.com/watch?v=yo-wLrQHV30)
