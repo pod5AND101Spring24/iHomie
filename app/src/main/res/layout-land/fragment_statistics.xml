@@ -108,6 +108,7 @@
     <androidx.core.widget.ContentLoadingProgressBar
         android:id="@+id/statsProgress"
         style="?android:attr/progressBarStyleLarge"
+        android:background="@android:color/transparent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
