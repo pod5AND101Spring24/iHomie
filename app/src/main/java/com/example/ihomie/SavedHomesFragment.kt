@@ -162,7 +162,7 @@ class SavedHomesFragment : Fragment(), OnListFragmentInteractionListener  {
 
                 val response = client.newCall(request).execute()
 
-                delay(500)
+                delay(750)
 
                 try {
                     if (response.isSuccessful) {
